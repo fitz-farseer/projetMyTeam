@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Absences{% endblock %}
+
+{% block body %}
+    <h1>Edit Absences</h1>
+
+    {{ include('absences/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('absences_index') }}">back to list</a>
+
+    {{ include('absences/_delete_form.html.twig') }}
+{% endblock %}
