@@ -1,51 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employe index{% endblock %}
+{% block title %}Employé{% endblock %}
 
 {% block body %}
-    <h1>Employe index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Service</th>
-                <th>Nb_conges</th>
-                <th>Sexe</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for employe in employes %}
-            <tr>
-                <td>{{ employe.id }}</td>
-                <td>{{ employe.email }}</td>
-                <td>{{ employe.roles ? employe.roles|json_encode : '' }}</td>
-                <td>{{ employe.password }}</td>
-                <td>{{ employe.nom }}</td>
-                <td>{{ employe.prenom }}</td>
-                <td>{{ employe.service }}</td>
-                <td>{{ employe.nbConges }}</td>
-                <td>{{ employe.sexe }}</td>
-                <td>{{ employe.photo }}</td>
-                <td>
-                    <a href="{{ path('employe_show', {'id': employe.id}) }}">show</a>
-                    <a href="{{ path('employe_edit', {'id': employe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('employe_new') }}">Create new</a>
+    <div class="container">
+        <h1>Employés</h1>
+    
+        <table class="table table-bordered table-striped mr-5 m-l5">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Password</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Service</th>
+                    <th>Nb_conges</th>
+                    <th>Sexe</th>
+                    <th>Photo</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for employe in employes %}
+                <tr>
+                    <td>{{ employe.id }}</td>
+                    <td>{{ employe.email }}</td>
+                    <td>{{ employe.roles ? employe.roles|json_encode : '' }}</td>
+                    <td>{{ employe.password }}</td>
+                    <td>{{ employe.nom }}</td>
+                    <td>{{ employe.prenom }}</td>
+                    <td>{{ employe.service }}</td>
+                    <td>{{ employe.nbConges }}</td>
+                    <td>{{ employe.sexe }}</td>
+                    <td>{{ employe.photo }}</td>
+                    <td>
+                        <a href="{{ path('employe_show', {'id': employe.id}) }}">show</a>
+                        <a href="{{ path('employe_edit', {'id': employe.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11">Pas d'employé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    
+        <a href="{{ path('employe_new') }}">Nouvel employé</a>
+    </div>
 {% endblock %}
