@@ -31,3 +31,10 @@
 
 ### Branche Charlotte
 - Mise à jour de la branche et installation de yarn
+
+### Branche groupe1 (Sam, David, Charlotte)
+- Confiuguration feature ajout employé (EmployeType)
+
+### Branche dev (Mambé, Matthieu)
+- Mise en forme basique pour base.html.twig et menu.html.twig
+- Configuration HomeController/RegistrationController/SecurityController

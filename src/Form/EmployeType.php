@@ -112,12 +112,9 @@ class EmployeType extends AbstractType
                 "attr" => [
                     "placeholder" => "jours de congés",
                 ],
-                "empty_data" => 0,
-
             ])
             ->add('photo', FileType::class, [
                 "label" => false,
-                "empty_data" => "azerty",
             ]);
     }
 
