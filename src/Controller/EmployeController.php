@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Encoder;
 
 #[Route('/employe')]
 class EmployeController extends AbstractController
@@ -22,13 +23,18 @@ class EmployeController extends AbstractController
     }
 
     #[Route('/new', name: 'employe_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, Encoder $encoder): Response
     {
         $employe = new Employe();
         $form = $this->createForm(EmployeType::class, $employe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $mdp = $form->get("password")->getData();
+            $mdp = $encoder->encodePassword($employe, $mdp);
+
+            $employe->setPassword($mdp);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($employe);
             $entityManager->flush();
