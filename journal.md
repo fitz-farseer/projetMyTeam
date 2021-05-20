@@ -22,3 +22,12 @@
 - Création du fichier journal.md
 - yarn install
 - Création de .env.local
+
+## *__Day 2__*
+
+### Branche Master 
+- Création du HomeController et configuration
+
+
+### Branche Charlotte
+- Mise à jour de la branche et installation de yarn

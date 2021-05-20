@@ -6,7 +6,9 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import './styles/app.scss';
 
-// start the Stimulus application
-import './bootstrap';
+const $ = require("jquery");
+global.$ = global.jQuery = $;
+window.Popper = require("popper.js");
+require("bootstrap");
