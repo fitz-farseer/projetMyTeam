@@ -7,17 +7,8 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
-<<<<<<< HEAD
 
 const $ = require("jquery");
 global.$ = global.jQuery = $;
 window.Popper = require("popper.js");
 require("bootstrap");
-
-=======
-
-const $ = require("jquery");
-global.$ = global.jQuery = $;
-window.Popper = require("popper.js");
-require("bootstrap");
->>>>>>> origin/groupe1
