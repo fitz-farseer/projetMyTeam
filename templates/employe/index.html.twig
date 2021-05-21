@@ -5,36 +5,59 @@
 {% block body %}
     <h1>Employe index</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
+                <th>Identifiant</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>Civilité</th>
+                <th>Email</th>
                 <th>Service</th>
-                <th>Nb_conges</th>
-                <th>Sexe</th>
-                <th>Photo</th>
-                <th>actions</th>
+                <!-- <th>Roles</th> -->
+                <th>Solde Congés</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for employe in employes %}
+            {% for employe in employes %}
             <tr>
                 <td>{{ employe.id }}</td>
+                <td>{{ employe.nom|capitalize }}</td>
+                <td>{{ employe.prenom|capitalize }}</td>
+                <td>{% if employe.sexe == "m" %}
+                    Homme
+                    {% elseif employe.sexe == "f" %}
+                    Femme
+                    {% endif %}
+                </td>
                 <td>{{ employe.email }}</td>
-                <td>{{ employe.roles ? employe.roles|json_encode : '' }}</td>
-                <td>{{ employe.nom }}</td>
-                <td>{{ employe.prenom }}</td>
-                <td>{{ employe.service }}</td>
+                <td>{% if employe.service == "ressources_humaines" %}
+                    Ressources Humaines
+                    {% else %}
+                    {{ employe.service|capitalize }}   
+                    {% endif %}
+                </td>
+                <!-- <td>
+                   {# {% set text = "" %}
+                    {% for role in employe.roles %}
+                        {% if role == "ROLE_ADMIN"%}
+                            {% set text = text ~ (text ? "," : "")~ "Administrateur" %}
+                        {% elseif role == "ROLE_MANAGER" %}
+                            {% set text = text ~ (text ? "," : "")~ "Manager" %}
+                        {% elseif role == "ROLE_RH" %}
+                            {% set text = text ~ (text ? "," : "")~ "RH" %}
+                        {% elseif role == "ROLE_EMPLOYE" %}
+                            {% set text = text ~ (text ? "," : "")~ "Employé" %}
+                                
+                        {% endif %}
+                    {% endfor %}
+                    {{ text }}#}
+                </td> -->
                 <td>{{ employe.nbConges }}</td>
-                <td>{{ employe.sexe }}</td>
-                <td>{{ employe.photo }}</td>
                 <td>
-                    <a href="{{ path('employe_show', {'id': employe.id}) }}">show</a>
-                    <a href="{{ path('employe_edit', {'id': employe.id}) }}">edit</a>
+                    <a href="{{ path('employe_show', {'id': employe.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path('employe_edit', {'id': employe.id}) }}"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -44,6 +67,8 @@
         {% endfor %}
         </tbody>
     </table>
+
+    
 
     <a href="{{ path('employe_new') }}">Create new</a>
 {% endblock %}
