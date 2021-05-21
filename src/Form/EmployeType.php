@@ -24,6 +24,7 @@ class EmployeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $employe = $options["data"];
+        $roles = $employe->getRoles();
         $builder
             ->add('sexe', ChoiceType::class, [
                 "label" => "Civilité",

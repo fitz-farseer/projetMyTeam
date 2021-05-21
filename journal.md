@@ -48,3 +48,7 @@
     - gestion de la modification d'un employé (en cours)
         - gestion de la suppresion automatiqaue de l'ancienne photo de profil quand celle-ci est modifiée
         - gestion de la modification du mdp uniquement si le champ n'est pas nul
+
+
+## *__Weekend__*
+- $role choicetype sélection par défaut?
