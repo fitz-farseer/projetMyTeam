@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Employe;
+use PhpParser\Parser\Multiple;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -23,14 +24,16 @@ class EmployeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $employe = $options["data"];
+        $roles = $employe->getRoles();
         $builder
             ->add('sexe', ChoiceType::class, [
-                "label" => false,
+                "label" => "Civilité",
                 "choices" => [
-                    "Civilité" => "",
                     "Homme" => "m",
                     "Femme" => "f"
-                ]
+                ],
+                "multiple" => false,
+                "expanded" => true
             ])
             ->add('nom', TextType::class, [
                 "label" => false,
@@ -85,39 +88,41 @@ class EmployeType extends AbstractType
                 "help" => "Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial parmi -+!*$@%_ et doit faire entre 6 t 10 caractères",
                 "required" => $employe->getId() ? false : true
             ])
-            ->add('roles', ChoiceType::class, [
-                "label" => false,
+            ->add('roles', ChoiceType::class, [ 
+                "mapped" => false,
+                "label" => "Rôle",
+                "placeholder" => "Rôle",
                 "choices" => [
-                    "Rôle" => "",
                     "Administrateur" => "ROLE_ADMIN",
                     "RH" => "ROLE_RH",
                     "Manager" => "ROLE_MANAGER",
                     "Employé" => "ROLE_EMPLOYE"
                 ],
-                "multiple" => true,
-                "expanded" => false
+                "multiple" => false,
+                "expanded" => true
             ])
             ->add('service', ChoiceType::class, [
-                "label" => false,
+                "label" => "Service :",
                 "choices" => [
-                    "Service" => "",
                     "Informatique" => "informatique",
                     "Communication" => "communication",
-                    "Ressources Humaines" => "rh",
+                    "Ressources Humaines" => "ressources_humaines",
                     "Commercial" => "commercial"
-                ]
+                ],
+                "multiple" => false,
+                "expanded" => true
             ])
             ->add('nb_conges', IntegerType::class, [
                 "label" => false,
-                "attr" => [
-                    "placeholder" => "jours de congés",
-                ],
-                "empty_data" => 0,
-
+                "data" => 0
             ])
             ->add('photo', FileType::class, [
+                "mapped" => false,
                 "label" => false,
-                "empty_data" => "azerty",
+                "attr" => [
+                    "class" => "invisible"
+                ],
+                "required" => false
             ]);
     }
 
