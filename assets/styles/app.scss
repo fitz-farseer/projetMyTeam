@@ -1,7 +1,138 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "~bootstrap/scss/bootstrap";
 
-body {
-  background-color: #fff;
+:root{
+  --main-color1: #e2f0f9;
+  --main-color2: #b0DDe4;
+  --main-color3: #2eacd6;
+  --main-color4: #286fb4;
+  --main-color5: #ffffff;
+  --main-color6: #df4c73;
 }
 
+$color1: #e2f0f9;
+$color2: #b0DDe4;
+$color3: #2eacd6;
+$color4: #286fb4;
+$color5: #ffffff;
+$color6: #df4c73;
+
+$couleur1: #0a2351;
+$couleur2: #00BFFF;
+$couleur3: #00FFFF;
+$couleur4: #F0F8FF;
+$couleur5: #ffffff;
+$couleur6: #FF033E;
+
+
+
+/********************************************
+                 COMMUN CSS
+*********************************************/
+body {
+  background-color: $couleur2;
+}
+.container{
+  width: 100vh;
+  height: 100vh;
+}
+h1{
+  font-size: 28px;
+  color: $couleur1;
+}
+
+/********************************************
+                 HEADER
+*********************************************/
+
+
+/********************************************
+                 MAIN
+*********************************************/
+
+/********** -- connexion -- **********/
+.connexion{
+  color: $couleur5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.connexionContainer{
+  width: 650px;
+  height: 400px;
+  background-image: linear-gradient(to top, rgba(25,150,216,0), rgba(105,100,100,1));
+  margin: 100px auto;
+  border-radius: 10px;
+}
+.connexionContainer div{
+  margin-left: auto;
+  margin-right: auto;
+}
+.centrerHauteur{
+  height: 320px;
+}
+.profil{
+  text-align: center;
+}
+.couleurBoutonConnexion{
+  color: white;
+}
+.imgProfilConnexion{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: none;
+}
+
+
+/******** -- employe new form -- *********/
+
+.formulaireContainer{
+  margin: 70px auto;
+  font-size: 15px;
+  width: 450px;
+  background-image: linear-gradient(to bottom right, $couleur6, $couleur2);
+  padding: 15px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 1px 1px 12px black;
+}
+.input{
+  width: 300px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+}
+.input2{
+  width: 300px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 5px;
+}
+.buttonNew{
+  margin-top: 10px;
+  background-color: $couleur6;
+  border: none;
+  box-shadow: 1px 1px 12px black;
+  margin-left: 20px;
+}
+.buttonNew:hover{
+  background-color: $color3;
+}
+.retourListeForm{
+  margin-top: 10px;
+  box-shadow: 1px 1px 12px black;
+  margin-right: 20px;
+  background-color: $couleur1;
+  border: none;
+}
+
+/********************************************
+                 FOOTER
+*********************************************/
