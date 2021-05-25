@@ -100,7 +100,7 @@ class EmployeType extends AbstractType
                 ],
                 "multiple" => false,
                 "expanded" => true,
-                
+                "data" => $roles[0] // permet d'outrepasser l'array et de garder multiple en "false"
             ])
             ->add('service', ChoiceType::class, [
                 "label" => "Service :",
@@ -120,7 +120,11 @@ class EmployeType extends AbstractType
             ->add('photo', FileType::class, [
                 "mapped" => false,
                 "label" => false,
-                "required" => false
+                "required" => false,
+                "attr" => [
+                    "class" => "custom-file-input",
+                    "id" => "customFile"
+                ]
             ]);
     }
 
