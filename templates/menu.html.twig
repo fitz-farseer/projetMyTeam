@@ -1,29 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a class="navbar-brand" href="{{ path('accueil') }}">Accueil</a>
+	<a class="navbar-brand" href="{{ path('profil_index') }}">Accueil</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 
 			{% if app.user %}
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_logout') }}">
-						<i class="fa fa-sign-out-alt"></i>
-						Déconnexion</a>
-				</li>
-			{% else %}
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_login') }}">
-						<i class="fa fa-sign-in-alt"></i>
-						Connexion</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_register') }}">
-						<i class="fa "></i>
-						Inscription</a>
-				</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_login') }}">
+							<i class="fa fa-sign-in-alt"></i>
+							Connexion</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_register') }}">
+							<i class="fa "></i>
+							Inscription</a>
+					</li>
 			{% endif %}
 			{# {% if is_granted('ROLE_ADMIN') %} #}
 			<li class="nav-item dropdown">
@@ -72,13 +66,34 @@
 						Ajouter un document</a>
 				</div>
 			</li>
+		</div>
+		<div
+			class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
 			{# {% endif %} #}
 			{% if app.user %}
-				<li class="nav-item">
-					<a class="nav-link" href="">
-						<i class="fa fa-user"></i>
-						{{ app.user.prenom }}</a>
-				</li>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img src="/images/photo_profil/{{ app.user.photo }}" alt="">
+							<i class="fa fa-user"></i>
+							{{ app.user.prenom|capitalize }}
+							{{ app.user.nom|capitalize }}
+
+							<img src="" alt="">
+						</a>
+						<div class="dropdown-menu my-2 my-lg-0" aria-labelledby="navbarDropdown">
+
+							<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}">
+
+
+								<i class="fa fa-cog"></i>
+								Préférences</a>
+							<a class="dropdown-item" href="{{ path('app_logout') }}">
+								<i class="fa fa-sign-out-alt"></i>
+								Déconnexion</a>
+						</div>
+					</li>
+				</ul>
 			{% endif %}
 		</ul>
 	</div>
