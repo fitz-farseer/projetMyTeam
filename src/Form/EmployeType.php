@@ -99,7 +99,8 @@ class EmployeType extends AbstractType
                     "Employé" => "ROLE_EMPLOYE"
                 ],
                 "multiple" => false,
-                "expanded" => true
+                "expanded" => true,
+                
             ])
             ->add('service', ChoiceType::class, [
                 "label" => "Service :",

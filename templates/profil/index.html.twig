@@ -10,7 +10,7 @@
 
 	<div class="card-deck">
 		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+			<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image" style="width:50px">
 			<div class="card-body">
 				<h5 class="card-title">{{ app.user.prenom|capitalize }}
 					{{ app.user.nom|capitalize }}</h5>
@@ -24,7 +24,7 @@
 			<div class="card-body">
 				<h5 class="card-title">Mes absences</h5>
 				<p>
-					{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' + app.number.nbConges + ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
+					{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' ~ app.user.nbConges ~ ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
 				</p>
 			</div>
 			<div class="card-footer bg-white">
