@@ -30,21 +30,22 @@ class EmployeController extends AbstractController
         $form = $this->createForm(EmployeType::class, $employe);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $mdp = $form->get("password")->getData();
-            $mdp = $encoder->encodePassword($employe, $mdp);
-            $role = $form->get("roles")->getData();
+            $mdp = $form->get("password")->getData();           // Récupère le mdp saisi dans le formulaire
+            $mdp = $encoder->encodePassword($employe, $mdp);    // Hashe le mdp récupèré
+            $role = $form->get("roles")->getData();             // Récupère le rôle assigné dans le formulaire
 
 
             // Gestion photo par défaut en fonction du sexe :
-            if ($form->get("sexe")->getData() == "m") {
-                $employe->setPhoto("male");
-            } else {
-                $employe->setPhoto("female");
+            if ($form->get("sexe")->getData() == "m") {         // Si le sexe est "m"
+                $employe->setPhoto("male");                     // la photo aura pour valeur "male"
+            } else {                                            // Sinon,
+                $employe->setPhoto("female");                   // elle aura pour valeur "female"
             }
 
             $employe->setPassword($mdp);
-            $employe->setRoles([$role]);
+            $employe->setRoles([$role]);                        // $role doit être contenu dans un array, car Symfony le considère comme tel (ROLE_USER assigné par défaut en plus du role renseigné à l'ajout d'un nouvel employé)
 
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -80,9 +81,11 @@ class EmployeController extends AbstractController
             if ($photoDL = $form->get("photo")->getData()) {
 
                 $photo = $employe->getPhoto();
-            if (file_exists($this->getParameter("dossier_images") . "/" . $photo)) {
-                unlink($this->getParameter("dossier_images") . "/" . $photo);
-            }
+                // On vérifie si l'employé avait une photo avant modification
+                if (file_exists($this->getParameter("dossier_images") . "/" . $photo)) {
+                    // Si il en avait une, on la supprime pour la remplacer par celle ajoutée
+                    unlink($this->getParameter("dossier_images") . "/" . $photo);
+                }
                 $nomPhoto = pathinfo($photoDL->getClientOriginalName(), PATHINFO_FILENAME);
                 $nouveauNom = str_replace(" ", "_", $nomPhoto);
                 $nouveauNom .= "-" . uniqid() . "." . $photoDL->guessExtension();
@@ -117,9 +120,11 @@ class EmployeController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $employe->getId(), $request->request->get('_token'))) {
 
             $photo = $employe->getPhoto();
+            // On vérifie si la photo existe
             if (file_exists($this->getParameter("dossier_images") . "/" . $photo)) {
+                // Si elle existe, on la supprime en même temps que l'employé
                 unlink($this->getParameter("dossier_images") . "/" . $photo);
-            } // verifie si la photo existe avant d'essayer de la supprimer
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($employe);

@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Employe</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -16,19 +16,29 @@
                 <td>{{ employe.email }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
-                <td>{{ employe.roles ? employe.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ employe.password }}</td>
+                <th>Rôles</th>
+                <td>
+                    {% set text = "" %}
+                        {% for role in employe.roles %}
+                            {% if role == "ROLE_ADMIN"%}
+                                {% set text = text ~ (text ? "," : "")~ "Administrateur" %}
+                            {% elseif role == "ROLE_MANAGER" %}
+                                {% set text = text ~ (text ? "," : "")~ "Manager" %}
+                            {% elseif role == "ROLE_RH" %}
+                                {% set text = text ~ (text ? "," : "")~ "RH" %}
+                            {% elseif role == "ROLE_EMPLOYE" %}
+                                {% set text = text ~ (text ? "," : "")~ "Employé" %}
+                            {% endif %}
+                        {% endfor %}
+                        {{ text }}
+                </t>
             </tr>
             <tr>
                 <th>Nom</th>
                 <td>{{ employe.nom }}</td>
             </tr>
             <tr>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <td>{{ employe.prenom }}</td>
             </tr>
             <tr>
@@ -36,7 +46,7 @@
                 <td>{{ employe.service }}</td>
             </tr>
             <tr>
-                <th>Nb_conges</th>
+                <th>Solde de congés</th>
                 <td>{{ employe.nbConges }}</td>
             </tr>
             <tr>
@@ -45,7 +55,17 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ employe.photo }}</td>
+                <td>
+                    {% if employe.photo == "female" %}
+                    <img src="/images/photo_profil_default/female.PNG" alt="" style="width:50px">
+                    {% elseif employe.photo == "male" %}
+                    <img src="/images/photo_profil_default/male.PNG" alt="" style="width:50px">
+                    {% else %}
+                    <img src="/images/photo_profil/{{employe.photo}}" alt="" style="width:50px">
+                    {% endif %}
+                    
+                    
+                </td>
             </tr>
         </tbody>
     </table>

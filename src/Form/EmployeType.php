@@ -119,9 +119,6 @@ class EmployeType extends AbstractType
             ->add('photo', FileType::class, [
                 "mapped" => false,
                 "label" => false,
-                "attr" => [
-                    "class" => "invisible"
-                ],
                 "required" => false
             ]);
     }
