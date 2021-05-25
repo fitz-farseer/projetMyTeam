@@ -1,22 +1,79 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<meta charset="UTF-8">
+
 		<title>
-			{% block title %}Welcome!
-			{% endblock %}
+			{% block title %}Welcome!{% endblock %}
 		</title>
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet">
 		{% endblock %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
+
 	<body>
+
 		{% include "menu.html.twig" %}
-		<div class="container"> {% block body %}{% endblock %}
-			</div>
-		</body>
+
+		<div class="container-fluid"> 
+
+				<div class="row menuGauche">
+					<div class="blockMenu col-2">
+						{% block menu %}
+							<div class="iconMenu">
+										
+								<i class="fas fa-home">
+								<span class="istyle"><a class="istyle" href="{{ path('accueil') }}"> Accueil</a></span></i>
+									
+						{% if app.user %}
+													
+								<i class="fa fa-sign-out-alt">
+								<span class="istyle"><a href="{{ path('app_logout') }}"> Déconnexion</a></span></i>
+													
+						{% else %}
+											
+								<i class="fa fa-sign-in-alt">
+								<span class="istyle"><a href="{{ path('app_login') }}"> Connexion</a></span></i>	
+												
+								<i class="fas fa-user-plus">
+								<span class="istyle"><a href="{{ path('app_register') }}"> Inscription</a></span></i>
+												
+						{% endif %}		
+											
+								<i class="fa fa-list">
+								<span class="istyle"><a href="{{ path('employe_index') }}"> Liste employé</a></span></i>
+								
+								
+								<i class="fa fa-plus-circle">
+								<span class="istyle"><a href="{{ path('employe_new') }}">Ajouter un employé</a></span></i>
+
+								<i class="fa fa-book">
+								<span class="istyle"><a href="">Liste absences</a></span></i>
+
+								
+								<i class="fa fa-plus-circle">
+								<span class="istyle"><a href="">Ajouter une absence</a></span></i>
+
+								<i class="far fa-file-alt">
+								<span class="istyle"><a href=""><strong>Liste documents</strong></a></span></i>
+
+								<i class="fas fa-folder-plus">
+								<span class="istyle"><a href="">Ajouter un document</a></span></i>
+
+							</div>
+						{% endblock %}
+					</div> 
+					<div class="col-10">{% block body %}{% endblock %}</div>
+				</div>
+
+		</div>
+	</body>
 	</html>

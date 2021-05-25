@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark menu">
 	<a class="navbar-brand" href="{{ path('accueil') }}">Accueil</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_register') }}">
-						<i class="fa "></i>
+						<i class="fas fa-user-plus"></i>
 						Inscription</a>
 				</li>
 			{% endif %}
@@ -32,12 +32,12 @@
 					Employés
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{ path('employe_index') }}">
+					<a class="dropdown-item dropdownMenu" href="{{ path('employe_index') }}">
 						<i class="fa fa-list"></i>
-						Liste</a>
-					<a class="dropdown-item" href="{{ path('employe_new') }}">
+						<span class="dropdownMenu">Liste</span></a>
+					<a class="dropdown-item dropdownMenu" href="{{ path('employe_new') }}">
 						<i class="fa fa-plus-circle"></i>
-						Ajouter un employé</a>
+						<span class="dropdownMenu">Ajouter un employé</span></a>
 				</div>
 			</li>
 			{# {% endif %} #}
@@ -48,12 +48,12 @@
 					Absences
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="">
+					<a class="dropdown-item dropdownMenu" href="">
 						<i class="fa fa-list"></i>
-						Liste</a>
-					<a class="dropdown-item" href="">
+						<span class="dropdownMenu">Liste</span></a>
+					<a class="dropdown-item dropdownMenu" href="">
 						<i class="fa fa-plus-circle"></i>
-						Ajouter une absence</a>
+						<span class="dropdownMenu">Ajouter une absence</span></a>
 				</div>
 			</li>
 			{# {% endif %} #}
@@ -64,12 +64,12 @@
 					Documents
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="">
+					<a class="dropdown-item dropdownMenu" href="">
 						<i class="fa fa-list"></i>
-						Liste</a>
-					<a class="dropdown-item" href="">
+						<span class="dropdownMenu">Liste</span></a>
+					<a class="dropdown-item dropdownMenu" href="">
 						<i class="fa fa-plus-circle"></i>
-						Ajouter un document</a>
+						<span class="dropdownMenu">Ajouter un document</span></a>
 				</div>
 			</li>
 			{# {% endif %} #}

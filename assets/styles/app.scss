@@ -24,13 +24,17 @@ $couleur4: #F0F8FF;
 $couleur5: #ffffff;
 $couleur6: #FF033E;
 
-
+// Polices:
+$police1:'News Cycle', sans-serif;
 
 /********************************************
                  COMMUN CSS
 *********************************************/
 body {
-  background-color: $couleur2;
+  background-image: linear-gradient( 111.8deg,  rgba(0,104,155,1) 19.8%, rgba(0,173,239,1) 92.1% );
+}
+*{
+  box-sizing: border-box;
 }
 .container{
   width: 100vh;
@@ -40,6 +44,59 @@ h1{
   font-size: 28px;
   color: $couleur1;
 }
+/*    --   - Navbar -   --    */
+.menu{
+  background-image: linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% );
+  color: #ffffff;
+}
+#navbarSupportedContent ul li a{
+  color: $couleur5;
+}
+.dropdownMenu i{
+  color: $couleur1;
+}
+.dropdownMenu{
+  color: $couleur1;
+}
+/*    --   - Fin Navbar - --     */
+.no-padding > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+  }
+thead{
+  background-image: linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% );
+  color: #ffffff;
+}
+.link{
+  text-decoration: none;
+  color: #FF033E;
+}
+/* ------------------ Base.html.twig -------------------- */
+
+/*    --   - Menu gauche -   --    */
+.iconMenu i a{
+  text-decoration: none;
+  color: $couleur5;
+  font-family: 'News Cycle', sans-serif;
+  font-size: 12px;
+  line-height: 32px;
+}
+.istyle{
+  display: none;
+}
+.iconMenu{
+  display: flex;
+  flex-direction: column;
+}
+.iconMenu i{
+  color: $couleur5;
+  line-height: 32px;
+}
+.iconMenu i:hover{
+  color: grey;
+}
+
+/*    --   - Fin Menu gauche -   --    */
 
 /********************************************
                  HEADER
@@ -50,7 +107,7 @@ h1{
                  MAIN
 *********************************************/
 
-/********** -- connexion -- **********/
+/* ------------------ employe-> login.html.twig ------------------ */
 .connexion{
   color: $couleur5;
   display: flex;
@@ -60,7 +117,7 @@ h1{
 .connexionContainer{
   width: 650px;
   height: 400px;
-  background-image: linear-gradient(to top, rgba(25,150,216,0), rgba(105,100,100,1));
+  background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(223,76,103,1));
   margin: 100px auto;
   border-radius: 10px;
 }
@@ -83,34 +140,35 @@ h1{
   border-radius: 50%;
   border: none;
 }
+.noCompte{
+  border: none;
+}
+/* ------------------- employe-> index.html.twig -------------------*/
+.colorIcon{
+  color: $couleur5;
+}
 
-
-/******** -- employe new form -- *********/
+/* -------------------- employe-> new.html.twig  ------------------ */
 
 .formulaireContainer{
   margin: 70px auto;
   font-size: 15px;
-  width: 450px;
-  background-image: linear-gradient(to bottom right, $couleur6, $couleur2);
+  width: 740px;
+  background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(200,200,200,1));
   padding: 15px;
-  height: 650px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
+  height: 850px;
   border-radius: 10px;
-  box-shadow: 1px 1px 12px black;
 }
 .input{
-  width: 300px;
+  width: 710px;
   margin: 3px 0;
   border: none;
   border-radius: 5px;
-  height: 30px;
+  height: 38px;
   padding: 5px;
 }
 .input2{
-  width: 300px;
+  width: 710px;
   margin: 3px 0;
   border: none;
   border-radius: 5px;
@@ -132,7 +190,31 @@ h1{
   background-color: $couleur1;
   border: none;
 }
+.formulaire{
+  width: 710px;
+}
+
+/* ----------- home-> index.html.twig ------------- */
+
+.imgHome{
+  width: 600px;
+}
 
 /********************************************
                  FOOTER
 *********************************************/
+
+
+/* ---------------------------------------- */
+              /*MEDIA QUERIES*/
+/* ---------------------------------------- */
+@media screen and (min-width: 768px){
+  
+  /* ----- Menu gauche ---- */ 
+  .istyle{
+    display: inline;
+  }
+  
+
+
+}

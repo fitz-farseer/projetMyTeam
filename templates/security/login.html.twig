@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion
+{% block title %}
+	Connexion
 {% endblock %}
 
 {% block body %}
@@ -19,7 +20,7 @@
 			{% endif %}
 			<div class="d-flex justify-content-center h-100 connexion">
 				<div class="centrerHauteur">
-					<div class="card-header profil">
+					<div class="profil">
 						<div><img src="images/images_front/profil.png" alt="image profil" class="imgProfilConnexion"></div>
 						<h3>Connexion</h3>
 					</div>
@@ -44,7 +45,7 @@
 									<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 								</div>
 								<div class="row align-items-center remember">
-									<input type="checkbox">Se souvenir de moi
+									<input type="checkbox"> Se souvenir de moi
 								</div>
 								<div class="form-group">
 									<input type="submit" value="Se connecter" class="btn float-right couleurBoutonConnexion">
@@ -52,12 +53,12 @@
 							</form>
 						</div>
 					</div>
-					<div class="card-footer">
+					<div class="card-footer noCompte">
 						<div class="d-flex justify-content-center links">
-							Vous n'avez pas de compte?<a href="#">Inscrivez-vous là</a>
+							Vous n'avez pas de compte?<a href="#" class="link"> Inscrivez-vous là</a>
 						</div>
 						<div class="d-flex justify-content-center">
-							<a href="#">Mot de passe oublié?</a>
+							<a href="#" class="link">Mot de passe oublié?</a>
 						</div>
 					</div>
 				</div>
@@ -103,3 +104,4 @@
 				</button>
 			</form> #}
 {% endblock %}
+
