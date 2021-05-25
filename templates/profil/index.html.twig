@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil Index
+{% endblock %}
+
+{% block body %}
+	<h2>Bonjour
+		{{ app.user.prenom }}
+		!</h2>
+
+	<div class="card-deck">
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image" style="width:50px">
+			<div class="card-body">
+				<h5 class="card-title">{{ app.user.prenom|capitalize }}
+					{{ app.user.nom|capitalize }}</h5>
+			</div>
+			<div class="card-footer bg-white">
+				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Modifier mon profil</a>
+			</div>
+		</div>
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src="..." alt="pas d'image">
+			<div class="card-body">
+				<h5 class="card-title">Mes absences</h5>
+				<p>
+					{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' ~ app.user.nbConges ~ ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
+				</p>
+			</div>
+			<div class="card-footer bg-white">
+				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Signaler une absence</a>
+			</div>
+		</div>
+
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src="..." alt="pas d'image">
+			<div class="card-body">
+				<h5 class="card-title">Mes documents</h5>
+			</div>
+			<div class="card-footer bg-white">
+				<p href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</p>
+			</p>
+		</a>
+	</div>
+</div></div>{% endblock %}

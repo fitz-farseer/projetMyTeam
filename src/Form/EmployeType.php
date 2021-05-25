@@ -132,7 +132,8 @@ class EmployeType extends AbstractType
                 "label" => false,
                 "attr" => [
                     "class" => "input2"
-                ]
+                ],
+                "required" => false
             ]);
     }
 
