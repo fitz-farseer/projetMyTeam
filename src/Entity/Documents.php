@@ -38,6 +38,12 @@ class Documents
      */
     private $employe;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Employe::class, inversedBy="documentRecu")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $destinataire;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +93,18 @@ class Documents
     public function setEmploye(?Employe $employe): self
     {
         $this->employe = $employe;
+
+        return $this;
+    }
+
+    public function getDestinataire(): ?Employe
+    {
+        return $this->destinataire;
+    }
+
+    public function setDestinataire(?Employe $destinataire): self
+    {
+        $this->destinataire = $destinataire;
 
         return $this;
     }
