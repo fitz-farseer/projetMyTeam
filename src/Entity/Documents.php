@@ -44,6 +44,11 @@ class Documents
      */
     private $destinataire;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,5 +117,17 @@ class Documents
     public function __construct()
     {
         $this->date_envoi = new \DateTime('now');
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

@@ -42,6 +42,8 @@ class DocumentsController extends AbstractController
 
                 $document->setName($nouveauNom);
             }
+            $statut = $form->get("statut")->getData();
+            $document->setStatut($statut);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($document);

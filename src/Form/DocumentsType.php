@@ -41,14 +41,12 @@ class DocumentsType extends AbstractType
                 ]
             ])
             ->add('employe', EntityType::class, [
-                "mapped" => false,
                 "class" => Employe::class,
                 "choice_label" => function(Employe $e){
                     return $e->getNom() . " " .  $e->getPrenom();
                 }
             ])
             ->add('destinataire', EntityType::class, [
-                "mapped" => false,
                 "class" =>Employe::class,
                 "choice_label" => function(Employe $e){
                     return $e->getNom() . " " .  $e->getPrenom();
@@ -56,7 +54,9 @@ class DocumentsType extends AbstractType
             ])
             ->add('statut', ChoiceType::class, [
                 "mapped" => false,
-                "data" => "envoyé"
+                "choices" => [
+                    "Envoyé" => "envoye"
+                ]
             ])
         ;
     }
