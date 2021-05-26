@@ -108,4 +108,9 @@ class Documents
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->date_envoi = new \DateTime('now');
+    }
 }

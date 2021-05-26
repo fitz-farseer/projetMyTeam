@@ -29,6 +29,20 @@ class DocumentsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $destination = $this->getParameter("dossier_documents");
+
+                // name fait référence au fichier envoyé par l'employé
+            if($doc = $form->get("name")->getData()){
+
+                $nomDoc = pathinfo($doc->getClientOriginalName(), PATHINFO_FILENAME);
+                $nouveauNom = str_replace(" ", "_", $nomDoc);
+                $nouveauNom .= "-" . uniqid() . "." . $doc->guessExtension();
+                $doc->move($destination, $nouveauNom);
+
+                $document->setName($nouveauNom);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($document);
             $entityManager->flush();

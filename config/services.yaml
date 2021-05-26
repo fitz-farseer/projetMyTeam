@@ -6,7 +6,7 @@
 parameters:
     dossier_images: '%kernel.project_dir%/public/images/photo_profil'
     dossier_images_default: '%kernel.project_dir%/public/images/photo_profil_default'
-
+    dossier_documents: '%kernel.project_dir%/public/images/documents'
 services:
     # default configuration for services in *this* file
     _defaults:

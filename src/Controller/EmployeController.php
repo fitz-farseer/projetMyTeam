@@ -86,9 +86,14 @@ class EmployeController extends AbstractController
                     // Si il en avait une, on la supprime pour la remplacer par celle ajoutée
                     unlink($this->getParameter("dossier_images") . "/" . $photo);
                 }
+                
+                // On récupèrte le nom du fichier
                 $nomPhoto = pathinfo($photoDL->getClientOriginalName(), PATHINFO_FILENAME);
+                // On remplace les espaces par des "_"
                 $nouveauNom = str_replace(" ", "_", $nomPhoto);
+                // On ajoute une suite de chiffre aléatoires
                 $nouveauNom .= "-" . uniqid() . "." . $photoDL->guessExtension();
+                // On déplace le fichier dans le dossier $destination et on le renome par $nouveauNom
                 $photoDL->move($destination, $nouveauNom);
 
                 $employe->setPhoto($nouveauNom);
