@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Absences{% endblock %}
+{% block title %}Nouvelle absence
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Absences</h1>
+	<h1>Signaler une nouvelle absence</h1>
 
-    {{ include('absences/_form.html.twig') }}
+	{{ include('absences/_form.html.twig') }}
 
-    <a href="{{ path('absences_index') }}">back to list</a>
+	<a class='btn btn-primary' href="{{ path('profil_index') }}">Revenir à l'accueil</a>
+
 {% endblock %}

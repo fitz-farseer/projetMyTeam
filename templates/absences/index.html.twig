@@ -1,39 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Absences index{% endblock %}
+{% block title %}Absences index
+{% endblock %}
 
 {% block body %}
-    <h1>Absences index</h1>
+	<h1>Liste des absences</h1>
+	<table class="table table-bordered table-stripped">
+		<thead class='thead-dark'>
+			<tr>
+				<th>Date_debut</th>
+				<th>Date_retour</th>
+				<th>Statut</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for absence in absences %}
+				<tr>
+					<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+					<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+					<td>{{ absence.statut }}</td>
+					<td>
+						<a href="{{ path('absences_show', {'id': absence.id}) }}">Voir plus</a>
+						<a href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune absence enregistrée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date_debut</th>
-                <th>Date_retour</th>
-                <th>Statut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for absence in absences %}
-            <tr>
-                <td>{{ absence.id }}</td>
-                <td>{{ absence.dateDebut ? absence.dateDebut|date('Y-m-d') : '' }}</td>
-                <td>{{ absence.dateRetour ? absence.dateRetour|date('Y-m-d') : '' }}</td>
-                <td>{{ absence.statut }}</td>
-                <td>
-                    <a href="{{ path('absences_show', {'id': absence.id}) }}">show</a>
-                    <a href="{{ path('absences_edit', {'id': absence.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<a class='btn btn-success' href="{{ path('absences_new') }}">Nouvelle absence</a>
+	<a class='btn btn-primary' href="{{ path('profil_index') }}">Revenir à l'accueil</a>
 
-    <a href="{{ path('absences_new') }}">Create new</a>
+
 {% endblock %}
