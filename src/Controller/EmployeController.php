@@ -12,16 +12,26 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Encoder;
 
 
-#[Route('/employe')]
+#[Route('/gestion/employe')]
 class EmployeController extends AbstractController
 {
     #[Route('/', name: 'employe_index', methods: ['GET'])]
     public function index(EmployeRepository $employeRepository): Response
     {
         return $this->render('employe/index.html.twig', [
-            'employes' => $employeRepository->findAll(),
+            'employes' => $employeRepository->findByService($this->getUser()->getService()),
         ]);
     }
+
+        // Crer route pour afficher l'ensemble des employés pour les RH
+
+    // #[Route('/', name: 'employe_index', methods: ['GET'])]
+    // public function index(EmployeRepository $employeRepository): Response
+    // {
+    //     return $this->render('employe/index.html.twig', [
+    //         'employes' => $employeRepository->findAll(),
+    //     ]);
+    // }
 
     #[Route('/new', name: 'employe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Encoder $encoder): Response
@@ -69,7 +79,7 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
+    #[Route('/profil/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Employe $employe, Encoder $encoder): Response
     {
         $form = $this->createForm(EmployeType::class, $employe);
@@ -119,7 +129,7 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'employe_delete', methods: ['POST'])]
+    #[Route('/admin/{id}', name: 'employe_delete', methods: ['POST'])]
     public function delete(Request $request, Employe $employe): Response
     {
         if ($this->isCsrfTokenValid('delete' . $employe->getId(), $request->request->get('_token'))) {

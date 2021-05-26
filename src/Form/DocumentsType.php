@@ -20,10 +20,10 @@ class DocumentsType extends AbstractType
     {
         $employe = $options["data"];
         $builder
-            ->add('date_envoi', DateType::class, [
-                "widget" => "single_text",
-                "label" => "Envoyé le :",
-            ])
+            // ->add('date_envoi', DateType::class, [
+            //     "widget" => "single_text",
+            //     "label" => "Envoyé le :",
+            // ])
             ->add('name', FileType::class, [
                 "mapped" => false,
                 "label" => false,
@@ -40,23 +40,11 @@ class DocumentsType extends AbstractType
                     "Autre" => "autre"
                 ]
             ])
-            ->add('employe', EntityType::class, [
-                "class" => Employe::class,
-                "choice_label" => function(Employe $e){
-                    return $e->getNom() . " " .  $e->getPrenom();
-                }
-            ])
             ->add('destinataire', EntityType::class, [
                 "class" =>Employe::class,
                 "choice_label" => function(Employe $e){
                     return $e->getNom() . " " .  $e->getPrenom();
                 }
-            ])
-            ->add('statut', ChoiceType::class, [
-                "mapped" => false,
-                "choices" => [
-                    "Envoyé" => "envoye"
-                ]
             ])
         ;
     }

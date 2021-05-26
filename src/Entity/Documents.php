@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DocumentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @ORM\Entity(repositoryClass=DocumentsRepository::class)

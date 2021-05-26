@@ -19,7 +19,7 @@
 							Inscription</a>
 					</li>
 			{% endif %}
-			{# {% if is_granted('ROLE_ADMIN') %} #}
+			{% if is_granted('ROLE_RH') %}
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-user-friends"></i>
@@ -34,10 +34,10 @@
 						Ajouter un employé</a>
 				</div>
 			</li>
-			{# {% endif %} #}
+			{% endif %}
 			{# {% if (is_granted('ROLE_BIBLIO')) or (is_granted('ROLE_ADMIN')) %} #}
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-book"></i>
 					Absences
 				</a>
@@ -58,10 +58,10 @@
 					Documents
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="">
+					<a class="dropdown-item" href="{{ path('documents_profil') }}">
 						<i class="fa fa-list"></i>
 						Liste</a>
-					<a class="dropdown-item" href="">
+					<a class="dropdown-item" href="{{ path('documents_new') }}">
 						<i class="fa fa-plus-circle"></i>
 						Ajouter un document</a>
 				</div>

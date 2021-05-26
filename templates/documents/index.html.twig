@@ -8,9 +8,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Date_envoi</th>
-                <th>Name</th>
+                <th>Envoyé par</th>
+                <th>Destinataire</th>
+                <th>Date d'envoi</th>
+                <th>Apperçu</th>
                 <th>Type</th>
                 <th>actions</th>
             </tr>
@@ -18,10 +19,11 @@
         <tbody>
         {% for document in documents %}
             <tr>
-                <td>{{ document.id }}</td>
+                <td>{{ document.employe.prenom|capitalize ~ " " ~ document.employe.nom|capitalize }}</td>
+                <td>{{ document.destinataire.prenom|capitalize ~ " " ~ document.destinataire.nom|capitalize }}</td>
                 <td>{{ document.dateEnvoi ? document.dateEnvoi|date('Y-m-d') : '' }}</td>
-                <td>{{ document.name }}</td>
-                <td>{{ document.type }}</td>
+                <td><img src="/images/documents/{{ document.name }}" alt="" style="width:75px"></td>
+                <td>{{ document.type|capitalize }}</td>
                 <td>
                     <a href="{{ path('documents_show', {'id': document.id}) }}">show</a>
                     <a href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
