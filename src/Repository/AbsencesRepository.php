@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Absences;
+use App\Entity\Employe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

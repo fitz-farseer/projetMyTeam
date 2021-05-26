@@ -1,34 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Absences{% endblock %}
+{% block title %}Absences
+{% endblock %}
 
 {% block body %}
-    <h1>Absences</h1>
+	<h1>Absences</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ absence.id }}</td>
-            </tr>
-            <tr>
-                <th>Date_debut</th>
-                <td>{{ absence.dateDebut ? absence.dateDebut|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_retour</th>
-                <td>{{ absence.dateRetour ? absence.dateRetour|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ absence.statut }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<th>Employé</th>
+				<td>{{ absence.employe.nom|capitalize ~ ' ' ~ absence.employe.prenom|capitalize }}</td>
+			</tr>
+			<tr>
+				<th>Date debut</th>
+				<td>{{ absence.dateDebut ? absence.dateDebut|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Date retour</th>
+				<td>{{ absence.dateRetour ? absence.dateRetour|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Statut</th>
+				<td>{{ absence.statut }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('absences_index') }}">back to list</a>
+	<a class='btn btn-primary' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('absences_edit', {'id': absence.id}) }}">edit</a>
+	<a class='btn btn-secondary' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
 
-    {{ include('absences/_delete_form.html.twig') }}
+
+	{{ include('absences/_delete_form.html.twig') }}
 {% endblock %}

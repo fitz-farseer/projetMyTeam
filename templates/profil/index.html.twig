@@ -24,11 +24,33 @@
 			<div class="card-body">
 				<h5 class="card-title">Mes absences</h5>
 				<p>
-					{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' + app.number.nbConges + ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Date debut</th>
+								<th>Date retour</th>
+								<th>Statut</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for absence in app.user.absences %}
+								<tr>
+									<td>{{ absence.dateDebut ? absence.dateDebut|date('Y-m-d') : '' }}</td>
+									<td>{{ absence.dateRetour ? absence.dateRetour|date('Y-m-d') : '' }}</td>
+									<td>{{ absence.statut }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="2">Aucune absence</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{{ (app.user.nbConges|number_format > 0 ? 'Il vous reste <strong>' ~ app.user.nbConges ~ ' jours </strong> de congés à poser.' : 'Vous n\'avez plus de jours à poser.')|raw }}
 				</p>
 			</div>
 			<div class="card-footer bg-white">
-				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Signaler une absence</a>
+				<a href="{{ path('absences_new') }}" class="btn align-self-end btn-primary">Signaler une absence</a>
 			</div>
 		</div>
 
