@@ -15,73 +15,74 @@
 			<h5 class="card-title">{{ app.user.prenom|capitalize }}
 				{{ app.user.nom|capitalize }}</h5>
 		</div>
-		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="..." alt="pas d'image">
-			<div class="card-body">
-				<h5 class="card-title">Mes absences</h5>
-				<p>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>Date debut</th>
-								<th>Date retour</th>
-								<th>Statut</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for absence in app.user.absences %}
-								<tr>
-									<td>{{ absence.dateDebut ? absence.dateDebut|date('Y-m-d') : '' }}</td>
-									<td>{{ absence.dateRetour ? absence.dateRetour|date('Y-m-d') : '' }}</td>
-									<td>{{ absence.statut }}</td>
-								</tr>
-							{% else %}
-								<tr>
-									<td colspan="2">Aucune absence</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-					{{ (app.user.nbConges|number_format > 0 ? 'Il vous reste <strong>' ~ app.user.nbConges ~ ' jours </strong> de congés à poser.' : 'Vous n\'avez plus de jours à poser.')|raw }}
-				</p>
-			</div>
-			<div class="card-footer bg-white">
-				<a href="{{ path('absences_new') }}" class="btn align-self-end btn-primary">Signaler une absence</a>
-			</div>
+		<div class="card-footer bg-white">
+			<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Modifier mon profil</a>
 		</div>
-
-		<div class="card" style="width: 18rem;">
-			<div class="card-body">
-				<h5 class="card-title">Mes documents</h5>
-				<table class="table">
-					<thead>
+	</div>
+	<div class="card" style="width: 18rem;">
+		<img class="card-img-top" src="..." alt="pas d'image">
+		<div class="card-body">
+			<h5 class="card-title">Mes absences</h5>
+			<p>
+				<table class="table table-bordered table-striped">
+					<thead class='thead-dark'>
 						<tr>
-							<th>Envoyé le</th>
-							<th>à</th>
-							<th>Type</th>
+							<th>Date debut</th>
+							<th>Date retour</th>
+							<th>Statut</th>
 						</tr>
 					</thead>
 					<tbody>
-
-							{% for i, document in app.user.documents %}
-							{% if i >= app.user.documents|length - 2 %} 
-							{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}  
-								<tr>
-									<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
-									<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
-									<td>{{ document.type }}</td>
-								</tr>
-							{% endif %}
-							{% endfor %}
-
+						{% for absence in app.user.absences %}
+							<tr>
+								<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+								<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+								<td>{{ absence.statut }}</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="2">Aucune absence</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
-			</div>
-			<div class="card-footer bg-white">
-				<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</a>
+				{{ (app.user.nbConges|number_format > 0 ? 'Il vous reste <strong>' ~ app.user.nbConges ~ ' jours </strong> de congés à poser.' : 'Vous n\'avez plus de jours à poser.')|raw }}
 			</p>
-		</a>
+		</div>
+		<div class="card-footer bg-white">
+			<a href="{{ path('absences_new') }}" class="btn align-self-end btn-primary">Signaler une absence</a>
+		</div>
 	</div>
-{% endblock %} 
- 
-				</p>
+	<div class="card" style="width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">Mes documents</h5>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Envoyé le</th>
+						<th>à</th>
+						<th>Type</th>
+					</tr>
+				</thead>
+				<tbody>
+
+						{% for i, document in app.user.documents %}
+						{% if i >= app.user.documents|length - 2 %} 
+						{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}  
+							<tr>
+								<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+								<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+								<td>{{ document.type }}</td>
+							</tr>
+						{% endif %}
+						{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+		<div class="card-footer bg-white">
+			<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</a>
+		</div>
+	</div>
+</div>
+{% endblock %}    
