@@ -4,20 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<h2>Bonjour
-		{{ app.user.prenom }}
-		!</h2>
+<h2>Bonjour
+	{{ app.user.prenom }}
+	!</h2>
 
-	<div class="card-deck">
-		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
-			<div class="card-body">
-				<h5 class="card-title">{{ app.user.prenom|capitalize }}
-					{{ app.user.nom|capitalize }}</h5>
-			</div>
-			<div class="card-footer bg-white">
-				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Modifier mon profil</a>
-			</div>
+<div class="card-deck">
+	<div class="card" style="width: 18rem;">
+		<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image" style="width:50px">
+		<div class="card-body">
+			<h5 class="card-title">{{ app.user.prenom|capitalize }}
+				{{ app.user.nom|capitalize }}</h5>
 		</div>
 		<div class="card" style="width: 18rem;">
 			<img class="card-img-top" src="..." alt="pas d'image">
@@ -55,13 +51,37 @@
 		</div>
 
 		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="..." alt="pas d'image">
 			<div class="card-body">
 				<h5 class="card-title">Mes documents</h5>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Envoyé le</th>
+							<th>à</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody>
+
+							{% for i, document in app.user.documents %}
+							{% if i >= app.user.documents|length - 2 %} 
+							{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}  
+								<tr>
+									<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+									<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+									<td>{{ document.type }}</td>
+								</tr>
+							{% endif %}
+							{% endfor %}
+
+					</tbody>
+				</table>
 			</div>
 			<div class="card-footer bg-white">
-				<p href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</p>
+				<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</a>
 			</p>
 		</a>
 	</div>
-</div></div>{% endblock %}
+{% endblock %} 
+ 
+				</p>

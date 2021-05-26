@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ProfilController extends AbstractController
 {
-    #[Route('/profil', name: 'profil_index')]
+    #[Route('/', name: 'profil_index')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
 
     public function index(): Response

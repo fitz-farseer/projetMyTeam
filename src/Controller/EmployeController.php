@@ -12,16 +12,26 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Encoder;
 
 
-#[Route('/employe')]
+#[Route('/gestion/employe')]
 class EmployeController extends AbstractController
 {
     #[Route('/', name: 'employe_index', methods: ['GET'])]
     public function index(EmployeRepository $employeRepository): Response
     {
         return $this->render('employe/index.html.twig', [
-            'employes' => $employeRepository->findAll(),
+            'employes' => $employeRepository->findByService($this->getUser()->getService()),
         ]);
     }
+
+        // Crer route pour afficher l'ensemble des employés pour les RH
+
+    // #[Route('/', name: 'employe_index', methods: ['GET'])]
+    // public function index(EmployeRepository $employeRepository): Response
+    // {
+    //     return $this->render('employe/index.html.twig', [
+    //         'employes' => $employeRepository->findAll(),
+    //     ]);
+    // }
 
     #[Route('/new', name: 'employe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Encoder $encoder): Response
@@ -30,21 +40,22 @@ class EmployeController extends AbstractController
         $form = $this->createForm(EmployeType::class, $employe);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $mdp = $form->get("password")->getData();
-            $mdp = $encoder->encodePassword($employe, $mdp);
-            $role = $form->get("roles")->getData();
+            $mdp = $form->get("password")->getData();           // Récupère le mdp saisi dans le formulaire
+            $mdp = $encoder->encodePassword($employe, $mdp);    // Hashe le mdp récupèré
+            $role = $form->get("roles")->getData();             // Récupère le rôle assigné dans le formulaire
 
 
             // Gestion photo par défaut en fonction du sexe :
-            if ($form->get("sexe")->getData() == "m") {
-                $employe->setPhoto("male");
-            } else {
-                $employe->setPhoto("female");
+            if ($form->get("sexe")->getData() == "m") {         // Si le sexe est "m"
+                $employe->setPhoto("male");                     // la photo aura pour valeur "male"
+            } else {                                            // Sinon,
+                $employe->setPhoto("female");                   // elle aura pour valeur "female"
             }
 
             $employe->setPassword($mdp);
-            $employe->setRoles([$role]);
+            $employe->setRoles([$role]);                        // $role doit être contenu dans un array, car Symfony le considère comme tel (ROLE_USER assigné par défaut en plus du role renseigné à l'ajout d'un nouvel employé)
 
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -68,7 +79,7 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
+    #[Route('/profil/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Employe $employe, Encoder $encoder): Response
     {
         $form = $this->createForm(EmployeType::class, $employe);
@@ -80,12 +91,19 @@ class EmployeController extends AbstractController
             if ($photoDL = $form->get("photo")->getData()) {
 
                 $photo = $employe->getPhoto();
-            if (file_exists($this->getParameter("dossier_images") . "/" . $photo)) {
-                unlink($this->getParameter("dossier_images") . "/" . $photo);
-            }
+                // On vérifie si l'employé avait une photo avant modification
+                if (file_exists($this->getParameter("dossier_images") . "/" . $photo)) {
+                    // Si il en avait une, on la supprime pour la remplacer par celle ajoutée
+                    unlink($this->getParameter("dossier_images") . "/" . $photo);
+                }
+                
+                // On récupèrte le nom du fichier
                 $nomPhoto = pathinfo($photoDL->getClientOriginalName(), PATHINFO_FILENAME);
+                // On remplace les espaces par des "_"
                 $nouveauNom = str_replace(" ", "_", $nomPhoto);
+                // On ajoute une suite de chiffre aléatoires
                 $nouveauNom .= "-" . uniqid() . "." . $photoDL->guessExtension();
+                // On déplace le fichier dans le dossier $destination et on le renome par $nouveauNom
                 $photoDL->move($destination, $nouveauNom);
 
                 $employe->setPhoto($nouveauNom);
@@ -111,15 +129,17 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'employe_delete', methods: ['POST'])]
+    #[Route('/admin/{id}', name: 'employe_delete', methods: ['POST'])]
     public function delete(Request $request, Employe $employe): Response
     {
         if ($this->isCsrfTokenValid('delete' . $employe->getId(), $request->request->get('_token'))) {
 
             $photo = $employe->getPhoto();
+            // On vérifie si la photo existe
             if (file_exists($this->getParameter("dossier_images") . "/" . $photo)) {
+                // Si elle existe, on la supprime en même temps que l'employé
                 unlink($this->getParameter("dossier_images") . "/" . $photo);
-            } // verifie si la photo existe avant d'essayer de la supprimer
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($employe);

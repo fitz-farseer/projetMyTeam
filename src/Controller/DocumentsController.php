@@ -10,16 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/documents')]
+#[Route('/profil/documents')]
 class DocumentsController extends AbstractController
 {
-    #[Route('/', name: 'documents_index', methods: ['GET'])]
+    #[Route('/', name: 'documents_profil', methods: ['GET'])]
     public function index(DocumentsRepository $documentsRepository): Response
     {
         return $this->render('documents/index.html.twig', [
-            'documents' => $documentsRepository->findAll(),
+            'documents' => $documentsRepository->findByEmploye($this->getUser()),
         ]);
     }
+
+    // Créer une route pour les RH, qu'elles puissent afficher tous les documents
 
     #[Route('/new', name: 'documents_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -29,6 +31,23 @@ class DocumentsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $destination = $this->getParameter("dossier_documents");
+
+                // name fait référence au fichier envoyé par l'employé
+            if($doc = $form->get("name")->getData()){
+
+                $nomDoc = pathinfo($doc->getClientOriginalName(), PATHINFO_FILENAME);
+                $nouveauNom = str_replace(" ", "_", $nomDoc);
+                $nouveauNom .= "-" . uniqid() . "." . $doc->guessExtension();
+                $doc->move($destination, $nouveauNom);
+
+                $document->setName($nouveauNom);
+            }
+            $document->setStatut("envoye");
+            $document->setEmploye($this->getUser());
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($document);
             $entityManager->flush();

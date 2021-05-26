@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Employe;
-use PhpParser\Parser\Multiple;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -14,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -24,7 +22,7 @@ class EmployeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $employe = $options["data"];
-        $roles = $employe->getRoles();
+        // $roles = $employe->getRoles();
         $builder
             ->add('sexe', ChoiceType::class, [
                 "label" => "Civilité",
@@ -99,7 +97,9 @@ class EmployeType extends AbstractType
                     "Employé" => "ROLE_EMPLOYE"
                 ],
                 "multiple" => false,
-                "expanded" => true
+                "expanded" => true,
+                "data" => $employe->getRoles() ? $employe->getRoles()[0] : "ROLE_EMPLOYE"
+                // "data" => $roles[0] // permet d'outrepasser l'array et de garder multiple en "false"
             ])
             ->add('service', ChoiceType::class, [
                 "label" => "Service :",
@@ -119,10 +119,7 @@ class EmployeType extends AbstractType
             ->add('photo', FileType::class, [
                 "mapped" => false,
                 "label" => false,
-                "attr" => [
-                    "class" => "invisible"
-                ],
-                "required" => false
+                "required" => false,
             ]);
     }
 
