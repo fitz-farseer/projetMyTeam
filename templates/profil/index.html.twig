@@ -37,11 +37,11 @@
 							<tr>
 								<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
 								<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
-								<td>{{ absence.statut }}</td>
+								<td {{ absence.statut == 'En attente' ? "class='table-danger'" : '' }}>{{ absence.statut }}</td>
 							</tr>
 						{% else %}
 							<tr>
-								<td colspan="2">Aucune absence</td>
+								<td colspan="3">Aucune absence</td>
 							</tr>
 						{% endfor %}
 					</tbody>

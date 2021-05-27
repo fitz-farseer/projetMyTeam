@@ -11,9 +11,9 @@
 
 		{% if app.user %}
 			<div class="mb-3">
-				You are logged in as
+				Vous êtes actuellement connecté
 				{{ app.user.username }},
-				<a href="{{ path('app_logout') }}">Logout</a>
+				<a href="{{ path('app_logout') }}">Déconnexion</a>
 			</div>
 		{% endif %}
 		<div class="d-flex justify-content-center h-100">
@@ -49,11 +49,8 @@
 					</form>
 				</div>
 				<div class="card-footer">
-					<div class="d-flex justify-content-center links">
-						Don't have an account?<a href="#">Sign Up</a>
-					</div>
 					<div class="d-flex justify-content-center">
-						<a href="#">Forgot your password?</a>
+						<a href="#">Mot de passe oublié ?</a>
 					</div>
 				</div>
 			</div>

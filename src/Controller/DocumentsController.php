@@ -52,7 +52,7 @@ class DocumentsController extends AbstractController
             $entityManager->persist($document);
             $entityManager->flush();
 
-            return $this->redirectToRoute('documents_index');
+            return $this->redirectToRoute('documents_profil');
         }
 
         return $this->render('documents/new.html.twig', [

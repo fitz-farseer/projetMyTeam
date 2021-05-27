@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th>Date_envoi</th>
-                <td>{{ document.dateEnvoi ? document.dateEnvoi|date('Y-m-d') : '' }}</td>
+                <td>{{ document.dateEnvoi ? document.dateEnvoi|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Name</th>
@@ -26,7 +26,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('documents_index') }}">back to list</a>
+    <a href="{{ path('documents_profil') }}">back to list</a>
 
     <a href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
 
