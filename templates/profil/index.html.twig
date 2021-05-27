@@ -10,35 +10,43 @@
 
 	<div class="card-deck">
 		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image" style="width:50px">
-			<div class="card-body">
-				<h5 class="card-title">{{ app.user.prenom|capitalize }}
-					{{ app.user.nom|capitalize }}</h5>
+			<div class="flexCard">
+				<div class="centrerImgProfil"><img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image"></div>
+				<div class="card-body cardBody">
+					<h5 class="card-title">{{ app.user.prenom|capitalize }}
+						{{ app.user.nom|capitalize }}</h5>
+						<p>Bienvenu(e) sur votre dashboard</p>
+				</div>
 			</div>
-			<div class="card-footer bg-white">
-				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Modifier mon profil</a>
+			<div class="card-footer cardFooter" style="height:65px;">
+				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary btn-rounded align-self-end float-right">Modifier</a> 
 			</div>
 		</div>
 		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="..." alt="pas d'image">
-			<div class="card-body">
-				<h5 class="card-title">Mes absences</h5>
-				<p>
-					{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' ~ app.user.nbConges ~ ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
-				</p>
+			<div class="flexCard">
+				<div class="centrerImgProfil"><img class="card-img-top imgVignette" src="images/images_front/absenceimg.jpg" alt="pas d'image"></div>
+				<div class="card-body cardBody">
+					<h5 class="card-title">Mes absences</h5>
+					<p>
+						{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' ~ app.user.nbConges ~ ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
+					</p>
+				</div>
 			</div>
-			<div class="card-footer bg-white">
-				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Signaler une absence</a>
+			<div class="card-footer cardFooter" style="height:65px;">
+				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary btn-rounded align-self-end float-right">Ajoutez</a>
 			</div>
 		</div>
 
 		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src="..." alt="pas d'image">
-			<div class="card-body">
-				<h5 class="card-title">Mes documents</h5>
+			<div class="flexCard">
+				<div class="centrerImgProfil"><img class="card-img-top imgVignette" src="images/images_front/documentsimg.jpg" alt="pas d'image"></div>
+				<div class="card-body cardBody">
+					<h5 class="card-title">Mes documents</h5>
+					<p>Partagez vos documents</p>
+				</div>
 			</div>
-			<div class="card-footer bg-white">
-				<p href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</p>
+			<div class="card-footer cardFooter" style="height:65px;">
+				<p href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary btn-rounded align-self-end float-right">Partagez</p>
 			</p>
 		</a>
 	</div>

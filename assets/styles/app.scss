@@ -10,7 +10,12 @@
   --main-color6: #df4c73;
 }
 
-$color1: #e2f0f9;
+/*
+font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+$color1: #F1F1F3;
 $color2: #b0DDe4;
 $color3: #2eacd6;
 $color4: #286fb4;
@@ -20,7 +25,7 @@ $color6: #df4c73;
 $couleur1: #0a2351;
 $couleur2: #00BFFF;
 $couleur3: #00FFFF;
-$couleur4: #F0F8FF;
+$couleur4: #F1F1F3;
 $couleur5: #ffffff;
 $couleur6: #FF033E;
 
@@ -31,8 +36,11 @@ $police1:'News Cycle', sans-serif;
                  COMMUN CSS
 *********************************************/
 body {
-  background-image: linear-gradient( 111.8deg,  rgba(0,104,155,1) 19.8%, rgba(0,173,239,1) 92.1% );
-}
+  background-color: $color1;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+ }
 *{
   box-sizing: border-box;
 }
@@ -43,14 +51,20 @@ body {
 h1{
   font-size: 28px;
   color: $couleur1;
+  margin: 0;
+  padding: 0;
 }
 /*    --   - Navbar -   --    */
 .menu{
-  background-image: linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% );
-  color: #ffffff;
+  background-color: $couleur5;
+}
+
+.photoMenu{
+  width: 40px;
+  height: 40px;
 }
 #navbarSupportedContent ul li a{
-  color: $couleur5;
+  color: $color4;
 }
 .dropdownMenu i{
   color: $couleur1;
@@ -64,7 +78,7 @@ h1{
   padding-left:0;
   }
 thead{
-  background-image: linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% );
+  background-color: $color4;
   color: #ffffff;
 }
 .link{
@@ -76,10 +90,10 @@ thead{
 /*    --   - Menu gauche -   --    */
 .iconMenu i a{
   text-decoration: none;
-  color: $couleur5;
-  font-family: 'News Cycle', sans-serif;
-  font-size: 12px;
-  line-height: 32px;
+  color: $color4;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 62px;
 }
 .istyle{
   display: none;
@@ -87,27 +101,57 @@ thead{
 .iconMenu{
   display: flex;
   flex-direction: column;
+  background-color: $color5;
+  height: 100vh;
+  margin: 0;
+  padding: 0 5px;
 }
 .iconMenu i{
-  color: $couleur5;
+  color: $color4;
   line-height: 32px;
+  border-bottom: 1px solid $color1;
 }
 .iconMenu i:hover{
   color: grey;
 }
+.istylehome{
+  background-color: $color1;
+  color: $couleur6 !important;
+  border-bottom: 1px solid $color3 !important;
+}
+
 
 /*    --   - Fin Menu gauche -   --    */
 
 /********************************************
                  HEADER
 *********************************************/
-
+.header{
+  height: 60px;
+  background-color: $color3;
+}
+.header i{
+  color: $color5;
+}
+.logoheader a{
+  color: white !important;
+  z-index: 100;
+}
 
 /********************************************
                  MAIN
 *********************************************/
 
 /* ------------------ employe-> login.html.twig ------------------ */
+
+#connexionBg{
+  background-image: url(../../public/images/images_front/slide3.jpg);
+  width: 100%;
+  min-height: 100vh;
+  top: 0 !important;
+  position: absolute;
+  z-index: 1;
+}
 .connexion{
   color: $couleur5;
   display: flex;
@@ -117,9 +161,10 @@ thead{
 .connexionContainer{
   width: 650px;
   height: 400px;
-  background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(223,76,103,1));
-  margin: 100px auto;
+  background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(40,111,180,1));
+  margin: 160px auto;
   border-radius: 10px;
+  z-index: 100;
 }
 .connexionContainer div{
   margin-left: auto;
@@ -143,9 +188,11 @@ thead{
 .noCompte{
   border: none;
 }
+
+
 /* ------------------- employe-> index.html.twig -------------------*/
 .colorIcon{
-  color: $couleur5;
+  color: $color5;
 }
 
 /* -------------------- employe-> new.html.twig  ------------------ */
@@ -200,6 +247,36 @@ thead{
   width: 600px;
 }
 
+/* ------------ profil index.html.twig --------------- */
+
+.cardFooter{
+  background-color: $color3;
+}
+.boutonVignette{
+  background-color: $color2;
+}
+.imgVignette{
+  width: 180px;
+  height: 140px;
+}
+.imgVignetteProfil{
+  width: 120px;
+  height: 140px;
+}
+.centrerImgProfil{
+  margin: 0 auto;
+}
+.flexCard{
+  display: flex;
+}
+.cardBody{
+  height: 140px;
+  font-size: 12px;
+}
+h5{
+  font-size: 15px;
+}
+
 /********************************************
                  FOOTER
 *********************************************/
@@ -218,3 +295,4 @@ thead{
 
 
 }
+

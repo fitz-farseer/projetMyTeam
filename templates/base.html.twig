@@ -11,6 +11,9 @@
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+
+			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet">
 		{% endblock %}
 
@@ -21,57 +24,63 @@
 
 	<body>
 
-		{% include "menu.html.twig" %}
+		{% block nav %}
+				<div>{% include "menu.html.twig" %}</div>
+		{% endblock %}
 
 		<div class="container-fluid"> 
 
 				<div class="row menuGauche">
-					<div class="blockMenu col-2">
+					<div class="col-2 m-0 p-0 blockMenu">
 						{% block menu %}
 							<div class="iconMenu">
 										
-								<i class="fas fa-home">
-								<span class="istyle"><a class="istyle" href="{{ path('accueil') }}"> Accueil</a></span></i>
+								<i class="fas fa-home istylehome">
+								<span class="istyle toggle"><a class="istyle" href="{{ path('accueil') }}"> Accueil</a></span></i>
 									
 						{% if app.user %}
 													
 								<i class="fa fa-sign-out-alt">
-								<span class="istyle"><a href="{{ path('app_logout') }}"> Déconnexion</a></span></i>
+								<span class="istyle toggle"><a  href="{{ path('app_logout') }}"> Déconnexion</a></span></i>
 													
 						{% else %}
 											
 								<i class="fa fa-sign-in-alt">
-								<span class="istyle"><a href="{{ path('app_login') }}"> Connexion</a></span></i>	
+								<span class="istyle toggle"><a href="{{ path('app_login') }}"> Connexion</a></span></i>	
 												
 								<i class="fas fa-user-plus">
-								<span class="istyle"><a href="{{ path('app_register') }}"> Inscription</a></span></i>
+								<span class="istyle toggle"><a href="{{ path('app_register') }}"> Inscription</a></span></i>
 												
 						{% endif %}		
 											
 								<i class="fa fa-list">
-								<span class="istyle"><a href="{{ path('employe_index') }}"> Liste employé</a></span></i>
+								<span class="istyle toggle"><a href="{{ path('employe_index') }}"> Liste employé</a></span></i>
 								
 								
-								<i class="fa fa-plus-circle">
-								<span class="istyle"><a href="{{ path('employe_new') }}">Ajouter un employé</a></span></i>
+								<i class="fas fa-user-plus">
+								<span class="istyle toggle"><a href="{{ path('employe_new') }}">Ajouter un employé</a></span></i>
 
 								<i class="fa fa-book">
-								<span class="istyle"><a href="">Liste absences</a></span></i>
+								<span class="istyle toggle"><a href="">Liste absences</a></span></i>
 
 								
 								<i class="fa fa-plus-circle">
-								<span class="istyle"><a href="">Ajouter une absence</a></span></i>
+								<span class="istyle toggle"><a href="">Ajouter une absence</a></span></i>
 
 								<i class="far fa-file-alt">
-								<span class="istyle"><a href=""><strong>Liste documents</strong></a></span></i>
+								<span class="istyle toggle"><a href=""><strong>Liste documents</strong></a></span></i>
 
 								<i class="fas fa-folder-plus">
-								<span class="istyle"><a href="">Ajouter un document</a></span></i>
+								<span class="istyle toggle"><a href="">Ajouter un document</a></span></i>
 
 							</div>
 						{% endblock %}
 					</div> 
-					<div class="col-10">{% block body %}{% endblock %}</div>
+					<div class="col-10 p-0">
+
+						<div class="p-3">{% block body %}{% endblock %}</div>
+						
+					</div>
 				</div>
 
 		</div>
