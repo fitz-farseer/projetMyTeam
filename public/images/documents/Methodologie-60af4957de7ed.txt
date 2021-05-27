@@ -1,0 +1,78 @@
+Methodologie pour commencer votre projet !
+---------------------------------------------------------------------------------
+
+0/ PAPIER / CRAYON ! Qu'est ce que je veux obtenir ? De quoi je vais avoir besoin ? (pages, penser à la BDD etc.) Répartition des tâches!
+
+1/Création BDD et tables
+
+2/Création de tous les dossiers (arborescence)
+
+---------------------------------------------------------------------------------
+
+3/Création de init.inc.php (session_start(), connexion BDD,  etc. Notamment la définition d'une constante qui peut-etre intéressante pour l'URL lorsque vous passerez du localhost à la mise en ligne !)
+
+4/Création de l'index 
+=> à découper pour les inclusions ET ON REVIENDRA DESSUS PLUS TARD ! (ex: pour l'affichage des produits)
+	4.1/ require_once('header.inc.php');
+	4.2/ require_once('nav.inc.php');
+	4.3/ require_once('footer.inc.php');
+
+5/Création de style.css
+
+6/Création de fonction.inc.php (Ne pas écrire toutes les fonctions, chaque chose en son temps ! Quand j'ai besoin d'une fonction je vais la créer et je l'exécute ensuite où j'en ai besoin)
+
+	=> BIEN PENSER A RAPPELER TOUS LES INCLUDES DANS CHAQUE PAGE ! 
+
+-------------------------------------------------------------------------------
+
+7/Création de inscription.php 
+	7.1/formulaire
+	7.2/traitements php
+
+8/Création de connexion.php
+	8.1/formulaire
+	8.2/traitements php
+
+9/Création de profil.php
+
+10/Création gestion_boutique.php
+	10.1/formulaire
+	10.2/enregistrement produits
+	10.3/affichage produits
+	10.4/suppression produits
+	10.5/modification produits
+	10.6/pré saisie des données dans le formulaire pour la modification
+
+	=>les pages de gestion du backoffice sont sensiblements les mêmes !! Donc appliquez vous sur la première et ensuite ce sera fluide !
+
+11/Création gestion_membre.php
+
+12/RETOUR sur index.php : affichage des produits
+
+13/Création fiche_produit.php
+
+14/Création de panier.php
+
+15/Création de la page d'affichage des statistiques
+
+16/Création des pages annexes (pages de contact etc.)
+
+17/Amélioration du visuel
+
+18/Hébergement / mise en ligne
+------------------------------------------------------------------------------------
+
+=> Vous allez travailler en Binome ! Donc répartissez vous les tâches intelligement !! Ici, du style sera demandé mais "on s'en fou"... l'idée c'est que tout le monde bosse sur le PHP ! Pour une première version, nous cherchons à ce que le projet soit fonctionnel, on perd pas de temps sur le CSS.
+
+=> Créez TOUJOURS une version1.0 lorsque vous rassemblez vos codes, on est pas à l'abris d'oublier une erreur, ce serait dommage de tout avoir à refaire !!
+
+=> TESTEZ vos traitements TOUT DE SUITE ! Ne continuez pas sinon les erreurs risquent de s'accumuler.
+
+=>Lorsqu'on a terminé une page de BackOffice, il est très simple de la décliner sur les autres sujets, seules les requêtes/entités changent. ATTENTION quand même à l'abus du Ctrl+C / Ctrl+V
+
+=> Il faudra bien entendu passer d'une page à l'autre... Lorsque je crée une fonction il faut ensuite aller l'exécuter au bon endroit 'au bon moment'
+
+	Exemple: si je crée une fonction userConnect() je modifie mon menu en conséquence APRES l'avoir créée et pas avant en faisant des Ctrl+C / Ctrl+V à tout va.
+	Pour une première vous risquez de rencontrer trop de bugs à gérer en même temps et celà peut vite devenir compliqué et démoralisant... 
+
+BON COURAGE :)

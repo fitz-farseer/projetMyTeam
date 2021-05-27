@@ -11,9 +11,9 @@
                 <th>Envoyé par</th>
                 <th>Destinataire</th>
                 <th>Date d'envoi</th>
-                <th>Apperçu</th>
+                <th>Aperçu</th>
                 <th>Type</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +25,13 @@
                 <td><img src="/images/documents/{{ document.name }}" alt="" style="width:75px"></td>
                 <td>{{ document.type|capitalize }}</td>
                 <td>
-                    <a href="{{ path('documents_show', {'id': document.id}) }}">show</a>
-                    <a href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
+                    <a href="{{ path('documents_show', {'id': document.id}) }}">Voir plus</a>
+                    <a href="{{ path('documents_edit', {'id': document.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun document à afficher</td>
             </tr>
         {% endfor %}
         </tbody>

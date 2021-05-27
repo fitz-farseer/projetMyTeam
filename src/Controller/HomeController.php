@@ -10,6 +10,8 @@ use Symfony\Flex\Path;
 
 class HomeController extends AbstractController
 {
+
+    #[Route('/', name: 'home')]
     public function index(): Response
     {
         return $this->redirectToRoute("profil_index");
