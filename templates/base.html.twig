@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
+
 		<meta charset="UTF-8">
+
 		<title>
-			{% block title %}Welcome!
-			{% endblock %}
+			{% block title %}Welcome!{% endblock %}
 		</title>
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet">
 		{% endblock %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
+
 	<body>
-		{% include "menu.html.twig" %}
-		<div class="container"> {% block body %}{% endblock %}
-			</div>
-		</body>
+
+		{% block nav %}
+				<div>{% include "menu.html.twig" %}</div>
+		{% endblock %}
+
+		<div class="container-fluid"> 
+
+				<div class="row menuGauche">
+					<div class="col-2 m-0 p-0 blockMenu">
+						{% block menu %}
+							{% include "sidemenu.html.twig" %}
+						{% endblock %}
+					</div> 
+					<div class="col-10 p-0">
+
+						<div class="p-3">{% block body %}{% endblock %}</div>
+						
+					</div>
+				</div>
+
+		</div>
+	</body>
 	</html>

@@ -8,16 +8,33 @@
 	{{ app.user.prenom }}
 	!</h2>
 
-<div class="card-deck">
-	<div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image" style="width:50px">
-		<div class="card-body">
-			<h5 class="card-title">{{ app.user.prenom|capitalize }}
-				{{ app.user.nom|capitalize }}</h5>
+	<div class="card-deck">
+		<div class="card" style="width: 18rem;">
+			<div class="flexCard">
+				<div class="centrerImgProfil"><img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image"></div>
+				<div class="card-body cardBody">
+					<h5 class="card-title">{{ app.user.prenom|capitalize }}
+						{{ app.user.nom|capitalize }}</h5>
+						<p>Bienvenu(e) sur votre dashboard</p>
+				</div>
+			</div>
+			<div class="card-footer cardFooter" style="height:65px;">
+				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary btn-rounded align-self-end float-right">Modifier</a> 
+			</div>
 		</div>
-
-		<div class="card-footer bg-white">
-			<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Modifier mon profil</a>
+		<div class="card" style="width: 18rem;">
+			<div class="flexCard">
+				<div class="centrerImgProfil"><img class="card-img-top imgVignette" src="images/images_front/absenceimg.jpg" alt="pas d'image"></div>
+				<div class="card-body cardBody">
+					<h5 class="card-title">Mes absences</h5>
+					<p>
+						{{ app.user.nbConges|number_format > 0 ? 'Il vous reste ' ~ app.user.nbConges ~ ' jours de congés à poser.' : 'Vous n\'avez plus de jours à poser.' }}
+					</p>
+				</div>
+			</div>
+			<div class="card-footer cardFooter" style="height:65px;">
+				<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary btn-rounded align-self-end float-right">Ajoutez</a>
+			</div>
 		</div>
 	</div>
 
@@ -56,32 +73,36 @@
 		</div>
 	</div>
 	<div class="card" style="width: 18rem;">
-		<div class="card-body">
-			<h5 class="card-title">Mes documents</h5>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Envoyé le</th>
-						<th>à</th>
-						<th>Type</th>
-					</tr>
-				</thead>
-				<tbody>
+		<div class="flexCard">
+			<div class="centrerImgProfil"><img src="/public/images/images_front/documentsimg.jpg" alt="pas d'image" class="card-img-top imgVignette"></div>
 
-						{% for i, document in app.user.documents %}
-						{% if i >= app.user.documents|length - 2 %} 
-						{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}  
-							<tr>
-								<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
-								<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
-								<td>{{ document.type }}</td>
-							</tr>
-						{% endif %}
-						{% endfor %}
-				</tbody>
-			</table>
+			<div class="card-body cardBody">
+				<h5 class="card-title">Mes documents</h5>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Envoyé le</th>
+							<th>à</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody>
+	
+							{% for i, document in app.user.documents %}
+							{% if i >= app.user.documents|length - 2 %} 
+							{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}  
+								<tr>
+									<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+									<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+									<td>{{ document.type }}</td>
+								</tr>
+							{% endif %}
+							{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<div class="card-footer bg-white">
+		<div class="card-footer cardFooter">
 			<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn align-self-end btn-primary">Partager un document</a>
 		</div>
 	</div>

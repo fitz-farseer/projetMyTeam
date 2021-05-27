@@ -30,13 +30,17 @@ class EmployeType extends AbstractType
                     "Homme" => "m",
                     "Femme" => "f"
                 ],
+                "attr" => [
+                    "class" => "input"
+                ],
                 "multiple" => false,
                 "expanded" => true
             ])
             ->add('nom', TextType::class, [
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Nom"
+                    "placeholder" => "Nom",
+                    "class" => "input"
                 ],
                 "constraints" => [
                     new Length([
@@ -51,7 +55,8 @@ class EmployeType extends AbstractType
             ->add('prenom', TextType::class, [
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Prénom"
+                    "placeholder" => "Prénom",
+                    "class" => "input"
                 ],
                 "constraints" => [
                     new Length([
@@ -67,7 +72,8 @@ class EmployeType extends AbstractType
             ->add('email', EmailType::class, [
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Email"
+                    "placeholder" => "Email",
+                    "class" => "input"
                 ],
                 "invalid_message" => "Veuillez renseigner une adresse mail valide, elle sera utilisée pour l'identification"
             ])
@@ -75,7 +81,8 @@ class EmployeType extends AbstractType
                 "mapped" => false,
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Mot de passe"
+                    "placeholder" => "Mot de passe",
+                    "class" => "input"
                 ],
                 "constraints" => [
                     // new Regex([
@@ -98,8 +105,11 @@ class EmployeType extends AbstractType
                 ],
                 "multiple" => false,
                 "expanded" => true,
-                "data" => $employe->getRoles() ? $employe->getRoles()[0] : "ROLE_EMPLOYE"
+                "data" => $employe->getRoles() ? $employe->getRoles()[0] : "ROLE_EMPLOYE",
                 // "data" => $roles[0] // permet d'outrepasser l'array et de garder multiple en "false"
+                "attr" => [
+                    "class" => "input2"
+                ]
             ])
             ->add('service', ChoiceType::class, [
                 "label" => "Service :",
@@ -109,8 +119,9 @@ class EmployeType extends AbstractType
                     "Ressources Humaines" => "ressources_humaines",
                     "Commercial" => "commercial"
                 ],
-                "multiple" => false,
-                "expanded" => true
+                "attr" => [
+                    "class" => "input"
+                ]
             ])
             ->add('nb_conges', IntegerType::class, [
                 "label" => false,
@@ -119,7 +130,10 @@ class EmployeType extends AbstractType
             ->add('photo', FileType::class, [
                 "mapped" => false,
                 "label" => false,
-                "required" => false,
+                "attr" => [
+                    "class" => "input2"
+                ],
+                "required" => false
             ]);
     }
 

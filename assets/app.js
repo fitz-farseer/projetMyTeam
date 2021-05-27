@@ -12,3 +12,26 @@ const $ = require("jquery");
 global.$ = global.jQuery = $;
 window.Popper = require("popper.js");
 require("bootstrap");
+
+$(document).ready(function(){
+
+    // au clique sur burger menu = apparait -> disparait
+    $('.istyle').hide();
+
+    $('#burgerclick').on("click",()=>{
+        $('.istyle').toggle();
+    });
+
+    // au clique sur burger menu = agrandit -> réduit
+   
+    $('#burgerclick').on("click",()=>{
+        $('iconMenu').animate({
+            
+            width:'200px',
+        
+        } , 3000);
+      
+    })
+
+
+});

@@ -1,0 +1,73 @@
+{% block menu %}
+	<div class="iconMenu">
+
+		<i class="fas fa-home istylehome">
+			<span class="istyle toggle">
+				<a class="istyle" href="{{ path('profil_index') }}">
+					Accueil</a>
+			</span>
+		</i>
+
+		{% if app.user %}
+			{% else %}
+
+				<i class="fa fa-sign-in-alt">
+					<span class="istyle toggle">
+						<a href="{{ path('app_login') }}">
+							Connexion</a>
+					</span>
+				</i>
+
+				<i class="fas fa-user-plus">
+					<span class="istyle toggle">
+						<a href="{{ path('app_register') }}">
+							Inscription</a>
+					</span>
+				</i>
+
+		{% endif %}
+		{% if is_granted('ROLE_RH') %}
+			<i class="fa fa-list">
+				<span class="istyle toggle">
+					<a href="{{ path('employe_index') }}">
+						Liste employé</a>
+				</span>
+			</i>
+
+
+			<i class="fas fa-user-plus">
+				<span class="istyle toggle">
+					<a href="{{ path('employe_new') }}">Ajouter un employé</a>
+				</span>
+			</i>
+		{% endif %}
+
+		<i class="fa fa-book">
+			<span class="istyle toggle">
+				<a href="{{ path('absences_index') }}">Liste absences</a>
+			</span>
+		</i>
+
+
+		<i class="fa fa-plus-circle">
+			<span class="istyle toggle">
+				<a href="{{ path('absences_new') }}">Ajouter une absence</a>
+			</span>
+		</i>
+
+		<i class="far fa-file-alt">
+			<span class="istyle toggle">
+				<a href="{{ path('documents_profil') }}">
+					<strong>Liste documents</strong>
+				</a>
+			</span>
+		</i>
+
+		<i class="fas fa-folder-plus">
+			<span class="istyle toggle">
+				<a href="{{ path('documents_new') }}">Ajouter un document</a>
+			</span>
+		</i>
+
+	</div>
+{% endblock %}

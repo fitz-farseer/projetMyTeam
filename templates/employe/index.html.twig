@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employe index{% endblock %}
+{% block title %}Employé{% endblock %}
 
 {% block body %}
-    <h1>Employe index</h1>
+    <h1>Liste des employés</h1>
 
     <table class="table table-bordered table-striped">
         <thead>
@@ -16,7 +16,8 @@
                 <th>Service</th>
                 <!-- <th>Roles</th> -->
                 <th>Solde Congés</th>
-                <th>Actions</th>
+                <th>Détails</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
@@ -56,13 +57,15 @@
                 </td> -->
                 <td>{{ employe.nbConges }}</td>
                 <td>
-                    <a href="{{ path('employe_show', {'id': employe.id}) }}"><i class="fa fa-eye"></i></a>
-                    <a href="{{ path('employe_edit', {'id': employe.id}) }}"><i class="fa fa-edit"></i></a>
+                    <a href="{{ path('employe_show', {'id': employe.id}) }}" class="colorIcon"><i class="fa fa-eye"></i></a>
+                </td>
+                <td>
+                    <a href="{{ path('employe_edit', {'id': employe.id}) }}" class="colorIcon"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Pas de résultat</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -70,5 +73,5 @@
 
     
 
-    <a href="{{ path('employe_new') }}">Create new</a>
+    <a href="{{ path('employe_new') }}" class="link"><i class="fas fa-user-plus"></i> Créer nouvel employé</a>
 {% endblock %}

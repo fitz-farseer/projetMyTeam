@@ -3,9 +3,12 @@
 {% block title %}Nouvel Employé{% endblock %}
 
 {% block body %}
-    <h1>Ajout d'un nouvel employé</h1>
+    <div class="formulaireContainer">
+        <h1>Ajout d'un nouvel employé</h1>
+    
+        <div class="formulaire">
+            {{ include('employe/_form.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('employe/_form.html.twig') }}
-
-    <a href="{{ path('employe_index') }}" class="btn btn-secondary">Retour à la liste</a>
 {% endblock %}
