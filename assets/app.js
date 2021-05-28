@@ -21,17 +21,14 @@ $(document).ready(function(){
     $('#burgerclick').on("click",()=>{
         $('.istyle').toggle();
     });
-
-    // au clique sur burger menu = agrandit -> réduit
    
-    $('#burgerclick').on("click",()=>{
-        $('iconMenu').animate({
-            
-            width:'200px',
-        
-        } , 3000);
-      
-    })
 
+});
 
+// au clique sur burger menu = agrandit -> réduit la largeur de iconMenu
+const burgerclick = document.getElementById('burgerclick');
+const iconmenu = document.querySelector('.iconMenu');
+
+burgerclick.addEventListener('click', () => {
+    iconmenu.classList.toggle('agrandissement');
 });

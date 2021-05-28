@@ -6,7 +6,7 @@ font-family: 'Montserrat', sans-serif;
 font-family: 'Roboto', sans-serif;
 */
 
-$color1: #F1F1F3;
+$color1: #d8d8d8;
 $color2: #b0DDe4;
 $color3: #2eacd6;
 $color4: #286fb4;
@@ -38,7 +38,7 @@ body {
 h1{
   font-size: 28px;
   color: $color4;
-  margin: 0;
+  margin: 15px 0;
   padding: 0;
 }
 .bgc-pink{
@@ -81,6 +81,27 @@ thead{
   color: $color6;
   text-decoration: none;
 }
+/* boutons */
+.btn-bleu{
+  background-color: $color4;
+  color: $color5;
+  border: none;
+}
+.btn-bleu:hover{
+  background-color: $color5;
+  color: $color4;
+  border: 1px solid $color4;
+}
+.btn-pink{
+  background-color: $color6;
+  color: $color5;
+  border: none;
+}
+.btn-pink:hover{
+  background-color: $color5;
+  color: $color6;
+  border: 1px solid $color6;
+}
 /* ------------------ Base.html.twig -------------------- */
 
 /*    --   - Menu gauche -   --    */
@@ -88,19 +109,21 @@ thead{
   text-decoration: none;
   color: $color4;
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 62px;
 }
 .istyle{
   display: none;
+  font-size: 12px;
+  color: $color4;
 }
 .iconMenu{
   display: flex;
   flex-direction: column;
   background-color: $color5;
-  height: 100vh;
   margin: 0;
   padding: 0 5px;
+  width: 40px;
 }
 .iconMenu i{
   color: $color4;
@@ -110,11 +133,13 @@ thead{
 .iconMenu i:hover{
   color: $color6;
 }
-.istylehome{
-  background-color: $color1;
-  color: $color6 !important;
+.agrandissement{
+  width: 200px;
 }
-
+#burgerclick:hover{
+  cursor: pointer;
+  color: $color1;
+}
 
 /*    --   - Fin Menu gauche -   --    */
 
@@ -197,9 +222,11 @@ thead{
 
 /* ------------------- employe-> index.html.twig -------------------*/
 .colorIcon{
-  color: $color5;
+  color: $color4;
 }
-
+.colorIcon:hover{
+  color: $color6;
+}
 /* -------------------- employe-> new.html.twig  ------------------ */
 
 .formulaireContainer{
