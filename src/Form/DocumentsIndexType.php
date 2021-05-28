@@ -14,12 +14,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class DocumentsType extends AbstractType
+class DocumentsIndexType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $employe = $options["data"];
         $builder
+            ->setAction($this->router->generate('documents_new'))
             ->add('name', FileType::class, [
                 "mapped" => false,
                 "label" => false,
@@ -37,12 +38,11 @@ class DocumentsType extends AbstractType
                 ]
             ])
             ->add('destinataire', EntityType::class, [
-                "class" =>Employe::class,
-                "choice_label" => function(Employe $e){
+                "class" => Employe::class,
+                "choice_label" => function (Employe $e) {
                     return $e->getNom() . " " .  $e->getPrenom();
                 }
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

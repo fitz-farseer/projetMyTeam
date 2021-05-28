@@ -1,44 +1,229 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Documents index{% endblock %}
+{% block title %}Dashboard Document
+{% endblock %}
 
 {% block body %}
-    <h1>Documents index</h1>
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
+{#############################################################################################}
+{###################### ROLE ADMIN ######################}
+{#############################################################################################}
 
-    <table class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr>
-                <th>Envoyé par</th>
-                <th>Destinataire</th>
-                <th>Date d'envoi</th>
-                <th>Aperçu</th>
-                <th>Type</th>
-                <th>Voir plus</th>
-                <th>Modifier</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for document in documents %}
-            <tr>
-                <td>{{ document.employe.prenom|capitalize ~ " " ~ document.employe.nom|capitalize }}</td>
-                <td>{{ document.destinataire.prenom|capitalize ~ " " ~ document.destinataire.nom|capitalize }}</td>
-                <td>{{ document.dateEnvoi ? document.dateEnvoi|date('Y-m-d') : '' }}</td>
-                <td><img src="/images/documents/{{ document.name }}" alt="" style="width:35px"></td>
-                <td>{{ document.type|capitalize }}</td>
-                <td>
-                    <a href="{{ path('documents_show', {'id': document.id}) }}" class='colorIcon'><i class="fa fa-eye"></a>
-                </td>
-                <td>
-                    <a href="{{ path('documents_edit', {'id': document.id}) }}" class='colorIcon'><i class="fa fa-edit"></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun document à afficher</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{#############################################################################################}
+{###################### ROLE RH ######################}
+{#############################################################################################}
 
-    <a href="{{ path('documents_new') }}" class="btn rounded-pill btn-bleu">Créer nouveau</a>
+{#############################################################################################}
+{###################### ROLE MANAGER ######################}
+{#############################################################################################}
+
+{% if (app.user.roles[0] == 'ROLE_MANAGER') %}
+		<div class="row"> <div class="col-md-4 p-0 col-lg-4 p-2">
+			<div class="card">
+				<div class="flexCard">
+					<div class="card-body hauteurcard">
+						<h5 class="card-title">Envoyer un document</h5>
+						<div>
+							{{ include('documents/_form.html.twig') }}
+						</div>
+					</div>
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="#" class="btn btnConnexion bgc-pinkrounded-pill float-right invisible">Envoyer</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 p-0 col-lg-8 p-2">
+			<div class="card">
+				<div class="flexCard">
+					<div class="card-body hauteurcard">
+						<h5 class="card-title">Documents envoyés</h5>
+						<p>
+							<table class="table table-bordered table-striped">
+								<thead class='thead-dark'>
+									<tr>
+										<th>Date envoie</th>
+										<th>Destinataire</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, document in app.user.documents %}
+										{% if i >= app.user.documents|length - 3 %}
+											{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+												<td>{{ document.type }}</td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
+						</p>
+					</div>
+
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="#" class="btn bgc-pink rounded-pill float-right">Détails</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 p-0 col-lg-12 p-2">
+			<div class="card">
+				<div class="flexCard">
+					<div class="centrerImgProfil">
+						<img src="/images/images_front/documentsimg.jpg" alt="pas d'image" class="card-img-top imgVignette">
+					</div>
+
+					<div class="card-body cardBody">
+						<h5 class="card-title">Mes documents reçus</h5>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Reçu le</th>
+									<th>De</th>
+									<th>Type</th>
+									<th>Télécharger</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{% for i, document in docRecu %}
+									{% if i >= docRecu|length - 4 %}
+										{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+										<tr>
+											<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+											<td>{{ document.employe.nom|capitalize ~ " " ~ document.employe.prenom|capitalize }}</td>
+											<td>{{ document.type }}</td>
+											<td>
+												<a href="{{ path('download', { name: document.name }) }}">
+													<i class="fas fa-file-download"></i>
+												</a>
+											</td>
+										</tr>
+									{% endif %}
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="#" class="btn btn-primary rounded-pill float-right">Détails</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+{#############################################################################################}
+{###################### ROLE EMPLOYE ######################}
+{#############################################################################################}
+
+	{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
+		<div class="row"> <div class="col-md-4 p-0 col-lg-4 p-2">
+			<div class="card">
+				<div class="flexCard">
+					<div class="card-body cardBody">
+						<h5 class="card-title">Envoyer un document</h5>
+						<p>
+							{{ include('documents/_form.html.twig') }}
+						</p>
+					</div>
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="#" class="btn btn-primary rounded-pill float-right">Envoyer</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 p-0 col-lg-8 p-2">
+			<div class="card">
+				<div class="flexCard">
+					<div class="card-body cardBody">
+						<h5 class="card-title">Documents envoyés</h5>
+						<p>
+							<table class="table table-bordered table-striped">
+								<thead class='thead-dark'>
+									<tr>
+										<th>Date envoie</th>
+										<th>Destinataire</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, document in app.user.documents %}
+										{% if i >= app.user.documents|length - 3 %}
+											{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+												<td>{{ document.type }}</td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
+						</p>
+					</div>
+
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="#" class="btn btn-primary rounded-pill float-right">Détails</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 p-0 col-lg-12 p-2">
+			<div class="card">
+				<div class="flexCard">
+					<div class="centrerImgProfil">
+						<img src="/images/images_front/documentsimg.jpg" alt="pas d'image" class="card-img-top imgVignette">
+					</div>
+
+					<div class="card-body cardBody">
+						<h5 class="card-title">Mes documents reçus</h5>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Reçu le</th>
+									<th>De</th>
+									<th>Type</th>
+									<th>Télécharger</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{% for i, document in docRecu %}
+									{% if i >= docRecu|length - 4 %}
+										{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+										<tr>
+											<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+											<td>{{ document.employe.nom|capitalize ~ " " ~ document.employe.prenom|capitalize }}</td>
+											<td>{{ document.type }}</td>
+											<td>
+												<a href="{{ path('download', { name: document.name }) }}">
+													<i class="fas fa-file-download"></i>
+												</a>
+											</td>
+										</tr>
+									{% endif %}
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="#" class="btn btn-primary rounded-pill float-right">Détails</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+{% endif %}
 {% endblock %}

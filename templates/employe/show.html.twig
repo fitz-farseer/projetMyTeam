@@ -3,6 +3,7 @@
 {% block title %}Employe{% endblock %}
 
 {% block body %}
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
     <h1>Fiche employé</h1>
 
     <table class="table table-bordered table-striped">
@@ -75,4 +76,5 @@
     <div><a href="{{ path('employe_edit', {'id': employe.id}) }}" class="link">Modifier</a></div>
 
     {{ include('employe/_delete_form.html.twig') }}
+</div>
 {% endblock %}
