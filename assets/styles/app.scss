@@ -329,9 +329,9 @@ thead{
 .flexCard{
   display: flex;
 }
-.cardBody{
+.hauteurcard{
   font-size: 12px;
-  min-height: 15vh;
+  height: 40vh;
 }
 h5{
   font-size: 15px;
@@ -369,7 +369,7 @@ h5{
 @media screen and (min-width: 960px){
 
   .cardBody{
-    height: 25vh;
+    height:50vh;
   }
 
 
