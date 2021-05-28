@@ -45,8 +45,9 @@ h1{
 .bgc-pink{
   background-color: $color6;
   color: $color5;
+  border: solid transparent 2px;
 }
-.btnConnexion:hover{
+.bgc-pink:hover{
   background-color: $color5;
   color: $color6;
   border: solid 2px $color6;
