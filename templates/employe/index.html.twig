@@ -1,77 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employé{% endblock %}
+{% block title %}Dashboard Employés{% endblock %}
 
 {% block body %}
-    <h1>Liste des employés</h1>
 
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Identifiant</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Civilité</th>
-                <th>Email</th>
-                <th>Service</th>
-                <!-- <th>Roles</th> -->
-                <th>Solde Congés</th>
-                <th>Détails</th>
-                <th>Modifier</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for employe in employes %}
-            <tr>
-                <td>{{ employe.id }}</td>
-                <td>{{ employe.nom|capitalize }}</td>
-                <td>{{ employe.prenom|capitalize }}</td>
-                <td>{% if employe.sexe == "m" %}
-                    Homme
-                    {% elseif employe.sexe == "f" %}
-                    Femme
-                    {% endif %}
-                </td>
-                <td>{{ employe.email }}</td>
-                <td>{% if employe.service == "ressources_humaines" %}
-                    Ressources Humaines
-                    {% else %}
-                    {{ employe.service|capitalize }}   
-                    {% endif %}
-                </td>
-                <!-- <td>
-                   {# {% set text = "" %}
-                    {% for role in employe.roles %}
-                        {% if role == "ROLE_ADMIN"%}
-                            {% set text = text ~ (text ? "," : "")~ "Administrateur" %}
-                        {% elseif role == "ROLE_MANAGER" %}
-                            {% set text = text ~ (text ? "," : "")~ "Manager" %}
-                        {% elseif role == "ROLE_RH" %}
-                            {% set text = text ~ (text ? "," : "")~ "RH" %}
-                        {% elseif role == "ROLE_EMPLOYE" %}
-                            {% set text = text ~ (text ? "," : "")~ "Employé" %}
-                                
-                        {% endif %}
-                    {% endfor %}
-                    {{ text }}#}
-                </td> -->
-                <td>{{ employe.nbConges }}</td>
-                <td>
-                    <a href="{{ path('employe_show', {'id': employe.id}) }}" class="colorIcon"><i class="fa fa-eye"></i></a>
-                </td>
-                <td>
-                    <a href="{{ path('employe_edit', {'id': employe.id}) }}" class="colorIcon"><i class="fa fa-edit"></i></a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">Pas de résultat</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{#############################################################################################}
+            {###################### ROLE ADMIN ######################}
+{#############################################################################################}
 
-    
 
-    <a href="{{ path('employe_new') }}" class="link"><i class="fas fa-user-plus"></i> Créer nouvel employé</a>
+
+
+{#############################################################################################}
+            {###################### ROLE RH ######################}
+{#############################################################################################}
+
+
+
+
 {% endblock %}

@@ -16,19 +16,47 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/profil/documents')]
 class DocumentsController extends AbstractController
 {
-    #[Route('/', name: 'documents_profil', methods: ['GET'])]
-    public function index(DocumentsRepository $documentsRepository): Response
+    #[Route('/', name: 'documents_index')]
+    public function index(DocumentsRepository $documentsRepository, Request $request): Response
     {
+        
+        $document = new Documents();
+        $form = $this->createForm(DocumentsType::class, $document,[
+            'action' => $this->generateUrl('documents_index'),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $destination = $this->getParameter("dossier_documents");
+
+            // name fait référence au fichier envoyé par l'employé
+            if ($doc = $form->get("name")->getData()) {
+
+                $nomDoc = pathinfo($doc->getClientOriginalName(), PATHINFO_FILENAME);
+                $nouveauNom = str_replace(" ", "_", $nomDoc);
+                $nouveauNom .= "-" . uniqid() . "." . $doc->guessExtension();
+                $doc->move($destination, $nouveauNom);
+
+                $document->setName($nouveauNom);
+            }
+            $document->setStatut("envoye");
+            $document->setEmploye($this->getUser());
+
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($document);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('documents_index');
+        }
+
         return $this->render('documents/index.html.twig', [
             'documents' => $documentsRepository->findByEmploye($this->getUser()),
-        ]);
-    }
-    
-    #[Route('/gestion', name: 'documents_global', methods: ['GET'])]
-    public function affichageDocuments(DocumentsRepository $dr): Response
-    {
-        return $this->render('documents/global.html.twig', [
-            'documents' => $dr->findAll()
+            'documents' => $documentsRepository->findAll(),
+            'docRecu' => $documentsRepository->findByDestinataire($this->getUser()),
+            'document' => $document,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -61,7 +89,7 @@ class DocumentsController extends AbstractController
             $entityManager->persist($document);
             $entityManager->flush();
 
-            return $this->redirectToRoute('documents_profil');
+            return $this->redirectToRoute('documents_index');
         }
 
         return $this->render('documents/new.html.twig', [

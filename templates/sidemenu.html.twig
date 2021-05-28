@@ -27,11 +27,14 @@
 			{% endif %}
 
 
-			<!-- -------------------------- ROLE ADMIN -------------------------- -->
+{#############################################################################################}
+            {###################### ROLE ADMIN ######################}
+{#############################################################################################}
+
 			{% if (app.user.roles[0] == 'ROLE_ADMIN') %}
 
 				<p>
-					<a href="#">
+					<a href="{{ path('employe_index') }}">
 						<i class="fa fa-list"></i>
 						<span class="istyle">
 							<b>Employé</b>
@@ -40,7 +43,7 @@
 				</p>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('employe_index') }}">Liste des employés</ahref="#">
+						<a href="#">Liste des employés</ahref="#">
 					</p>
 					<p>
 						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
@@ -48,7 +51,7 @@
 				</span>
 
 
-				<a href="#">
+				<a href="{{ path('absences_index') }}">
 					<i class="fa fa-book"></i>
 					<span class="istyle">
 						<b>Absences</b>
@@ -56,13 +59,13 @@
 				</a>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('absences_index') }}">Liste des absences</a>
+						<a href="#">Liste des absences</a>
 					</p>
 				</span>
 
 
 				<p>
-					<a href="#">
+					<a href="{{ path('documents_index') }}">
 						<i class="far fa-file-alt"></i>
 						<span class="istyle">
 							<b>Documents</b>
@@ -71,7 +74,7 @@
 				</p>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('documents_profil') }}">Liste des documents</ahref="#">
+						<a href="#">Liste des documents</ahref="#">
 					</p>
 					<p>
 						<a href="#">Mes documents reçus</a>
@@ -80,11 +83,14 @@
 
 			{% endif %}
 
-			<!-- -------------------------- ROLE RH -------------------------- -->
+{#############################################################################################}
+            {###################### ROLE RH ######################}
+{#############################################################################################}
+
 			{% if (app.user.roles[0] == 'ROLE_RH') %}
 
 				<p>
-					<a href="#">
+					<a href="{{ path('employe_index') }}">
 						<i class="fa fa-list"></i>
 						<span class="istyle">
 							<b>Employé</b>
@@ -93,7 +99,7 @@
 				</p>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('employe_index') }}">Liste des employés</ahref="#">
+						<a href="#">Liste des employés</ahref="#">
 					</p>
 					<p>
 						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
@@ -101,7 +107,7 @@
 				</span>
 
 
-				<a href="#">
+				<a href="{{ path('absences_index') }}">
 					<i class="fa fa-book"></i>
 					<span class="istyle">
 						<b>Absences</b>
@@ -109,7 +115,7 @@
 				</a>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('absences_index') }}">Liste des absences</a>
+						<a href="#">Liste des absences</a>
 					</p>
 					<p>
 						<a href="#">Absences à valider</a>
@@ -118,7 +124,7 @@
 
 
 				<p>
-					<a href="#">
+					<a href="{{ path('documents_index') }}">
 						<i class="far fa-file-alt"></i>
 						<span class="istyle">
 							<b>Documents</b>
@@ -127,7 +133,7 @@
 				</p>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('documents_profil') }}">Documents du service</ahref="#">
+						<a href="#">Documents du service</ahref="#">
 					</p>
 					<p>
 						<a href="#">Mes documents reçus</a>
@@ -139,7 +145,10 @@
 
 			{% endif %}
 
-			<!-- -------------------------- ROLE MANAGER -------------------------- -->
+{#############################################################################################}
+            {###################### ROLE MANAGER ######################}
+{#############################################################################################}
+
 			{% if (app.user.roles[0] == 'ROLE_MANAGER') %}
 
 				<p>
@@ -152,10 +161,10 @@
 				</p>
 				<span class="istyle">
 					<p>
-						<a href="{{ path('employe_index') }}">Mes employés</ahref="#">
+						<a href="#">Mes employés</ahref="#">
 					</p>
 					<p>
-						<a href="{{ path('absences_index') }}">Absences du service</a>
+						<a href="#">Absences du service</a>
 					</p>
 					<p>
 						<a href="#">Absences à valider</a>
@@ -176,7 +185,7 @@
 						<a href="#">Liste</a>
 					</p>
 					<p>
-						<a href="#">Signaler une absence</a>
+						<a href="{{ path('absences_new') }}">Signaler une absence</a>
 					</p>
 				</span>
 
@@ -184,7 +193,7 @@
 
 
 			<p>
-				<a href="#">
+				<a href="{{ path('documents_index') }}">
 					<i class="far fa-file-alt"></i>
 					<span class="istyle">
 						<b>Mes Documents</b>
@@ -203,7 +212,10 @@
 
 		{% endif %}
 
-		<!-- -------------------------- ROLE EMPLOYE -------------------------- -->
+{#############################################################################################}
+            {###################### ROLE EMPLOYE ######################}
+{#############################################################################################}
+
 		{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
 			<p>
 				<a href="{{ path('absences_index') }}">
@@ -218,12 +230,12 @@
 					<a href="#">Liste</a>
 				</p>
 				<p>
-					<a href="#">Signaler une absence</a>
+					<a href="{{ path('absences_new') }}">Signaler une absence</a>
 				</p>
 			</span>
 
 			<p>
-				<a href="#">
+				<a href="{{ path('documents_index') }}">
 					<i class="far fa-file-alt"></i>
 					<span class="istyle">
 						<b>Mes Documents</b>

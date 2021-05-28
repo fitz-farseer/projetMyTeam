@@ -28,6 +28,16 @@ class DocumentsRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+
+    public function findByDestinataire(Employe $e){
+        return $this->createQueryBuilder('d')
+        ->andWhere("d.destinataire = :val")
+        ->setParameter('val', $e)
+        ->orderBy("d.id", "DESC")
+        ->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return Documents[] Returns an array of Documents objects
     //  */
