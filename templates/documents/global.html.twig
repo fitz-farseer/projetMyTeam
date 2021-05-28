@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+	<div class="row">
+
+		<div class="col-md-12 col-lg-12 p-0 p-3">
+			<div class="card">
+				<div class="flexCard">
+					<div class="centrerImgProfil">
+						<img src="..." alt="Penser à ajouter une image si besoin" class="card-img-top imgVignette">
+					</div>
+
+					<div class="card-body cardBody">
+						<h5 class="card-title">Documents Récents</h5>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>-</th>
+									<th>-</th>
+									<th>-</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-lg-4 p-0 p-3">
+			<div class="card">
+				<div class="flexCard">
+					<div class="centrerImgProfil">
+						<img class="card-img-top imgVignetteProfil" src="..." alt="Penser à ajouter une image si besoin">
+					</div>
+					<div class="card-body cardBody">
+						<h5 class="card-title">-</h5>
+
+					</div>
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary rounded-pill float-right">Modifier</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 col-lg-8 p-0 p-3">
+			<div class="card">
+				<div class="flexCard">
+
+					<img class="card-img-top imgVignette" src="..." alt="Penser à ajouter une image si besoin">
+					<div class="card-body cardBody">
+						<h5 class="card-title">Liste des documents reçus par tuotes les RH</h5>
+
+						<table class="table table-bordered table-striped">
+							<thead class='thead-dark'>
+								<tr>
+									<th>Employé</th>
+									<th>Type</th>
+									<th>Télécharger</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i, document in app.user.documents %}
+										{% if i >= app.user.documents|length - 3 %}
+											{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+												<td>{{ document.type }}</td>
+												<td><a href="{{ path('download', { name: document.name }) }}">Télécharger</a></td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+				<div class="card-footer cardFooter">
+					<a href="{{ path('absences_new') }}" class="btn btn-primary rounded-pill float-right">Afficher la liste</a>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}

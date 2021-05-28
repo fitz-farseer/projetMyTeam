@@ -23,16 +23,6 @@ class EmployeController extends AbstractController
         ]);
     }
 
-        // Crer route pour afficher l'ensemble des employés pour les RH
-
-    // #[Route('/', name: 'employe_index', methods: ['GET'])]
-    // public function index(EmployeRepository $employeRepository): Response
-    // {
-    //     return $this->render('employe/index.html.twig', [
-    //         'employes' => $employeRepository->findAll(),
-    //     ]);
-    // }
-
     #[Route('/new', name: 'employe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Encoder $encoder): Response
     {
@@ -79,7 +69,7 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Employe $employe, Encoder $encoder): Response
     {
         $form = $this->createForm(EmployeType::class, $employe);

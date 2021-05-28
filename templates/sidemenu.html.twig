@@ -2,72 +2,244 @@
 	<div class="col-2 mr-3 p-0 blockMenu">
 		<div class="iconMenu">
 
-
-			<a href="{{ path('profil_index') }}">
-				<i class="fas fa-home istylehome"></i>
-				<span class="istyle">Accueil</span>
-			</a>
+			<p>
+				<a href="{{ path('profil_index') }}">
+					<i class="fas fa-home istylehome"></i>
+					<span class="istyle">
+						<b>Accueil</b>
+					</span>
+				</a>
+			</p>
 
 
 			{% if app.user %}
 				{% else %}
 
-
-					<a href="{{ path('app_login') }}">
-						<i class="fa fa-sign-in-alt"></i>
-						<span class="istyle">Connexion</span>
-					</a>
-
-
-					<a href="{{ path('app_register') }}">
-						<i class="fas fa-user-plus"></i>
-						<span class="istyle">Inscription</span>
-					</a>
-
-
-			{% endif %}
-			{% if is_granted('ROLE_RH') %}
-
-
-				<a href="{{ path('employe_index') }}">
-					<i class="fa fa-list"></i>
-					<span class="istyle">Liste employé</span>
-				</a>
-
-
-				<a href="{{ path('employe_new') }}">
-					<i class="fas fa-user-plus"></i>
-					<span class="istyle">Ajouter un employé</span>
-				</a>
-
+					<p>
+						<a href="{{ path('app_login') }}">
+							<i class="fa fa-sign-in-alt"></i>
+							<span class="istyle">
+								<b>Connexion</b>
+							</span>
+						</a>
+					</p>
 
 			{% endif %}
 
 
-			<a href="{{ path('absences_index') }}">
-				<i class="fa fa-book"></i>
-				<span class="istyle">Liste absences</span>
+			<!-- -------------------------- ROLE ADMIN -------------------------- -->
+			{% if (app.user.roles[0] == 'ROLE_ADMIN') %}
+
+				<p>
+					<a href="#">
+						<i class="fa fa-list"></i>
+						<span class="istyle">
+							<b>Employé</b>
+						</span>
+					</a>
+				</p>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('employe_index') }}">Liste des employés</ahref="#">
+					</p>
+					<p>
+						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
+					</p>
+				</span>
+
+
+				<a href="#">
+					<i class="fa fa-book"></i>
+					<span class="istyle">
+						<b>Absences</b>
+					</span>
+				</a>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('absences_index') }}">Liste des absences</a>
+					</p>
+				</span>
+
+
+				<p>
+					<a href="#">
+						<i class="far fa-file-alt"></i>
+						<span class="istyle">
+							<b>Documents</b>
+						</span>
+					</a>
+				</p>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('documents_profil') }}">Liste des documents</ahref="#">
+					</p>
+					<p>
+						<a href="#">Mes documents reçus</a>
+					</p>
+				</span>
+
+			{% endif %}
+
+			<!-- -------------------------- ROLE RH -------------------------- -->
+			{% if (app.user.roles[0] == 'ROLE_RH') %}
+
+				<p>
+					<a href="#">
+						<i class="fa fa-list"></i>
+						<span class="istyle">
+							<b>Employé</b>
+						</span>
+					</a>
+				</p>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('employe_index') }}">Liste des employés</ahref="#">
+					</p>
+					<p>
+						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
+					</p>
+				</span>
+
+
+				<a href="#">
+					<i class="fa fa-book"></i>
+					<span class="istyle">
+						<b>Absences</b>
+					</span>
+				</a>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('absences_index') }}">Liste des absences</a>
+					</p>
+					<p>
+						<a href="#">Absences à valider</a>
+					</p>
+				</span>
+
+
+				<p>
+					<a href="#">
+						<i class="far fa-file-alt"></i>
+						<span class="istyle">
+							<b>Documents</b>
+						</span>
+					</a>
+				</p>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('documents_profil') }}">Documents du service</ahref="#">
+					</p>
+					<p>
+						<a href="#">Mes documents reçus</a>
+					</p>
+					<p>
+						<a href="{{ path('documents_new') }}">Envoyer un document</a>
+					</p>
+				</span>
+
+			{% endif %}
+
+			<!-- -------------------------- ROLE MANAGER -------------------------- -->
+			{% if (app.user.roles[0] == 'ROLE_MANAGER') %}
+
+				<p>
+					<a href="#">
+						<i class="fa fa-list"></i>
+						<span class="istyle">
+							<b>Mon Service</b>
+						</span>
+					</a>
+				</p>
+				<span class="istyle">
+					<p>
+						<a href="{{ path('employe_index') }}">Mes employés</ahref="#">
+					</p>
+					<p>
+						<a href="{{ path('absences_index') }}">Absences du service</a>
+					</p>
+					<p>
+						<a href="#">Absences à valider</a>
+					</p>
+				</span>
+
+
+				<p>
+					<a href="{{ path('absences_index') }}">
+						<i class="fa fa-book"></i>
+						<span class="istyle">
+							<b>Mes Absences</b>
+						</span>
+					</a>
+				</p>
+				<span class="istyle">
+					<p>
+						<a href="#">Liste</a>
+					</p>
+					<p>
+						<a href="#">Signaler une absence</a>
+					</p>
+				</span>
+
 			</a>
 
 
-			<a href="{{ path('absences_new') }}"></a>
-			<i class="fa fa-plus-circle"></i>
-			<span class="istyle">Ajouter une absence</span>
-		</a>
+			<p>
+				<a href="#">
+					<i class="far fa-file-alt"></i>
+					<span class="istyle">
+						<b>Mes Documents</b>
+					</span>
+				</a>
+			</p>
+			<span class="istyle">
+				<p>
+					<a href="#">Documents reçus</a>
+				</p>
+				<p>
+					<a href="{{ path('documents_new') }}">Envoyer un document</a>
+				</p>
+			</span>
 
 
-		<a href="{{ path('documents_profil') }}">
-			<i class="far fa-file-alt"></i>
-			<strong>
-				<span class="istyle">Liste documents</span>
-			</strong>
-		</a>
+		{% endif %}
 
+		<!-- -------------------------- ROLE EMPLOYE -------------------------- -->
+		{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
+			<p>
+				<a href="{{ path('absences_index') }}">
+					<i class="fa fa-book"></i>
+					<span class="istyle">
+						<b>Mes Absences</b>
+					</span>
+				</a>
+			</p>
+			<span class="istyle">
+				<p>
+					<a href="#">Liste</a>
+				</p>
+				<p>
+					<a href="#">Signaler une absence</a>
+				</p>
+			</span>
 
-		<a href="{{ path('documents_new') }}">
-			<i class="fas fa-folder-plus"></i>
-			<span class="istyle">Ajouter un document</span>
-		</a>
+			<p>
+				<a href="#">
+					<i class="far fa-file-alt"></i>
+					<span class="istyle">
+						<b>Mes Documents</b>
+					</span>
+				</a>
+			</p>
+			<span class="istyle">
+				<p>
+					<a href="#">Documents reçus</a>
+				</p>
+				<p>
+					<a href="{{ path('documents_new') }}">Envoyer un document</a>
+				</p>
+			</span>
+
+		{% endif %}
 
 
 	</div>
