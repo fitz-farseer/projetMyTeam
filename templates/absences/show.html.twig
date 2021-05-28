@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
 	<h1>Absences</h1>
 
 	<table class="table table-bordered">
@@ -32,5 +33,5 @@
 	<a class='btn btn-secondary' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
 
 
-	{{ include('absences/_delete_form.html.twig') }}
+	{{ include('absences/_delete_form.html.twig') }}</div>
 {% endblock %}

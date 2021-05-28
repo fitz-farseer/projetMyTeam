@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
 {#############################################################################################}
 {###################### ROLE ADMIN ######################}
 {#############################################################################################}
@@ -23,9 +23,9 @@
 				<div class="flexCard">
 					<div class="card-body cardBody">
 						<h5 class="card-title">Envoyer un document</h5>
-						<p>
+						<div>
 							{{ include('documents/_form.html.twig') }}
-						</p>
+						</div>
 					</div>
 				</div>
 				<div class="card-footer cardFooter">
@@ -223,6 +223,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 {% endif %}
 {% endblock %}

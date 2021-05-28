@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
 	<h1>Liste des absences</h1>
 	<table class="table table-bordered table-stripped">
 		<thead class='thead-dark'>
@@ -35,6 +36,6 @@
 
 	<a class='btn btn-success' href="{{ path('absences_new') }}">Nouvelle absence</a>
 	<a class='btn btn-primary' href="{{ path('profil_index') }}">Revenir à l'accueil</a>
-
+</div>
 
 {% endblock %}

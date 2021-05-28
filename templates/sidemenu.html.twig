@@ -2,7 +2,7 @@
 	<div class="col-2 mr-3 p-0 blockMenu">
 		<div class="iconMenu">
 
-			<p>
+			<p  class="m-0">
 				<a href="{{ path('profil_index') }}">
 					<i class="fas fa-home istylehome"></i>
 					<span class="istyle">
@@ -15,7 +15,7 @@
 			{% if app.user %}
 				{% else %}
 
-					<p>
+					<p class="m-0">
 						<a href="{{ path('app_login') }}">
 							<i class="fa fa-sign-in-alt"></i>
 							<span class="istyle">
@@ -33,7 +33,7 @@
 
 			{% if (app.user.roles[0] == 'ROLE_ADMIN') %}
 
-				<p>
+				<p class="m-0">
 					<a href="{{ path('employe_index') }}">
 						<i class="fa fa-list"></i>
 						<span class="istyle">
@@ -42,10 +42,12 @@
 					</a>
 				</p>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Liste des employés</ahref="#">
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
 					</p>
 				</span>
@@ -58,13 +60,14 @@
 					</span>
 				</a>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Liste des absences</a>
 					</p>
 				</span>
 
 
-				<p>
+				<p class="m-0">
 					<a href="{{ path('documents_index') }}">
 						<i class="far fa-file-alt"></i>
 						<span class="istyle">
@@ -73,10 +76,12 @@
 					</a>
 				</p>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Liste des documents</ahref="#">
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Mes documents reçus</a>
 					</p>
 				</span>
@@ -89,7 +94,7 @@
 
 			{% if (app.user.roles[0] == 'ROLE_RH') %}
 
-				<p>
+				<p class="m-0">
 					<a href="{{ path('employe_index') }}">
 						<i class="fa fa-list"></i>
 						<span class="istyle">
@@ -98,10 +103,12 @@
 					</a>
 				</p>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Liste des employés</ahref="#">
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
 					</p>
 				</span>
@@ -114,31 +121,36 @@
 					</span>
 				</a>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Liste des absences</a>
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Absences à valider</a>
 					</p>
 				</span>
 
 
-				<p>
+				<p class="m-0">
 					<a href="{{ path('documents_index') }}">
 						<i class="far fa-file-alt"></i>
 						<span class="istyle">
 							<b>Documents</b>
 						</span>
 					</a>
-				</p>
+				</p class="m-0">
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Documents du service</ahref="#">
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Mes documents reçus</a>
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('documents_new') }}">Envoyer un document</a>
 					</p>
 				</span>
@@ -151,7 +163,7 @@
 
 			{% if (app.user.roles[0] == 'ROLE_MANAGER') %}
 
-				<p>
+				<p class="m-0">
 					<a href="#">
 						<i class="fa fa-list"></i>
 						<span class="istyle">
@@ -160,19 +172,22 @@
 					</a>
 				</p>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Mes employés</ahref="#">
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Absences du service</a>
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Absences à valider</a>
 					</p>
 				</span>
 
 
-				<p>
+				<p class="m-0">
 					<a href="{{ path('absences_index') }}">
 						<i class="fa fa-book"></i>
 						<span class="istyle">
@@ -181,10 +196,12 @@
 					</a>
 				</p>
 				<span class="istyle">
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="#">Liste</a>
 					</p>
-					<p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('absences_new') }}">Signaler une absence</a>
 					</p>
 				</span>
@@ -192,7 +209,7 @@
 			</a>
 
 
-			<p>
+			<p class="m-0">
 				<a href="{{ path('documents_index') }}">
 					<i class="far fa-file-alt"></i>
 					<span class="istyle">
@@ -201,10 +218,12 @@
 				</a>
 			</p>
 			<span class="istyle">
-				<p>
+				<p class="m-0">
+					<i class="fas fa-angle-right"></i>
 					<a href="#">Documents reçus</a>
 				</p>
-				<p>
+				<p class="m-0">
+					<i class="fas fa-angle-right"></i>
 					<a href="{{ path('documents_new') }}">Envoyer un document</a>
 				</p>
 			</span>
@@ -217,7 +236,7 @@
 {#############################################################################################}
 
 		{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
-			<p>
+			<p class="m-0">
 				<a href="{{ path('absences_index') }}">
 					<i class="fa fa-book"></i>
 					<span class="istyle">
@@ -226,27 +245,32 @@
 				</a>
 			</p>
 			<span class="istyle">
-				<p>
-					<a href="#">Liste</a>
+				<p class="m-0">
+					<a href="#">
+						<i class="fas fa-angle-right"></i>
+						Liste</a>
 				</p>
-				<p>
+				<p class="m-0">
+					<i class="fas fa-angle-right"></i>
 					<a href="{{ path('absences_new') }}">Signaler une absence</a>
 				</p>
 			</span>
 
-			<p>
+			<p class="m-0">
 				<a href="{{ path('documents_index') }}">
 					<i class="far fa-file-alt"></i>
 					<span class="istyle">
 						<b>Mes Documents</b>
 					</span>
 				</a>
-			</p>
+			</p class="m-0">
 			<span class="istyle">
-				<p>
+				<p class="m-0">
+					<i class="fas fa-angle-right"></i>
 					<a href="#">Documents reçus</a>
 				</p>
-				<p>
+				<p class="m-0">
+					<i class="fas fa-angle-right"></i>
 					<a href="{{ path('documents_new') }}">Envoyer un document</a>
 				</p>
 			</span>

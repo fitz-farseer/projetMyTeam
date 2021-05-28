@@ -165,7 +165,7 @@ thead{
   width: 40px;
 }
 .bodyindex{
-  position: relative;
+ position: relative;
 }
 .displayusername{
   display: none;
@@ -195,12 +195,10 @@ thead{
 /* ------------------ employe-> login.html.twig ------------------ */
 
 #connexionBg{
-  // background-image: url(../../public/images/images_front/background.jpg);
   width: 100%;
   min-height: 100vh;
-  top: 0 !important;
   position: absolute;
-  // z-index: 1;
+  top: 0 !important;
 }
 
 .bg-image {
