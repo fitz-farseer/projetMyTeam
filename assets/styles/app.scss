@@ -15,6 +15,7 @@ $color6: #df4c73;
 
 $color7:  rgba(255, 255, 255, 1);
 $color8: rgba(255, 255, 255, 0);
+$color9: rgba(255, 255, 255, 0.8);
 
 // Polices:
 $police1:'News Cycle', sans-serif;
@@ -49,6 +50,10 @@ h1{
   background-color: $color5;
   color: $color6;
   border: solid 2px $color6;
+}
+h5{
+  border-bottom: 1px solid $color1;
+  font-weight: bolder;
 }
 /*    --   - Navbar -   --    */
 .menu{
@@ -105,15 +110,23 @@ thead{
 /* ------------------ Base.html.twig -------------------- */
 
 /*    --   - Menu gauche -   --    */
-.iconMenu i a{
+.iconMenu a{
   text-decoration: none;
   color: $color4;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
-  line-height: 62px;
+  line-height: 42px;
+}
+.iconMenu a:hover{
+  background-color: $color2;
+}
+.istyle:hover{
+  color: $color6;
+}
+.hoverpink:hover{
+  color: $color6;
 }
 .istyle{
-  display: none;
   font-size: 12px;
   color: $color4;
 }
@@ -122,23 +135,40 @@ thead{
   flex-direction: column;
   background-color: $color5;
   margin: 0;
-  padding: 0 5px;
+  padding: 0 12px;
   width: 40px;
+  height: 100vh;
+  z-index: 1000;
 }
 .iconMenu i{
   color: $color4;
   line-height: 32px;
-  border-bottom: 1px solid $color1;
 }
 .iconMenu i:hover{
   color: $color6;
 }
 .agrandissement{
   width: 200px;
+  z-index: 1000;
+  position: absolute;
+  background-color: $color9;
 }
 #burgerclick:hover{
   cursor: pointer;
   color: $color1;
+}
+#burgerclick{
+  margin-left: 12px;
+  margin-top: 22px;
+}
+.menuGauche{
+  width: 40px;
+}
+.bodyindex{
+  position: relative;
+}
+.displayusername{
+  display: none;
 }
 
 /*    --   - Fin Menu gauche -   --    */
@@ -303,7 +333,7 @@ thead{
 }
 .cardBody{
   font-size: 12px;
-  min-height: 30vh;
+  min-height: 15vh;
 }
 h5{
   font-size: 15px;
@@ -317,13 +347,34 @@ h5{
 /* ---------------------------------------- */
               /*MEDIA QUERIES*/
 /* ---------------------------------------- */
-@media screen and (min-width: 768px){
+@media screen and (min-width: 540px){
+
+
+
+
+
+}
+
+@media screen and (min-width: 720px){
   
   /* ----- Menu gauche ---- */ 
-  .istyle{
+  .displayusername{
     display: inline;
   }
   
+
+
+}
+
+
+
+@media screen and (min-width: 960px){
+
+  .cardBody{
+    height: 25vh;
+  }
+
+
 
 
 }
