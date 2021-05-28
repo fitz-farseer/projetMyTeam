@@ -1,49 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employe index{% endblock %}
+{% block title %}Dashboard Employés{% endblock %}
 
 {% block body %}
-    <h1>Employe index</h1>
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
+{#############################################################################################}
+            {###################### ROLE ADMIN ######################}
+{#############################################################################################}
 
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Service</th>
-                <th>Nb_conges</th>
-                <th>Sexe</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for employe in employes %}
-            <tr>
-                <td>{{ employe.id }}</td>
-                <td>{{ employe.email }}</td>
-                <td>{{ employe.roles ? employe.roles|json_encode : '' }}</td>
-                <td>{{ employe.nom }}</td>
-                <td>{{ employe.prenom }}</td>
-                <td>{{ employe.service }}</td>
-                <td>{{ employe.nbConges }}</td>
-                <td>{{ employe.sexe }}</td>
-                <td>{{ employe.photo }}</td>
-                <td>
-                    <a href="{{ path('employe_show', {'id': employe.id}) }}">show</a>
-                    <a href="{{ path('employe_edit', {'id': employe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('employe_new') }}">Create new</a>
+
+
+{#############################################################################################}
+            {###################### ROLE RH ######################}
+{#############################################################################################}
+
+
+
+</div>
 {% endblock %}

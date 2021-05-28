@@ -36,6 +36,15 @@ class EmployeRepository extends ServiceEntityRepository implements PasswordUpgra
         $this->_em->flush();
     }
 
+    public function findByService(string $service){
+
+        return $this->createQueryBuilder('e')
+        ->andWhere("e.service = :val")
+        ->setParameter("val", $service)
+        ->orderBy("e.nom", "ASC")
+        ->getQuery()
+        ->getResult();
+    }
     // /**
     //  * @return Employe[] Returns an array of Employe objects
     //  */

@@ -3,6 +3,7 @@
 {% block title %}Documents{% endblock %}
 
 {% block body %}
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
     <h1>Documents</h1>
 
     <table class="table">
@@ -13,7 +14,7 @@
             </tr>
             <tr>
                 <th>Date_envoi</th>
-                <td>{{ document.dateEnvoi ? document.dateEnvoi|date('Y-m-d') : '' }}</td>
+                <td>{{ document.dateEnvoi ? document.dateEnvoi|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Name</th>
@@ -26,9 +27,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('documents_index') }}">back to list</a>
+    <a href="{{ path('documents_profil') }}">back to list</a>
 
     <a href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
 
-    {{ include('documents/_delete_form.html.twig') }}
+    {{ include('documents/_delete_form.html.twig') }}</div>
 {% endblock %}

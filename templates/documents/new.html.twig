@@ -3,9 +3,11 @@
 {% block title %}New Documents{% endblock %}
 
 {% block body %}
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
     <h1>Create new Documents</h1>
 
     {{ include('documents/_form.html.twig') }}
 
     <a href="{{ path('documents_index') }}">back to list</a>
+</div>
 {% endblock %}

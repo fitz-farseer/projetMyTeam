@@ -38,6 +38,11 @@ class Absences
      */
     private $employe;
 
+    public function __construct()
+    {
+        $this->statut = 'En attente';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

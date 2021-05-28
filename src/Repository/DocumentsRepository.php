@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Documents;
+use App\Entity\Employe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,24 @@ class DocumentsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Documents::class);
+    }
+
+    public function findByEmploye(Employe $e){
+        return $this->createQueryBuilder('d')
+        ->andWhere("d.employe = :val")
+        ->setParameter('val', $e)
+        ->orderBy("d.id", "DESC")
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function findByDestinataire(Employe $e){
+        return $this->createQueryBuilder('d')
+        ->andWhere("d.destinataire = :val")
+        ->setParameter('val', $e)
+        ->orderBy("d.id", "DESC")
+        ->getQuery()
+        ->getResult();
     }
 
     // /**
@@ -35,6 +54,7 @@ class DocumentsRepository extends ServiceEntityRepository
         ;
     }
     */
+
 
     /*
     public function findOneBySomeField($value): ?Documents

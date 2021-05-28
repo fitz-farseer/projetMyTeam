@@ -78,10 +78,16 @@ class Employe implements UserInterface
      */
     private $photo;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Documents::class, mappedBy="destinataire")
+     */
+    private $documentRecu;
+
     public function __construct()
     {
         $this->absences = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->documentRecu = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,11 +122,7 @@ class Employe implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
     public function setRoles(array $roles): self
@@ -293,6 +295,36 @@ class Employe implements UserInterface
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Documents[]
+     */
+    public function getDocumentRecu(): Collection
+    {
+        return $this->documentRecu;
+    }
+
+    public function addDocumentRecu(Documents $documentRecu): self
+    {
+        if (!$this->documentRecu->contains($documentRecu)) {
+            $this->documentRecu[] = $documentRecu;
+            $documentRecu->setDestinataire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocumentRecu(Documents $documentRecu): self
+    {
+        if ($this->documentRecu->removeElement($documentRecu)) {
+            // set the owning side to null (unless already changed)
+            if ($documentRecu->getDestinataire() === $this) {
+                $documentRecu->setDestinataire(null);
+            }
+        }
 
         return $this;
     }

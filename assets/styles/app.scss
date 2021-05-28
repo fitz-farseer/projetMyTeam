@@ -1,2 +1,388 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "~bootstrap/scss/bootstrap";
+
+/*
+font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+$color1: #d8d8d8;
+$color2: #b0DDe4;
+$color3: #2eacd6;
+$color4: #286fb4;
+$color5: #ffffff;
+$color6: #df4c73;
+
+$color7:  rgba(255, 255, 255, 1);
+$color8: rgba(255, 255, 255, 0);
+$color9: rgba(255, 255, 255, 0.8);
+
+// Polices:
+$police1:'News Cycle', sans-serif;
+
+/********************************************
+                 COMMUN CSS
+*********************************************/
+body {
+  background-color: $color1;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+ }
+*{
+  box-sizing: border-box;
+}
+.container{
+  width: 100vh;
+  height: 100vh;
+}
+h1{
+  font-size: 28px;
+  color: $color4;
+  margin: 15px 0;
+  padding: 0;
+}
+.bgc-pink{
+  background-color: $color6;
+  color: $color5;
+  border: solid transparent 2px;
+}
+.bgc-pink:hover{
+  background-color: $color5;
+  color: $color6;
+  border: solid 2px $color6;
+}
+h5{
+  border-bottom: 1px solid $color1;
+  font-weight: bolder;
+}
+/*    --   - Navbar -   --    */
+.menu{
+  background-color: $color3;
+}
+
+.photoMenu{
+  width: 40px;
+  height: 40px;
+}
+#navbarSupportedContent ul li a{
+  color: $color4;
+}
+.dropdownMenu i{
+  color: $color1;
+}
+.dropdownMenu{
+  color: $color1;
+}
+/*    --   - Fin Navbar - --     */
+.no-padding > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+  }
+thead{
+  background-color: $color4;
+  color: $color5;
+}
+.link{
+  color: $color6;
+  text-decoration: none;
+}
+/* boutons */
+.btn-bleu{
+  background-color: $color4;
+  color: $color5;
+  border: none;
+}
+.btn-bleu:hover{
+  background-color: $color5;
+  color: $color4;
+  border: 1px solid $color4;
+}
+.btn-pink{
+  background-color: $color6;
+  color: $color5;
+  border: none;
+}
+.btn-pink:hover{
+  background-color: $color5;
+  color: $color6;
+  border: 1px solid $color6;
+}
+/* ------------------ Base.html.twig -------------------- */
+
+/*    --   - Menu gauche -   --    */
+.iconMenu a{
+  text-decoration: none;
+  color: $color4;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 42px;
+}
+.iconMenu a:hover{
+  background-color: $color2;
+}
+.istyle:hover{
+  color: $color6;
+}
+.hoverpink:hover{
+  color: $color6;
+}
+.istyle{
+  font-size: 12px;
+  color: $color4;
+}
+.iconMenu{
+  display: flex;
+  flex-direction: column;
+  background-color: $color5;
+  margin: 0;
+  padding: 0 12px;
+  width: 40px;
+  height: 100vh;
+  z-index: 1000;
+}
+.iconMenu i{
+  color: $color4;
+  line-height: 32px;
+}
+.iconMenu i:hover{
+  color: $color6;
+}
+.agrandissement{
+  width: 200px;
+  z-index: 1000;
+  position: absolute;
+  background-color: $color9;
+}
+#burgerclick:hover{
+  cursor: pointer;
+  color: $color1;
+}
+#burgerclick{
+  margin-left: 12px;
+  margin-top: 22px;
+}
+.menuGauche{
+  width: 40px;
+}
+.bodyindex{
+ position: relative;
+}
+.displayusername{
+  display: none;
+}
+
+/*    --   - Fin Menu gauche -   --    */
+
+/********************************************
+                 HEADER
+*********************************************/
+.header{
+  height: 60px;
+  background-color: $color3;
+}
+.header i{
+  color: $color5;
+}
+.logoheader a{
+  color: $color5 !important;
+  z-index: 100;
+}
+
+/********************************************
+                 MAIN
+*********************************************/
+
+/* ------------------ employe-> login.html.twig ------------------ */
+
+#connexionBg{
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0 !important;
+}
+
+.bg-image {
+  background-image: url(../../public/images/images_front/background.jpg);
+  filter: blur(8px);
+  -webkit-filter: blur(32px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.connexion{
+  color: $color6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.connexionContainer{
+  width: 650px;
+  height: 400px;
+  background-image: linear-gradient(to top, $color8, $color7);
+  margin: 160px auto;
+  border-radius: 10px;
+  z-index: 100;
+}
+.connexionContainer div{
+  margin-left: auto;
+  margin-right: auto;
+}
+.centrerHauteur{
+  height: 320px;
+}
+.profil{
+  text-align: center;
+}
+
+.imgProfilConnexion{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: none;
+}
+.noCompte{
+  border: none;
+}
+
+
+/* ------------------- employe-> index.html.twig -------------------*/
+.colorIcon{
+  color: $color4;
+}
+.colorIcon:hover{
+  color: $color6;
+}
+/* -------------------- employe-> new.html.twig  ------------------ */
+
+.formulaireContainer{
+  margin: 70px auto;
+  font-size: 15px;
+  width: 740px;
+  background-image: linear-gradient(to top, rgba(255,0,0,0), rgba(200,200,200,1));
+  padding: 15px;
+  height: 850px;
+  border-radius: 10px;
+}
+.input{
+  width: 710px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 5px;
+  height: 38px;
+  padding: 5px;
+}
+.input2{
+  width: 710px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 5px;
+}
+.buttonNew{
+  margin-top: 10px;
+  background-color: $color6;
+  border: none;
+  box-shadow: 1px 1px 12px black;
+  margin-left: 20px;
+}
+.buttonNew:hover{
+  background-color: $color3;
+}
+.retourListeForm{
+  margin-top: 10px;
+  box-shadow: 1px 1px 12px black;
+  margin-right: 20px;
+  background-color: $color1;
+  border: none;
+}
+.formulaire{
+  width: 710px;
+}
+
+/* ----------- home-> index.html.twig ------------- */
+
+.imgHome{
+  width: 600px;
+}
+
+/* ------------ profil index.html.twig --------------- */
+
+.cardFooter{
+  background-color: $color3;
+}
+.boutonVignette{
+  background-color: $color2;
+}
+.imgVignette{
+  width: 180px;
+  height: 140px;
+}
+.imgVignetteProfil{
+  width: 120px;
+  height: 140px;
+}
+.centrerImgProfil{
+  margin: 0 auto;
+}
+.flexCard{
+  display: flex;
+}
+.hauteurcard{
+  font-size: 12px;
+  height: 40vh;
+}
+.cardBody{
+  font-size: 12px;
+  height: 20px;
+}
+h5{
+  font-size: 15px;
+}
+
+/********************************************
+                 FOOTER
+*********************************************/
+
+
+/* ---------------------------------------- */
+              /*MEDIA QUERIES*/
+/* ---------------------------------------- */
+@media screen and (min-width: 540px){
+
+
+
+
+
+}
+
+@media screen and (min-width: 720px){
+  
+  /* ----- Menu gauche ---- */ 
+  .displayusername{
+    display: inline;
+  }
+  
+
+
+}
+
+
+
+@media screen and (min-width: 960px){
+
+  
+
+
+
+}
+
+
+
+/* 
+Login :
+Se connect -> bouton rose écriture blanche
+Connexion -> écriture blanche
+*/

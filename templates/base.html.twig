@@ -1,24 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
+
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		{# Run `composer require symfony/webpack-encore-bundle`
-				           and uncomment the following Encore helpers to start using Symfony UX #}
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet">
 		{% endblock %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
+
 	<body>
-		<div class="container">
-			{% block body %}{% endblock %}
+
+		{% block nav %}
+			<div class="container-fluid">{% include "menu.html.twig" %}</div>
+		{% endblock %}
+
+		<div class="container-fluid">
+
+			<div class="row flex-nowrap">
+
+				{% block menu %}
+					{% include "sidemenu.html.twig" %}
+				{% endblock %}
+
+				
+
+				<!-- <div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex"> -->
+					{% block body %}{% endblock %}
+				<!-- </div> -->
+
+					{% block connexion %}
+					{% endblock %}
+			</div>
 		</div>
-	</body>
-</html>
+		</body>
+	</html>

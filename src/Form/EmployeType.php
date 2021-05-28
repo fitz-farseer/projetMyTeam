@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -23,19 +22,25 @@ class EmployeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $employe = $options["data"];
+        // $roles = $employe->getRoles();
         $builder
             ->add('sexe', ChoiceType::class, [
-                "label" => false,
+                "label" => "Civilité",
                 "choices" => [
-                    "Civilité" => "",
                     "Homme" => "m",
                     "Femme" => "f"
-                ]
+                ],
+                "attr" => [
+                    "class" => "input"
+                ],
+                "multiple" => false,
+                "expanded" => true
             ])
             ->add('nom', TextType::class, [
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Nom"
+                    "placeholder" => "Nom",
+                    "class" => "input"
                 ],
                 "constraints" => [
                     new Length([
@@ -50,7 +55,8 @@ class EmployeType extends AbstractType
             ->add('prenom', TextType::class, [
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Prénom"
+                    "placeholder" => "Prénom",
+                    "class" => "input"
                 ],
                 "constraints" => [
                     new Length([
@@ -66,7 +72,8 @@ class EmployeType extends AbstractType
             ->add('email', EmailType::class, [
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Email"
+                    "placeholder" => "Email",
+                    "class" => "input"
                 ],
                 "invalid_message" => "Veuillez renseigner une adresse mail valide, elle sera utilisée pour l'identification"
             ])
@@ -74,7 +81,8 @@ class EmployeType extends AbstractType
                 "mapped" => false,
                 "label" => false,
                 "attr" => [
-                    "placeholder" => "Mot de passe"
+                    "placeholder" => "Mot de passe",
+                    "class" => "input"
                 ],
                 "constraints" => [
                     // new Regex([
@@ -85,36 +93,47 @@ class EmployeType extends AbstractType
                 "help" => "Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial parmi -+!*$@%_ et doit faire entre 6 t 10 caractères",
                 "required" => $employe->getId() ? false : true
             ])
-            ->add('roles', ChoiceType::class, [
-                "label" => false,
+            ->add('roles', ChoiceType::class, [ 
+                "mapped" => false,
+                "label" => "Rôle",
+                "placeholder" => "Rôle",
                 "choices" => [
-                    "Rôle" => "",
                     "Administrateur" => "ROLE_ADMIN",
                     "RH" => "ROLE_RH",
                     "Manager" => "ROLE_MANAGER",
                     "Employé" => "ROLE_EMPLOYE"
                 ],
-                "multiple" => true,
-                "expanded" => false
+                "multiple" => false,
+                "expanded" => true,
+                "data" => $employe->getRoles() ? $employe->getRoles()[0] : "ROLE_EMPLOYE",
+                // "data" => $roles[0] // permet d'outrepasser l'array et de garder multiple en "false"
+                "attr" => [
+                    "class" => "input2"
+                ]
             ])
             ->add('service', ChoiceType::class, [
-                "label" => false,
+                "label" => "Service :",
                 "choices" => [
-                    "Service" => "",
                     "Informatique" => "informatique",
                     "Communication" => "communication",
-                    "Ressources Humaines" => "rh",
+                    "Ressources Humaines" => "ressources_humaines",
                     "Commercial" => "commercial"
+                ],
+                "attr" => [
+                    "class" => "input"
                 ]
             ])
             ->add('nb_conges', IntegerType::class, [
                 "label" => false,
-                "attr" => [
-                    "placeholder" => "jours de congés",
-                ],
+                "data" => 0
             ])
             ->add('photo', FileType::class, [
+                "mapped" => false,
                 "label" => false,
+                "attr" => [
+                    "class" => "input2"
+                ],
+                "required" => false
             ]);
     }
 

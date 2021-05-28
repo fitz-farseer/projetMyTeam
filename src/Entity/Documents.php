@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DocumentsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @ORM\Entity(repositoryClass=DocumentsRepository::class)
@@ -37,6 +38,17 @@ class Documents
      * @ORM\JoinColumn(nullable=false)
      */
     private $employe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Employe::class, inversedBy="documentRecu")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $destinataire;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
 
     public function getId(): ?int
     {
@@ -87,6 +99,35 @@ class Documents
     public function setEmploye(?Employe $employe): self
     {
         $this->employe = $employe;
+
+        return $this;
+    }
+
+    public function getDestinataire(): ?Employe
+    {
+        return $this->destinataire;
+    }
+
+    public function setDestinataire(?Employe $destinataire): self
+    {
+        $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    public function __construct()
+    {
+        $this->date_envoi = new \DateTime('now');
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

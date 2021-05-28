@@ -3,11 +3,12 @@
 {% block title %}Edit Employe{% endblock %}
 
 {% block body %}
-    <h1>Edit Employe</h1>
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
+    <h1>Modifier employé</h1>
 
-    {{ include('employe/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('employe/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('employe_index') }}">back to list</a>
+    {# <a href="{{ path('employe_index') }}">Retour à la liste</a> #}
 
-    {{ include('employe/_delete_form.html.twig') }}
+    {{ include('employe/_delete_form.html.twig') }}</div>
 {% endblock %}
