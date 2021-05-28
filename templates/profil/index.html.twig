@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<h2>Bonjour
+	<h1>Bonjour
 		{{ app.user.prenom }}
-		!</h2>
+		!</h1>
 
 	
 		<div class="row">
@@ -16,7 +16,7 @@
 						<div class="centrerImgProfil">
 							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
 						</div>
-						<div class="card-body cardBody">
+						<div class="card-body hauteurcard">
 							<h5 class="card-title">{{ app.user.prenom|capitalize }}
 								{{ app.user.nom|capitalize }}</h5>
 							<p>Bienvenu(e) sur votre dashboard</p>
@@ -32,8 +32,8 @@
 				<div class="card">
 					<div class="flexCard">
 
-						<img class="card-img-top imgVignette" src="/images/images_front/absenceimg.jpg" alt="pas d'image">
-						<div class="card-body cardBody">
+						<img class="card-img-top d-none d-md-block imgVignette" src="/images/images_front/absenceimg.jpg" alt="image ordinateur absence">
+						<div class="card-body hauteurcard">
 							<h5 class="card-title">Mes absences</h5>
 							<p>
 								<table class="table table-bordered table-striped">
@@ -74,10 +74,10 @@
 				<div class="card">
 					<div class="flexCard">
 						<div class="centrerImgProfil">
-							<img src="/images/images_front/documentsimg.jpg" alt="pas d'image" class="card-img-top imgVignette">
+							<img src="/images/images_front/documentsimg.jpg" alt="pas d'image" class="card-img-top d-none d-md-block imgVignette">
 						</div>
 		
-						<div class="card-body cardBody">
+						<div class="card-body hauteurcard">
 							<h5 class="card-title">Mes documents</h5>
 							<table class="table">
 								<thead>

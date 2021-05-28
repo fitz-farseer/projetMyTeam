@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Absences{% endblock %}
+{% block title %}Modifier absences{% endblock %}
 
 {% block body %}
     <h1>Edit Absences</h1>
 
-    {{ include('absences/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('absences/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('absences_index') }}">back to list</a>
-
-    {{ include('absences/_delete_form.html.twig') }}
+    <div class="row justify-content-between">
+        <div class="col-2"><a href="{{ path('absences_index') }}" class="btn rounded-pill btn-bleu">Retour liste</a></div>
+    
+        <div class="col-1">{{ include('absences/_delete_form.html.twig') }}</div>
+    </div>
 {% endblock %}

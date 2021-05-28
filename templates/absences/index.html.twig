@@ -5,24 +5,27 @@
 
 {% block body %}
 	<h1>Liste des absences</h1>
-	<table class="table table-bordered table-stripped">
-		<thead class='thead-dark'>
+	<table class="table table-bordered table-striped table-hover">
+		<thead class='thead'>
 			<tr>
 				<th>Date_debut</th>
 				<th>Date_retour</th>
 				<th>Statut</th>
-				<th>Actions</th>
+				<th>Voir plus</th>
+				<th>Modifier</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for absence in absences %}
-				<tr>
+				<tr>4!
 					<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
 					<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
 					<td>{{ absence.statut }}</td>
 					<td>
-						<a href="{{ path('absences_show', {'id': absence.id}) }}">Voir plus</a>
-						<a href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
+						<a href="{{ path('absences_show', {'id': absence.id}) }}" class='colorIcon'><i class="fa fa-eye"></a>
+					</td>
+					<td>
+						<a href="{{ path('absences_edit', {'id': absence.id}) }}" class='colorIcon'><i class="fa fa-edit"></a>
 					</td>
 				</tr>
 			{% else %}
@@ -33,8 +36,8 @@
 		</tbody>
 	</table>
 
-	<a class='btn btn-success' href="{{ path('absences_new') }}">Nouvelle absence</a>
-	<a class='btn btn-primary' href="{{ path('profil_index') }}">Revenir à l'accueil</a>
+	<a class='btn rounded-pill btn-pink' href="{{ path('absences_new') }}">Nouvelle absence</a>
+	<a class='btn rounded-pill btn-bleu' href="{{ path('profil_index') }}">Revenir à l'accueil</a>
 
 
 {% endblock %}

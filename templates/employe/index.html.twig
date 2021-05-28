@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Liste des employés</h1>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-hover ml-auto mr-auto table-striped">
         <thead>
             <tr>
                 <th>Identifiant</th>
@@ -73,5 +73,5 @@
 
     
 
-    <a href="{{ path('employe_new') }}" class="link"><i class="fas fa-user-plus"></i> Créer nouvel employé</a>
+    <a href="{{ path('employe_new') }}" class="btn rounded-pill btn-pink"><i class="fas fa-user-plus"></i> Créer nouvel employé</a>
 {% endblock %}

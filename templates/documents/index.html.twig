@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Documents index</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>Envoyé par</th>
@@ -13,7 +13,8 @@
                 <th>Date d'envoi</th>
                 <th>Aperçu</th>
                 <th>Type</th>
-                <th>Actions</th>
+                <th>Voir plus</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +23,13 @@
                 <td>{{ document.employe.prenom|capitalize ~ " " ~ document.employe.nom|capitalize }}</td>
                 <td>{{ document.destinataire.prenom|capitalize ~ " " ~ document.destinataire.nom|capitalize }}</td>
                 <td>{{ document.dateEnvoi ? document.dateEnvoi|date('Y-m-d') : '' }}</td>
-                <td><img src="/images/documents/{{ document.name }}" alt="" style="width:75px"></td>
+                <td><img src="/images/documents/{{ document.name }}" alt="" style="width:35px"></td>
                 <td>{{ document.type|capitalize }}</td>
                 <td>
-                    <a href="{{ path('documents_show', {'id': document.id}) }}">Voir plus</a>
-                    <a href="{{ path('documents_edit', {'id': document.id}) }}">Modifier</a>
+                    <a href="{{ path('documents_show', {'id': document.id}) }}" class='colorIcon'><i class="fa fa-eye"></a>
+                </td>
+                <td>
+                    <a href="{{ path('documents_edit', {'id': document.id}) }}" class='colorIcon'><i class="fa fa-edit"></a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('documents_new') }}">Create new</a>
+    <a href="{{ path('documents_new') }}" class="btn rounded-pill btn-bleu">Créer nouveau</a>
 {% endblock %}

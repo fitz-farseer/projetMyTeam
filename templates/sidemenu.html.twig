@@ -1,10 +1,10 @@
 <div class="menuGauche">
-	<div class="col-2 mr-3 p-0 blockMenu">
+	<div class="col-1 mr-3 p-0 blockMenu">
 		<div class="iconMenu">
 
 
-			<a href="{{ path('profil_index') }}">
-				<i class="fas fa-home istylehome"></i>
+			<a href="{{ path('profil_index') }}" class="hoverpink">
+				<i class="fas fa-home"></i>
 				<span class="istyle">Accueil</span>
 			</a>
 
@@ -50,17 +50,15 @@
 			</a>
 
 
-			<a href="{{ path('absences_new') }}"></a>
-			<i class="fa fa-plus-circle"></i>
-			<span class="istyle">Ajouter une absence</span>
-		</a>
+			<a href="{{ path('absences_new') }}">
+				<i class="fa fa-plus-circle"></i>
+				<span class="istyle">Ajouter une absence</span>
+			</a>
 
 
 		<a href="{{ path('documents_profil') }}">
 			<i class="far fa-file-alt"></i>
-			<strong>
-				<span class="istyle">Liste documents</span>
-			</strong>
+			<span class="istyle">Liste documents</span>
 		</a>
 
 

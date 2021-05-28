@@ -28,18 +28,18 @@
 	<body>
 
 		{% block nav %}
-			<div>{% include "menu.html.twig" %}</div>
+			<div class="container-fluid">{% include "menu.html.twig" %}</div>
 		{% endblock %}
 
 		<div class="container-fluid">
 
-			<div class="row">
+			<div class="row flex-nowrap">
 
 				{% block menu %}
 					{% include "sidemenu.html.twig" %}
 				{% endblock %}
 
-				<div class="container col p-0">
+				<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6 p-0 bodyindex">
 					{% block body %}{% endblock %}
 				</div>
 

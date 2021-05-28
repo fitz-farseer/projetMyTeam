@@ -6,7 +6,7 @@
 {% block body %}
 	<h1>Absences</h1>
 
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped table-hover">
 		<tbody>
 			<tr>
 				<th>Employé</th>
@@ -27,10 +27,14 @@
 		</tbody>
 	</table>
 
-	<a class='btn btn-primary' href="{{ path('absences_index') }}">Retour à la liste</a>
-
-	<a class='btn btn-secondary' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
-
-
-	{{ include('absences/_delete_form.html.twig') }}
+	<div class="row justify-content-between">
+		<div class"col-1">
+			<a class='btn rounded-pill btn-pink' href="{{ path('absences_index') }}">Retour à la liste</a>
+		
+			<a class='btn rounded-pill btn-bleu' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
+		</div>
+	
+	
+		<div class="col-1">{{ include('absences/_delete_form.html.twig') }}</div>
+	</div>
 {% endblock %}

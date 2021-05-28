@@ -1,36 +1,44 @@
 <div class="header row">
 
-	<div class="col-2 ml-2 mt-3">
+	<div class="col-2 p-0">
 		<i class="fas fa-bars" id="burgerclick"></i>
 	</div>
 
-	<div class="row justify-content-between col-10">
+	<div class="row justify-content-between col-10 pr-0">
 
-		<div class="col-2">
-			<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="images/images_front/logosclair.png" alt="rrr" style="width:50px;"></a>
+		<div class="col-3">
+			<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="/images/images_front/logosclair.png" alt="rrr" style="width:50px;"></a>
 		</div>
+
+		
 	
-		<div class="col-2 pl-2 mt-2">
+		<div class=" d-flex align-items-center justify-content-between col-3 pl-2 mt-2 pr-0">
 			{% if app.user %}
+
+							<div class="dropdown my-auto"><i class="fas fa-bell"></i></div>
 						
-							<a class="dropdown-toggle text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
-								{{ app.user.prenom|capitalize }}
-								{{ app.user.nom|capitalize }}
+							<div>
+								<a class="dropdown text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
+									<div class="displayusername">
+										{{ app.user.prenom|capitalize }}
+										{{ app.user.nom|capitalize }}
+									</div>
+			
+									{# <img src="" alt=""> #}
+								</a>
+								<div class="dropdown-menu my-2 my-lg-0 mr-sm-4" 							aria-labelledby="navbarDropdown">
+			
+										<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}"><i class="fa fa-cog"></i>
+											Préférences
+										</a>
+										
+										<a class="dropdown-item" href="{{ path('app_logout') }}">
+											<i class="fa fa-sign-out-alt"></i>
+											Déconnexion
+										</a>
 		
-								<img src="" alt="">
-							</a>
-							<div class="dropdown-menu my-2 my-lg-0" 							aria-labelledby="navbarDropdown">
-		
-									<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}"><i class="fa fa-cog"></i>
-										Préférences
-									</a>
-									
-									<a class="dropdown-item" href="{{ path('app_logout') }}">
-										<i class="fa fa-sign-out-alt"></i>
-										Déconnexion
-									</a>
-	
+								</div>
 							</div>
 							
 			{% endif %}

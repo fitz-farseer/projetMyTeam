@@ -3,9 +3,9 @@
 {% block title %}New Documents{% endblock %}
 
 {% block body %}
-    <h1>Create new Documents</h1>
+    <h1>Créer nouveau document</h1>
 
     {{ include('documents/_form.html.twig') }}
 
-    <a href="{{ path('documents_profil') }}">back to list</a>
+    <a href="{{ path('documents_profil') }}" class="btn rounded-pill btn-bleu">Retour liste</a>
 {% endblock %}
