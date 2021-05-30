@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 class AbsencesType extends AbstractType
 {
@@ -18,11 +19,16 @@ class AbsencesType extends AbstractType
         $builder
             ->add('date_debut', DateType::class, [
                 'widget' => 'single_text',
-                'label' => 'Début de l\'absence'
+                'label' => 'Début de l\'absence',
+                'constraints' => [
+                    new GreaterThan((new \DateTime('+6 days')))
+                ]
             ])
             ->add('date_retour', DateType::class, [
                 'widget' => 'single_text',
-                'label' => 'Fin de l\'absence'
+                'label' => 'Fin de l\'absence', 
+                'constraints' => [
+                ]
             ])
             ->add('employe', EntityType::class, [
                 'class' => Employe::class,

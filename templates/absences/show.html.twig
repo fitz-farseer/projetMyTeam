@@ -31,6 +31,8 @@
 
 	<a class='btn btn-secondary' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
 
+	<a class='btn btn-secondary' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+
 
 	{{ include('absences/_delete_form.html.twig') }}
 {% endblock %}

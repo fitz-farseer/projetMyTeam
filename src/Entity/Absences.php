@@ -38,6 +38,11 @@ class Absences
      */
     private $employe;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nb_jours;
+
     public function __construct()
     {
         $this->statut = 'En attente';
@@ -92,6 +97,18 @@ class Absences
     public function setEmploye(?Employe $employe): self
     {
         $this->employe = $employe;
+
+        return $this;
+    }
+
+    public function getNbJours(): ?int
+    {
+        return $this->nb_jours;
+    }
+
+    public function setNbJours(int $nb_jours): self
+    {
+        $this->nb_jours = $nb_jours;
 
         return $this;
     }
