@@ -37,7 +37,10 @@ class DocumentsRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> matthieu
     // /**
     //  * @return Documents[] Returns an array of Documents objects
     //  */

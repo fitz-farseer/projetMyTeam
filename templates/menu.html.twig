@@ -1,39 +1,34 @@
 <div class="header row">
 
-	<div class="col-2 ml-2 mt-3">
-		<i class="fas fa-bars" id="burgerclick"></i>
+	<div class="col-3 ml-1">
+		<i class="fas fa-bars ml-3" id="burgerclick"></i>
+		<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="/images/images_front/logosclair.png" alt="rrr" style="width:60px;"></a>
 	</div>
+	{# <div class="col-1">
+		<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="images/images_front/logosclair.png" alt="rrr" style="width:50px;"></a>
+	</div> #}
 
-	<div class="row justify-content-between col-10">
-
+	<div class="row justify-content-between col-9">
 		<div class="col-2">
 			<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="/images/images_front/logosclair.png" alt="rrr" style="width:50px;"></a>
 		</div>
-	
 		<div class="col-2 pl-2 mt-2">
 			{% if app.user %}
-						
-							<a class="dropdown-toggle text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
-								{{ app.user.prenom|capitalize }}
-								{{ app.user.nom|capitalize }}
-		
-								<img src="" alt="">
-							</a>
-							<div class="dropdown-menu my-2 my-lg-0" 							aria-labelledby="navbarDropdown">
-		
-									<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}"><i class="fa fa-cog"></i>
-										Préférences
-									</a>
-									
-									<a class="dropdown-item" href="{{ path('app_logout') }}">
-										<i class="fa fa-sign-out-alt"></i>
-										Déconnexion
-									</a>
-	
-							</div>
-							
+				<a class="dropdown-toggle text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
+					{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize}}
+				</a>
+				<div class="dropdown-menu my-2 my-lg-0" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}"><i class="fa fa-cog"></i>
+							Préférences
+						</a>
+						<a class="dropdown-item" href="{{ path('app_logout') }}">
+							<i class="fa fa-sign-out-alt"></i>
+							Déconnexion
+						</a>
+				</div>
 			{% endif %}
 		</div> 
 	</div>
+
 </div>
