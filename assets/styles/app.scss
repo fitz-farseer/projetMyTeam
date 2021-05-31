@@ -34,7 +34,7 @@ body {
   height: 100%;
 }
 .full-height{
-  min-height: 70%;
+  min-height: 100%;
 }
 
 *{
@@ -148,6 +148,7 @@ thead{
   padding: 0 20px;
   width: 50px;
   z-index: 1000;
+  position: absolute;
 }
 .iconMenu i{
   color: $color4;
