@@ -98,6 +98,23 @@ class DocumentsController extends AbstractController
         ]);
     }
 
+    #[Route('/documentsenvoyes', name: 'documents_envoyes', methods: ['GET', 'POST'])]
+    public function documentsRecus(DocumentsRepository $dr) : Response {
+
+        return $this->render('documents/documentsEnvoyes.html.twig', [
+            'documents' => $dr->findByEmploye($this->getUser())
+        ]);
+    }
+
+    #[Route('/documentsrecus', name: 'documents_recus', methods: ['GET', 'POST'])]
+    public function documentsEnvoyes(DocumentsRepository $dr) : Response {
+
+        return $this->render('documents/documentsRecus.html.twig', [
+            'docRecu' => $dr->findByDestinataire($this->getUser())
+        ]);
+    }
+
+
     #[Route('/{id}', name: 'documents_show', methods: ['GET'])]
     public function show(Documents $document): Response
     {

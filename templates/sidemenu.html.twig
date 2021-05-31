@@ -30,11 +30,7 @@
 
 				<p class="m-0">
 					<a href="{{ path('employe_index') }}">
-<<<<<<< HEAD
-						<i class="fas fa-user"></i>
-=======
 						<i class="fa fa-users fa-lg"></i>
->>>>>>> groupe1
 						<span class="istyle">
 							<b>Employé</b>
 						</span>
@@ -67,11 +63,7 @@
 
 				<p class="m-0">
 					<a href="{{ path('documents_index') }}">
-<<<<<<< HEAD
-						<i class="fas fa-file-alt"></i>
-=======
 						<i class="fas fa-file-alt fa-lg"></i>
->>>>>>> groupe1
 						<span class="istyle">
 							<b>Documents</b>
 						</span>
@@ -80,11 +72,11 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Liste des documents</ahref="#">
+						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</ahref="#">
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Mes documents reçus</a>
+						<a href="{{ path('documents_recus') }}">Mes documents reçus</a>
 					</p>
 				</span>
 
@@ -145,15 +137,11 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Documents du service</ahref="#">
+						<a href="{{ path('documents_recus') }}">Mes documents reçus</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Mes documents reçus</a>
-					</p>
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_new') }}">Envoyer un document</a>
+						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</a>
 					</p>
 				</span>
 
@@ -219,11 +207,11 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_index') }}">Documents reçus</a>
+						<a href="{{ path('documents_index') }}">Mes documents reçus</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_new') }}">Envoyer un document</a>
+						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</a>
 					</p>
 				</span>
 			{% endif %}
@@ -264,11 +252,11 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Documents reçus</a>
+						<a href="{{ path('documents_recus') }}">Mes documents reçus</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_new') }}">Envoyer un document</a>
+						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</a>
 					</p>
 				</span>
 

@@ -1,0 +1,84 @@
+<div class="row">
+	
+	{{ include('documents/_form.html.twig') }}
+		
+
+    <div class="col-md-8 p-0 col-lg-8 p-2">
+		<div class="card">
+			<div class="flexCard">
+				<div class="card-body cardBody">
+					<h5 class="card-title">Mes documents reçus</h5>
+					<table class="table table-bordered table-striped">
+						<thead class='thead-dark'>
+							<tr>
+								<th>Reçu le</th>
+								<th>De</th>
+								<th>Type</th>
+								<th>Télécharger</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for i, document in docRecu %}
+								{% if i >= docRecu|length - 4 %}
+									{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+									<tr>
+										<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+										<td>{{ document.employe.nom|capitalize ~ " " ~ document.employe.prenom|capitalize }}</td>
+										<td>{{ document.type|capitalize }}</td>
+										<td>
+											<a href="{{ path('download', { name: document.name }) }}">
+												<i class="fas fa-file-download"></i>
+											</a>
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="card-footer cardFooter">
+				<a href="{{ path('documents_recus') }}" class="btn bgc-pink rounded-pill float-right">Détails</a>
+			</div>
+		</div>
+	</div>
+
+    <div class="col-md-12 col-lg-12 p-2 pt-5">
+		<div class="card">
+			<div class="flexCard">
+				<div class="card-body cardBody">
+					<h5 class="card-title">Documents envoyés</h5>
+					<p>
+						<table class="table table-bordered table-striped">
+							<thead class='thead-dark'>
+								<tr>
+									<th>Date envoie</th>
+									<th>Destinataire</th>
+									<th>Type</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i, document in app.user.documents %}
+									{% if i >= app.user.documents|length - 3 %}
+										{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+										<tr>
+											<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+											<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+											<td>{{ document.type|capitalize }}</td>
+										</tr>
+									{% endif %}
+								{% endfor %}
+							</tbody>
+						</table>
+					</p>
+				</div>
+			</div>
+			<div class="card-footer cardFooter">
+				<a href="{{ path('documents_envoyes') }}" class="btn bgc-pink rounded-pill float-right">Détails</a>
+			</div>
+		</div>
+	</div>
+
+
+</div>

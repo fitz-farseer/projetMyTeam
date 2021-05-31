@@ -13,7 +13,13 @@
 			{% if app.user %}
 				<a class="dropdown text-decoration-none" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<div class="d-inline-flex align-items-center text-white">
-						<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
+						{% if app.user.photo == "female" %}
+							<img src="/images/photo_profil_default/female.PNG" alt="" class="rounded-circle photoMenu"> 
+						{% elseif app.user.photo == "male" %}
+							<img src="/images/photo_profil_default/male.PNG" alt="" class="rounded-circle photoMenu"> 
+						{% else %}
+							<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
+						{% endif %}
 						{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize}}
 					</div>
 				</a>
