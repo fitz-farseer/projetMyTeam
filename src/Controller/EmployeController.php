@@ -12,18 +12,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Encoder;
 
 
-#[Route('/gestion/employe')]
+#[Route('/employe')]
 class EmployeController extends AbstractController
 {
     #[Route('/', name: 'employe_index', methods: ['GET'])]
     public function index(EmployeRepository $employeRepository): Response
     {
         return $this->render('employe/index.html.twig', [
-            'employes' => $employeRepository->findByService($this->getUser()->getService()),
+            'employesService' => $employeRepository->findByService($this->getUser()->getService()),
+            'employes' => $employeRepository->findAll()
         ]);
     }
 
-    #[Route('/new', name: 'employe_new', methods: ['GET', 'POST'])]
+    #[Route('gestion/new', name: 'employe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Encoder $encoder): Response
     {
         $employe = new Employe();

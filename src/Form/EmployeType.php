@@ -85,12 +85,11 @@ class EmployeType extends AbstractType
                     "class" => "input"
                 ],
                 "constraints" => [
-                    // new Regex([
-                    //     "pattern" => "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{6,10})$/",
-                    //     "message" => "Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial et doit faire entre 6 t 10 caractères"
-                    // ])
+                    new Regex([
+                        "pattern" => "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{6,10})$/",
+                        "message" => "Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial et doit faire entre 6 t 10 caractères"
+                    ])
                 ],
-                "help" => "Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial parmi -+!*$@%_ et doit faire entre 6 t 10 caractères",
                 "required" => $employe->getId() ? false : true
             ])
             ->add('roles', ChoiceType::class, [ 
@@ -124,16 +123,8 @@ class EmployeType extends AbstractType
                 ]
             ])
             ->add('nb_conges', IntegerType::class, [
-                "label" => false,
+                "label" => "Nombre de jours de congés",
                 "data" => 0
-            ])
-            ->add('photo', FileType::class, [
-                "mapped" => false,
-                "label" => false,
-                "attr" => [
-                    "class" => "input2"
-                ],
-                "required" => false
             ]);
     }
 

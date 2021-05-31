@@ -4,77 +4,83 @@
 
 {% block body %}
 <div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
-    <h1>Fiche employé</h1>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 p-2 pt-5">
+            <div class="card">
+                <div class="d-flex">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            Fiche employé
+                        </h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ employe.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Rôles</th>
+                                        <td>
+                                            {% set text = "" %}
+                                                {% for role in employe.roles %}
+                                                    {% if role == "ROLE_ADMIN"%}
+                                                        {% set text = text ~ (text ? "," : "")~ "Administrateur" %}
+                                                    {% elseif role == "ROLE_MANAGER" %}
+                                                        {% set text = text ~ (text ? "," : "")~ "Manager" %}
+                                                    {% elseif role == "ROLE_RH" %}
+                                                        {% set text = text ~ (text ? "," : "")~ "RH" %}
+                                                    {% elseif role == "ROLE_EMPLOYE" %}
+                                                        {% set text = text ~ (text ? "," : "")~ "Employé" %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {{ text }}
+                                        </t>
+                                    </tr>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>{{ employe.nom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Prénom</th>
+                                        <td>{{ employe.prenom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Service</th>
+                                        <td>{{ employe.service }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Solde de congés</th>
+                                        <td>{{ employe.nbConges }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Photo</th>
+                                        <td>
+                                            {% if employe.photo == "female" %}
+                                            <img src="/images/photo_profil_default/female.PNG" alt="" style="width:50px">
+                                            {% elseif employe.photo == "male" %}
+                                            <img src="/images/photo_profil_default/male.PNG" alt="" style="width:50px">
+                                            {% else %}
+                                            <img src="/images/photo_profil/{{employe.photo}}" alt="" style="width:50px">
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class='d-inline-flex'>
+                                {{ include('employe/_delete_form.html.twig') }}
 
-    <table class="table table-bordered table-striped">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ employe.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ employe.email }}</td>
-            </tr>
-            <tr>
-                <th>Rôles</th>
-                <td>
-                    {% set text = "" %}
-                        {% for role in employe.roles %}
-                            {% if role == "ROLE_ADMIN"%}
-                                {% set text = text ~ (text ? "," : "")~ "Administrateur" %}
-                            {% elseif role == "ROLE_MANAGER" %}
-                                {% set text = text ~ (text ? "," : "")~ "Manager" %}
-                            {% elseif role == "ROLE_RH" %}
-                                {% set text = text ~ (text ? "," : "")~ "RH" %}
-                            {% elseif role == "ROLE_EMPLOYE" %}
-                                {% set text = text ~ (text ? "," : "")~ "Employé" %}
-                            {% endif %}
-                        {% endfor %}
-                        {{ text }}
-                </t>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ employe.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ employe.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Service</th>
-                <td>{{ employe.service }}</td>
-            </tr>
-            <tr>
-                <th>Solde de congés</th>
-                <td>{{ employe.nbConges }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ employe.sexe }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>
-                    {% if employe.photo == "female" %}
-                    <img src="/images/photo_profil_default/female.PNG" alt="" style="width:50px">
-                    {% elseif employe.photo == "male" %}
-                    <img src="/images/photo_profil_default/male.PNG" alt="" style="width:50px">
-                    {% else %}
-                    <img src="/images/photo_profil/{{employe.photo}}" alt="" style="width:50px">
-                    {% endif %}
-                    
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                                <a class='d-block btn rounded-pill btn-info ml-1' href="{{ path('employe_index') }}">Retour à la liste</a>
 
-    <div><a href="{{ path('employe_index') }}" class="link">Retour à la liste</a></div>
-
-    <div><a href="{{ path('employe_edit', {'id': employe.id}) }}" class="link">Modifier</a></div>
-
-    {{ include('employe/_delete_form.html.twig') }}
+                                <a class='btn bgc-pink rounded-pill ml-1' href="{{ path('employe_edit', {'id': employe.id}) }}">Modifier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

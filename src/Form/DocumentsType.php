@@ -39,7 +39,7 @@ class DocumentsType extends AbstractType
             ->add('destinataire', EntityType::class, [
                 "class" =>Employe::class,
                 "choice_label" => function(Employe $e){
-                    return $e->getNom() . " " .  $e->getPrenom();
+                    return ucfirst($e->getNom()) . " " .  ucfirst($e->getPrenom());
                 }
             ])
         ;

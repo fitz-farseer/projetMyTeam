@@ -1,47 +1,39 @@
 <div class="header row">
 
-	<div class="col-2 p-1">
-		<i class="fas fa-bars" id="burgerclick"></i>
+	<div class="col-3 m-0 p-0 flex-nowrap">
+		<i class="fas fa-bars mx-4" id="burgerclick"></i>
+		<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="/images/images_front/logosclair.png" alt="rrr" style="width:60px;"></a>
 	</div>
+	{# <div class="col-1">
+		<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="images/images_front/logosclair.png" alt="rrr" style="width:50px;"></a>
+	</div> #}
 
-	<div class="row justify-content-between col-10 pr-0">
-
-		<div class="col-2">
-			<a class="navbar-brand" href="{{ path('profil_index') }}"><img src="/images/images_front/logosclair.png" alt="logo my team" style="width:50px;"></a>
-		</div>
-
-		
-	
-		<div class=" d-flex align-items-center justify-content-between col-3 pl-2 mt-2 pr-0">
+	<div class="row justify-content-end col-8">
+		<div class="col-3 pl-2 mt-2">
 			{% if app.user %}
-
-							<div class="dropdown my-auto"><i class="fas fa-bell"></i></div>
-						
-							<div>
-								<a class="dropdown text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
-									<div class="displayusername">
-										{{ app.user.prenom|capitalize }}
-										{{ app.user.nom|capitalize }}
-									</div>
-			
-									{# <img src="" alt=""> #}
-								</a>
-								<div class="dropdown-menu my-2 my-lg-0 mr-sm-4" 							aria-labelledby="navbarDropdown">
-			
-										<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}"><i class="fa fa-cog"></i>
-											Préférences
-										</a>
-										
-										<a class="dropdown-item" href="{{ path('app_logout') }}">
-											<i class="fa fa-sign-out-alt"></i>
-											Déconnexion
-										</a>
-		
-								</div>
-							</div>
-							
+				<a class="dropdown text-decoration-none" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="d-inline-flex align-items-center text-white">
+						{% if app.user.photo == "female" %}
+							<img src="/images/photo_profil_default/female.PNG" alt="" class="rounded-circle photoMenu"> 
+						{% elseif app.user.photo == "male" %}
+							<img src="/images/photo_profil_default/male.PNG" alt="" class="rounded-circle photoMenu"> 
+						{% else %}
+							<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
+						{% endif %}
+						{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize}}
+					</div>
+				</a>
+				<div class="dropdown-menu my-2 my-lg-0" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ path('employe_edit', {id: app.user.id}) }}"><i class="fa fa-cog"></i>
+							Préférences
+						</a>
+						<a class="dropdown-item" href="{{ path('app_logout') }}">
+							<i class="fa fa-sign-out-alt"></i>
+							Déconnexion
+						</a>
+				</div>
 			{% endif %}
 		</div> 
 	</div>
+
 </div>

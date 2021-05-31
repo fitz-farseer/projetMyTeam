@@ -1,4 +1,23 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn bgc-pink">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+
+<div class="col-md-4 p-0 col-lg-4 p-2">
+    <div class="card">
+        <div class="flexCard">
+            <div class="card-body cardBody">
+                <h5 class="card-title">Envoyer un document</h5>
+                <div class="h-50">
+                    {{ form_start(form) }}
+                    <div class="formSize">{{ form_widget(form.name)}}</div>
+                    <div class="formSize">{{ form_widget(form.type)}}</div>
+                    <div class="formSize">{{ form_widget(form.destinataire)}}</div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer cardFooter">
+            <button class="btn bgc-pink rounded-pill float-right">{{ button_label|default('Envoyer') }}</button>
+        </div>
+    </div>
+    </div>
+
+

@@ -25,12 +25,24 @@ $police1:'News Cycle', sans-serif;
 /********************************************
                  COMMUN CSS
 *********************************************/
+html{
+  height: 100%;
+}
 body {
   background-color: $color1;
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
- }
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}
+.full-height{
+  min-height: 100%;
+}
+
 *{
   box-sizing: border-box;
 }
@@ -178,12 +190,13 @@ thead{
 .iconMenu{
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: $color5;
   margin: 0;
-  padding: 0 12px;
-  width: 40px;
-  height: 100vh;
+  padding: 0 20px;
+  width: 50px;
   z-index: 1000;
+  position: absolute;
 }
 .iconMenu i{
   color: $color4;
@@ -197,7 +210,9 @@ thead{
   width: 200px;
   z-index: 1000;
   position: absolute;
+  align-items: flex-start !important;
   background-color: $color9;
+  height: 100%;
 }
 #burgerclick:hover{
   cursor: pointer;
@@ -209,7 +224,8 @@ thead{
   font-size: 18px;
 }
 .menuGauche{
-  width: 40px;
+  width: 100px;
+  min-height: 100%;
 }
 .bodyindex{
  position: relative;
@@ -230,6 +246,9 @@ thead{
 }
 .header i{
   color: $color5;
+}
+.dropdown-menu i{
+  color: $color3;
 }
 .logoheader a{
   color: $color5 !important;
@@ -381,9 +400,21 @@ thead{
   font-size: 12px;
   height: 35vh;
 }
+.formSize{
+  padding: 2px 0;
+}
 .cardBody{
   font-size: 12px;
-  height: 20vh;
+  height: 30vh;
+}
+.cardBody a{
+  text-decoration: none;
+}
+.cardBody h5{
+  color: $color4;
+}
+.cardBody h5:hover{
+  color: $color6;
 }
 h5{
   font-size: 15px;
@@ -402,6 +433,10 @@ h6{
 }
 .soustitrementions{
   color: $color4;
+h6{
+  color: $color4;
+  border-bottom: 1px solid $color1;
+  font-weight: bolder;
 }
 
 /********************************************
@@ -439,15 +474,7 @@ footer{
 @media screen and (min-width: 540px){
 
   /* -------------------- employe-> new.html.twig  ------------------ */
-  .formulaireContainer{
-
-  }
-  .input{
-
-  }
-  .input2{
-
-  }
+  
   /* ------------------ employe-> login.html.twig ------------------ */
  
   footer{

@@ -1,0 +1,56 @@
+<div class="col-md-12 col-md-12 p-2">
+	<div class="card">
+		<div class="d-flex">
+			<div class="card-body">
+				<h6 class='card-title'>
+					Annuaire entreprise
+				</h6>
+				<div class='table-responsive'>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Email</th>
+								<th>Service</th>
+								<th>Solde Congés</th>
+								<th>Détails</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for employe in employes %}
+								<tr>
+									<td>{{ employe.nom|capitalize }}</td>
+									<td>{{ employe.prenom|capitalize }}</td>
+									<td>{{ employe.email }}</td>
+									<td>
+										{% if employe.service == "ressources_humaines" %}
+											Ressources Humaines
+										{% else %}
+											{{ employe.service|capitalize }}
+										{% endif %}
+									</td>
+									<td>{{ employe.nbConges }}</td>
+									<td>
+										<a class='badge badge-info' href="{{ path('employe_show', {'id': employe.id}) }}" class="colorIcon">
+											Détails
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="6">Aucun employé enregistré</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer cardFooter">
+			<a href="{{ path('profil_index') }}" class="btn bgc-pink rounded-pill float-right">
+				Revenir à l'accueil
+			</a>
+		</div>
+	</div>
+</div>
