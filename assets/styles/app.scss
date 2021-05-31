@@ -13,7 +13,7 @@ $color4: #286fb4;
 $color5: #ffffff;
 $color6: #df4c73;
 
-$color10: #d9534f;
+$color10: #C83827;
 
 $color7:  rgba(255, 255, 255, 1);
 $color8: rgba(255, 255, 255, 0);
@@ -79,7 +79,7 @@ h5{
 .btn-bleu:hover{
   background-color: $color5;
   color: $color4;
-  border: 1px solid $color4;
+  border: 2px solid $color4;
 }
 .btn-pink{
   background-color: $color6;
@@ -89,7 +89,7 @@ h5{
 .btn-pink:hover{
   background-color: $color5;
   color: $color6;
-  border: 1px solid $color6;
+  border: 2px solid $color6;
 }
 .btn-rouge{
   background-color: $color10;
@@ -99,7 +99,7 @@ h5{
 .btn-rouge:hover{
   background-color: $color5;
   color: $color10;
-  border: 1px solid $color10;
+  border: 2px solid $color10;
 }
 
 /* --- thead ---*/
