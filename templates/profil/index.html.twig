@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil Index
+{% block title %}
+	Profil Index
 {% endblock %}
 
 
 {% block body %}
 
-		<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
+<div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6 p-0 bodyindex">
+
+	{% if (app.user.roles[0] == 'ROLE_ADMIN') %}
+
 		<div class="row">
 			<div class="col-md-4 p-0 col-lg-4 p-2">
 				<div class="card">
@@ -25,13 +29,14 @@
 							" alt="pas d'image">
 						</div>
 						<div class="card-body cardBody">
-							<h5 class="card-title">{{ app.user.prenom|capitalize }}
-								{{ app.user.nom|capitalize }}</h5>
+							<h6 class="card-title">
+								{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize }}
+							</h6>
 							<p>Bienvenu(e) sur votre dashboard</p>
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary rounded-pill float-right">Modifier</a>
+						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary bgc-pink rounded-pill float-right">Modifier mon profil</a>
 					</div>
 				</div>
 			</div>
@@ -39,55 +44,54 @@
 			<div class="col-md-8 p-0 col-lg-8 p-2">
 				<div class="card">
 					<div class="flexCard">
-
-						<img class="card-img-top imgVignette" src="/images/images_front/absenceimg.jpg" alt="pas d'image">
 						<div class="card-body cardBody">
-							<h5 class="card-title">Mes absences</h5>
+							<a href="{{ path('employe_index') }}">
+								<h5 class="card-title">GESTION EMPLOYES</h5>
+							</a>
 							<p>
 								<table class="table table-bordered table-striped">
-									<thead class='thead-dark'>
+									<thead>
 										<tr>
-											<th>Date debut</th>
-											<th>Date retour</th>
-											<th>Statut</th>
+											<th>Nom</th>
+											<th>Prénom</th>
+											<th>Email</th>
+											<th>Service</th>
 										</tr>
 									</thead>
 									<tbody>
-										{% for absence in app.user.absences %}
-											<tr>
-												<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
-												<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
-												<td {{ absence.statut == 'En attente' ? "class='table-danger'" : '' }}>{{ absence.statut }}</td>
-											</tr>
+										{% for i, employe in employes %}
+											{% if i >= employes|length - 2 %}
+												<tr>
+													<td>{{ employe.nom|capitalize }}</td>
+													<td>{{ employe.prenom|capitalize }}</td>
+													<td>{{ employe.email }}</td>
+													<td>{{ employe.service|capitalize }}</td>
+												</tr>
+											{% endif %}
 										{% else %}
 											<tr>
-												<td colspan="3">Aucune absence</td>
+												<td colspan="4">Aucun employé à afficher</td>
 											</tr>
 										{% endfor %}
 									</tbody>
 								</table>
-								{{ (app.user.nbConges|number_format > 0 ? 'Il vous reste <strong>' ~ app.user.nbConges ~ ' jours </strong> de congés à poser.' : 'Vous n\'avez plus de jours à poser.')|raw }}
 							</p>
 						</div>
-						
 					</div>
 					<div class="card-footer cardFooter">
-					<a href="{{ path('absences_new') }}" class="btn btn-primary rounded-pill float-right">Signaler une absence</a>
-					
+						<a href="{{ path('employe_new') }}" class="btn bgc-pink btn-primary rounded-pill float-right">Ajouter un employé</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-12 p-0 col-lg-12 p-2">
+			<div class="col-md-6 col-lg-6 p-2">
 				<div class="card">
 					<div class="flexCard">
-						<div class="centrerImgProfil">
-							<img src="/images/images_front/documentsimg.jpg" alt="pas d'image" class="card-img-top imgVignette">
-						</div>
-		
 						<div class="card-body cardBody">
-							<h5 class="card-title">Mes documents</h5>
-							<table class="table">
+							<a href="{{ path('documents_index') }}">
+								<h5 class="card-title">GESTION DOCUMENTS</h5>
+							</a>
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>Envoyé le</th>
@@ -96,10 +100,9 @@
 									</tr>
 								</thead>
 								<tbody>
-		
 									{% for i, document in app.user.documents %}
 										{% if i >= app.user.documents|length - 2 %}
-											{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											{# Si i, est supérieur ou égal à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
 											<tr>
 												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
 												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
@@ -112,10 +115,457 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn btn-primary rounded-pill float-right">Partager un document</a>
+						<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn bgc-pink btn-primary rounded-pill float-right">
+							Partager un document
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-6 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('absences_index') }}">
+								<h5 class="card-title">GESTION ABSENCES</h5>
+							</a>
+							<p>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Date debut</th>
+											<th>Date retour</th>
+											<th>Statut</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for i, absence in absences %}
+											{% if i >= absences|length - 2 %}
+												<tr>
+													<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+													<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+													<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
+														{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
+														{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
+														{{ absence.statut }}
+													</td>
+													<td>
+														<a href="{{ path('absences_show', {'id': absence.id}) }}">Voir plus</a>
+														<a href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+													</td>
+												</tr>
+											{% endif %}
+										{% else %}
+											<tr>
+												<td colspan="4">Aucune absence</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</p>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('absences_index') }}" class="btn bgc-pink btn-primary rounded-pill float-right">
+							Valider une absence
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	{% endif %}
+
+	{% if (app.user.roles[0] == 'ROLE_RH') %}
+
+		<div class="row">
+			<div class="col-md-4 p-0 col-lg-4 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="centrerImgProfil">
+							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="Ajoutez une photo :)">
+						</div>
+						<div class="card-body cardBody">
+							<h6 class="card-title">
+								{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize }}
+							</h6>
+							<p>Bienvenu(e) sur votre dashboard</p>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn bgc-pink btn-primary rounded-pill float-right">Modifier mon profil</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-8 p-0 col-lg-8 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('employe_index') }}">
+								<h5 class="card-title">GESTION EMPLOYES</h5>
+							</a>
+							<p>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Nom</th>
+											<th>Prénom</th>
+											<th>Email</th>
+											<th>Service</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for i, employe in employes %}
+											{% if i >= employes|length - 2 %}
+												<tr class='text-wrap'>
+													<td class='text-wrap'>{{ employe.nom|capitalize }}</td>
+													<td class='text-wrap'>{{ employe.prenom|capitalize }}</td>
+													<td class='text-wrap'>{{ employe.email }}</td>
+													<td class='text-wrap'>{{ employe.service|capitalize }}</td>
+												</tr>
+											{% endif %}
+										{% else %}
+											<tr>
+												<td colspan="4">Aucun employé à afficher</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</p>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('employe_new') }}" class="btn bgc-pink btn-primary rounded-pill float-right">Ajouter un employé</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 p-0 col-lg-6 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('documents_index') }}">
+								<h5 class="card-title">GESTION DOCUMENTS</h5>
+							</a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Envoyé le</th>
+										<th>à</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, document in app.user.documents %}
+										{% if i >= app.user.documents|length - 2 %}
+											{# Si i, est supérieur ou égal à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+												<td>{{ document.type }}</td>
+											</tr>
+										{% endif %}
+									{% else %}
+									<tr>
+										<td colspan="3">Aucun document</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn bgc-pink btn-primary rounded-pill float-right">
+							Partager un document
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 p-0 col-lg-6 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('absences_index') }}">
+								<h5 class="card-title">GESTION ABSENCES</h5>
+							</a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Nom</th>
+										<th>Prénom</th>
+										<th>Date de départ</th>
+										<th>Date de retour</th>
+										<th>Statut</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, absence in absences %}
+										{% if i >= absences|length - 2 %}
+											{# Si i, est supérieur ou égal à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ absence.employe.nom|capitalize }}</td>
+												<td>{{ absence.employe.prenom|capitalize }}</td>
+												<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+												<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+												<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
+													{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
+													{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
+													{{ absence.statut }}
+												</td>
+
+											</tr>
+										{% endif %}
+									{% else %}
+									<tr>
+										<td colspan="5">Aucune absence</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('absences_new') }}" class="btn bgc-pink btn-primary rounded-pill float-right">
+							Valider une absence
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
+
+	{% endif %}
+
+	{% if (app.user.roles[0] == 'ROLE_MANAGER') %}
+
+		<div class="row">
+			<div class="col-md-4 p-0 col-lg-4 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="centrerImgProfil">
+							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="Ajoutez une photo :)">
+						</div>
+						<div class="card-body cardBody">
+							<h6 class="card-title">
+								{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize }}
+							</h6>
+							<p>Bienvenu(e) sur votre dashboard</p>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn bgc-pink btn-primary rounded-pill float-right">Modifier mon profil</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-8 p-0 col-lg-8 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('absences_index') }}">
+								<h5 class="card-title">GESTION ABSENCES</h5>
+							</a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Nom</th>
+										<th>Prénom</th>
+										<th>Date de départ</th>
+										<th>Date de retour</th>
+										<th>Statut</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, absence in absences %}
+										{% if i >= absences|length - 2 %}
+											{# Si i, est supérieur ou égal à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ absence.employe.nom|capitalize }}</td>
+												<td>{{ absence.employe.prenom|capitalize }}</td>
+												<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+												<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+												<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
+													{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
+													{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
+													{{ absence.statut }}
+												</td>
+											</tr>
+										{% endif %}
+									{% else %}
+										<tr>
+											<td colspan="5">Aucune absence</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('absences_new') }}" class="btn bgc-pink btn-primary rounded-pill float-right">
+							Valider une absence
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 p-0 col-lg-12 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('documents_index') }}">
+								<h5 class="card-title">GESTION DOCUMENTS</h5>
+							</a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Envoyé le</th>
+										<th>à</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, document in app.user.documents %}
+										{% if i >= app.user.documents|length - 2 %}
+											{# Si i, est supérieur ou égal à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+												<td>{{ document.type }}</td>
+											</tr>
+										{% endif %}
+									{% else %}
+										<tr>
+											<td colspan="3">Aucun document à afficher</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn bgc-pink btn-primary rounded-pill float-right">
+							Partager un document
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+
+	{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
+
+		<div class="row">
+			<div class="col-md-4 p-0 col-lg-4 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="centrerImgProfil">
+							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+						</div>
+						<div class="card-body cardBody">
+							<h6 class="card-title">{{ app.user.prenom|capitalize }}
+								{{ app.user.nom|capitalize }}</h6>
+							<p>Bienvenu(e) sur votre dashboard</p>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary bgc-pink rounded-pill float-right">Modifier</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-8 p-0 col-lg-8 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="{{ path('absences_index') }}">
+								<h5 class="card-title">MES ABSENCES</h5>
+							</a>
+							<p>
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Date debut</th>
+											<th>Date retour</th>
+											<th>Statut</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for absence in app.user.absences %}
+											<tr>
+												<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+												<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+												<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
+													{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
+													{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
+													{{ absence.statut }}
+												</td>
+											</tr>
+										{% else %}
+											<tr>
+												<td colspan="3">Aucune absence</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+								{{ (app.user.nbConges|number_format > 0 ? 'Il vous reste <strong>' ~ app.user.nbConges ~ ' jours </strong> de congés à poser.' : 'Vous n\'avez plus de jours à poser.')|raw }}
+							</p>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('employe_absences_new') }}" class="btn btn-primary bgc-pink rounded-pill float-right">Signaler une absence</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 p-0 col-lg-12 p-2">
+				<div class="card">
+					<div class="flexCard">
+						<div class="card-body cardBody">
+							<a href="#">
+								<h5 class="card-title">MES DOCUMENTS</h5>
+							</a>
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Envoyé le</th>
+										<th>à</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, document in app.user.documents %}
+										{% if i >= app.user.documents|length - 2 %}
+											{# Si i, est supérieur ou égale à ( (la longeur du tableau) - 2), on affiche les données des index correspondants #}
+											<tr>
+												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
+												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
+												<td>{{ document.type }}</td>
+											</tr>
+										{% endif %}
+									{% else %}
+										<tr>
+											<td colspan="5">Aucune absence</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer cardFooter">
+						<a href="{{ path('documents_new', {id: app.user.id}) }}" class="btn btn-primary bgc-pink rounded-pill float-right">
+							Partager un document
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+	
 </div>
+
 {% endblock %}

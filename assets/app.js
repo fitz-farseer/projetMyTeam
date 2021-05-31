@@ -13,19 +13,16 @@ global.$ = global.jQuery = $;
 window.Popper = require("popper.js");
 require("bootstrap");
 
-$(document).ready(function(){
-
-    // au clique sur burger menu = apparait -> disparait
+$(function(){
+    // au clic, le side menu apparaît/dispraît
     $('.istyle').hide();
 
     $('#burgerclick').on("click",()=>{
         $('.istyle').toggle();
     });
-   
-
 });
 
-// au clique sur burger menu = agrandit -> réduit la largeur de iconMenu
+// au clic, la div .iconMenu agrandit/rétrécit
 const burgerclick = document.getElementById('burgerclick');
 const iconmenu = document.querySelector('.iconMenu');
 

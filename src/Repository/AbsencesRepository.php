@@ -20,6 +20,40 @@ class AbsencesRepository extends ServiceEntityRepository
         parent::__construct($registry, Absences::class);
     }
 
+    public function findByService(string $service)
+    {
+        return $this->createQueryBuilder('a')
+            ->join(Employe::class, 'e', 'WITH', 'a.employe = e.id')
+            ->andWhere("e.service = :val")
+            ->setParameter('val', $service)
+            ->orderBy("a.date_retour", "DESC")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByStatut(string $statut)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere("a.statut = :val")
+            ->setParameter('val', $statut)
+            ->orderBy("a.date_retour", "DESC")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByStatutManager(string $statut, string $service)
+    {
+        return $this->createQueryBuilder('a')
+            ->join(Employe::class, 'e', 'WITH', 'a.employe = e.id')
+            ->andWhere("a.statut = :statut")
+            ->andWhere("e.service = :service")
+            ->setParameter('service', $service)
+            ->setParameter('statut', $statut)
+            ->orderBy("a.date_retour", "DESC")
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Absences[] Returns an array of Absences objects
     //  */

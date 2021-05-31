@@ -1,4 +1,4 @@
 <form method="post" action="{{ path('absences_delete', {'id': absence.id}) }}" onsubmit="return confirm('Êtes-vous certain(e) de vouloir supprimer cette absence ?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ absence.id) }}">
-	<button class="btn btn-danger">Supprimer</button>
+	<button class="btn mr-1 rounded-pill btn-danger">Supprimer</button>
 </form>
