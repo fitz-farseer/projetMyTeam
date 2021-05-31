@@ -12,7 +12,17 @@
 				<div class="card">
 					<div class="flexCard">
 						<div class="centrerImgProfil">
-							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+							<img class="card-img-top imgVignetteProfil" src="
+
+							{% if app.user.photo == "female" %}
+								/image/photo_profil_default/female.PNG
+							{% elseif app.user.photo == "male" %}
+								/image/photo_profil_default/male.PNG
+							{% else %}
+								/images/photo_profil/{{ app.user.photo }}
+							{% endif %}	
+
+							" alt="pas d'image">
 						</div>
 						<div class="card-body cardBody">
 							<h5 class="card-title">{{ app.user.prenom|capitalize }}
