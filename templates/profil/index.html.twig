@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary bgc-pink rounded-pill float-right">Modifier mon profil</a>
+						<a href="{{ path('employe_edit', {id: app.user.id}) }}" class="btn btn-primary bgc-pink rounded-pill float-right">Modifier profil</a>
 					</div>
 				</div>
 			</div>
@@ -46,13 +46,13 @@
 							<a href="{{ path('employe_index') }}">
 								<h5 class="card-title">GESTION EMPLOYES</h5>
 							</a>
-							<p>
+							<div class='table-responsive'>
 								<table class="table table-bordered table-striped">
 									<thead>
 										<tr>
 											<th>Nom</th>
 											<th>Prénom</th>
-											<th>Email</th>
+											{# <th>Email</th> #}
 											<th>Service</th>
 										</tr>
 									</thead>
@@ -62,7 +62,7 @@
 												<tr>
 													<td>{{ employe.nom|capitalize }}</td>
 													<td>{{ employe.prenom|capitalize }}</td>
-													<td>{{ employe.email }}</td>
+													{# <td>{{ employe.email }}</td> #}
 													<td>{{ employe.service|capitalize }}</td>
 												</tr>
 											{% endif %}
@@ -73,11 +73,11 @@
 										{% endfor %}
 									</tbody>
 								</table>
-							</p>
+							</div>
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('employe_new') }}" class="btn bgc-pink btn-primary rounded-pill float-right">Ajouter un employé</a>
+						<a href="{{ path('employe_new') }}" class="btn bgc-pink rounded-pill float-right">Ajouter un employé</a>
 					</div>
 				</div>
 			</div>
@@ -134,7 +134,6 @@
 											<th>Date debut</th>
 											<th>Date retour</th>
 											<th>Statut</th>
-											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -147,10 +146,6 @@
 														{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
 														{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
 														{{ absence.statut }}
-													</td>
-													<td>
-														<a href="{{ path('absences_show', {'id': absence.id}) }}">Voir plus</a>
-														<a href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 													</td>
 												</tr>
 											{% endif %}
