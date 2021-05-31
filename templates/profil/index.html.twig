@@ -16,17 +16,15 @@
 				<div class="card">
 					<div class="flexCard">
 						<div class="centrerImgProfil">
-							<img class="card-img-top imgVignetteProfil" src="
-
+							
 							{% if app.user.photo == "female" %}
-								/image/photo_profil_default/female.PNG
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/female.PNG" alt="pas d'image">
 							{% elseif app.user.photo == "male" %}
-								/image/photo_profil_default/male.PNG
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/male.PNG" alt="pas d'image">
 							{% else %}
-								/images/photo_profil/{{ app.user.photo }}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
 							{% endif %}	
 
-							" alt="pas d'image">
 						</div>
 						<div class="card-body cardBody">
 							<h6 class="card-title">
@@ -180,7 +178,13 @@
 				<div class="card">
 					<div class="flexCard">
 						<div class="centrerImgProfil">
-							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="Ajoutez une photo :)">
+							{% if app.user.photo == "female" %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/female.PNG" alt="pas d'image">
+							{% elseif app.user.photo == "male" %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/male.PNG" alt="pas d'image">
+							{% else %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+							{% endif %}	
 						</div>
 						<div class="card-body cardBody">
 							<h6 class="card-title">
@@ -341,7 +345,13 @@
 				<div class="card">
 					<div class="flexCard">
 						<div class="centrerImgProfil">
-							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="Ajoutez une photo :)">
+							{% if app.user.photo == "female" %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/female.PNG" alt="pas d'image">
+							{% elseif app.user.photo == "male" %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/male.PNG" alt="pas d'image">
+							{% else %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+							{% endif %}	
 						</div>
 						<div class="card-body cardBody">
 							<h6 class="card-title">
@@ -458,7 +468,13 @@
 				<div class="card">
 					<div class="flexCard">
 						<div class="centrerImgProfil">
-							<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+							{% if app.user.photo == "female" %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/female.PNG" alt="pas d'image">
+							{% elseif app.user.photo == "male" %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil_default/male.PNG" alt="pas d'image">
+							{% else %}
+								<img class="card-img-top imgVignetteProfil" src="/images/photo_profil/{{ app.user.photo }}" alt="pas d'image">
+							{% endif %}	
 						</div>
 						<div class="card-body cardBody">
 							<h6 class="card-title">{{ app.user.prenom|capitalize }}
