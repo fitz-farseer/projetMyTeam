@@ -21,7 +21,10 @@ class AbsencesType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Début de l\'absence',
                 'constraints' => [
-                    new GreaterThan((new \DateTime('+6 days')))
+                    new GreaterThan([
+                        (new \DateTime('+6 days')),
+                        "message" => "Le mot de passe doit contenir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial et doit faire entre 6 t 10 caractères"
+                        ])
                 ]
             ])
             ->add('date_retour', DateType::class, [

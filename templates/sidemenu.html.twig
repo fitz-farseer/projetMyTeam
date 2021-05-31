@@ -39,10 +39,6 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Liste des employés</a href="#">
-					</p>
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
 					</p>
 				</span>
@@ -54,12 +50,6 @@
 						<b>Absences</b>
 					</span>
 				</a>
-				<span class="istyle">
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
-						<a href="#">Liste des absences</a>
-					</p>
-				</span>
 
 				<p class="m-0">
 					<a href="{{ path('documents_index') }}">
@@ -72,11 +62,11 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</ahref="#">
+						<a href="{{ path('documents_envoyes') }}">Documents envoyés</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_recus') }}">Mes documents reçus</a>
+						<a href="{{ path('documents_recus') }}">Documents reçus</a>
 					</p>
 				</span>
 
@@ -99,14 +89,6 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-<<<<<<< HEAD
-						<a href="#">Liste des employés</a>
-=======
-						<a href="#">Liste des employés</a href="#">
->>>>>>> groupe1
-					</p>
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('employe_new') }}">Ajouter un employé</a>
 					</p>
 				</span>
@@ -119,10 +101,6 @@
 					</span>
 				</a>
 				<span class="istyle">
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
-						<a href="#">Liste des absences</a>
-					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
 						<a href="#">Absences à valider</a>
@@ -141,11 +119,11 @@
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_recus') }}">Mes documents reçus</a>
+						<a href="{{ path('documents_recus') }}">Documents reçus</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</a>
+						<a href="{{ path('documents_envoyes') }}">Documents envoyés</a>
 					</p>
 				</span>
 
@@ -161,23 +139,15 @@
 					<a href="#">
 						<i class="fa fa-users fa-lg"></i>
 						<span class="istyle">
-							<b>Mon Service</b>
+							<b>Employés</b>
 						</span>
 					</a>
 				</p>
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="#">Mes employés</a href="#">
-					</p>
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
-						<a href="#">Absences du service</a>
-					</p>
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
 						<a href="#">Absences à valider</a>
-					</p>
+					</p>					
 				</span>
 
 
@@ -185,15 +155,11 @@
 					<a href="{{ path('absences_index') }}">
 						<i class="fa fa-calendar-alt fa-lg"></i>
 						<span class="istyle">
-							<b>Mes Absences</b>
+							<b>Absences</b>
 						</span>
 					</a>
 				</p>
 				<span class="istyle">
-					<p class="m-0">
-						<i class="fas fa-angle-right"></i>
-						<a href="#">Liste</a>
-					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('absences_new') }}">Signaler une absence</a>
@@ -204,18 +170,18 @@
 					<a href="{{ path('documents_index') }}">
 						<i class="fas fa-file-alt fa-lg"></i>
 						<span class="istyle">
-							<b>Mes Documents</b>
+							<b>Documents</b>
 						</span>
 					</a>
 				</p>
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_index') }}">Mes documents reçus</a>
+						<a href="{{ path('documents_index') }}">Documents reçus</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</a>
+						<a href="{{ path('documents_envoyes') }}">Documents envoyés</a>
 					</p>
 				</span>
 			{% endif %}
@@ -229,16 +195,11 @@
 					<a href="{{ path('absences_index') }}">
 						<i class="fa fa-calendar-alt fa-lg"></i>
 						<span class="istyle">
-							<b>Mes Absences</b>
+							<b>Absences</b>
 						</span>
 					</a>
 				</p>
 				<span class="istyle">
-					<p class="m-0">
-						<a href="{{ path('absences_index') }}">
-							<i class="fas fa-angle-right"></i>
-							Liste</a>
-					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
 						<a href="{{ path('employe_absences_new') }}">Signaler une absence</a>
@@ -249,18 +210,18 @@
 					<a href="{{ path('documents_index') }}">
 						<i class="fas fa-file-alt fa-lg"></i>
 						<span class="istyle">
-							<b>Mes Documents</b>
+							<b>Documents</b>
 						</span>
 					</a>
 				</p class="m-0">
 				<span class="istyle">
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_recus') }}">Mes documents reçus</a>
+						<a href="{{ path('documents_recus') }}">Documents reçus</a>
 					</p>
 					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						<a href="{{ path('documents_envoyes') }}">Mes documents envoyés</a>
+						<a href="{{ path('documents_envoyes') }}">Documents envoyés</a>
 					</p>
 				</span>
 

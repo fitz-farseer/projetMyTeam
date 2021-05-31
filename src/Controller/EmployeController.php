@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Employe;
 use App\Form\EmployeType;
+use App\Form\ModifierProfilType;
 use App\Repository\EmployeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,7 +74,7 @@ class EmployeController extends AbstractController
     #[Route('/{id}/edit', name: 'employe_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Employe $employe, Encoder $encoder): Response
     {
-        $form = $this->createForm(EmployeType::class, $employe);
+        $form = $this->createForm(ModifierProfilType::class, $employe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,13 +106,10 @@ class EmployeController extends AbstractController
                 $employe->setPassword($mdp);
             }
 
-            $role = $form->get("roles")->getData();
-            $employe->setRoles([$role]);
-
-
+            $this->addFlash("success", "Modification prise en compte");
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('employe_index');
+            return $this->redirectToRoute('profil_index');
         }
 
         return $this->render('employe/edit.html.twig', [

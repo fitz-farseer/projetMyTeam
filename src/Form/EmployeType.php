@@ -125,6 +125,11 @@ class EmployeType extends AbstractType
             ->add('nb_conges', IntegerType::class, [
                 "label" => "Nombre de jours de congés",
                 "data" => 0
+            ])
+            ->add('photo', FileType::class, [
+                "mapped" => false,
+                "label" => "Photo de profil",
+                "required" => false
             ]);
     }
 
