@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Documents{% endblock %}
+{% block title %}Modification du document{% endblock %}
 
 {% block body %}
     <div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
@@ -8,7 +8,7 @@
     
         {{ include('documents/_form.html.twig', {'button_label': 'Update'}) }}
     
-        <a class='btn rounded-pill btn-secondary' href="{{ path('documents_index') }}">Retour à la liste</a>
+        <a class='btn rounded-pill btn-bleu' href="{{ path('documents_index') }}">Retour à la liste</a>
     
         {{ include('documents/_delete_form.html.twig') }}
     </div>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Employe{% endblock %}
+{% block title %}Modification de l'emùployé{% endblock %}
 
 {% block body %}
 <div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
@@ -17,7 +17,7 @@
                             <div class="d-inline-flex">
                                 {% if (app.user.roles[0] == 'ROLE_ADMIN') or (app.user.roles[0] == 'ROLE_RH') or (app.user.roles[0] == 'ROLE_MANAGER')%}
                                     {{ include('employe/_delete_form.html.twig') }}
-                                    <a class='btn btn-info rounded-pill mr-1' href="{{ path('employe_index') }}">Retour à la liste</a>
+                                    <a class='btn btn-bleu rounded-pill mr-1' href="{{ path('employe_index') }}">Retour à la liste</a>
                                 {% endif %}
                             </div>
                         </div>

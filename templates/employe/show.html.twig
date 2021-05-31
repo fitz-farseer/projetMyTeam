@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employe{% endblock %}
+{% block title %}Détails de l'employé{% endblock %}
 
 {% block body %}
 <div class="container-fluid col-10 col-lg-8 mr-auto ml-auto col-sm-6  p-0 bodyindex">
@@ -72,7 +72,7 @@
                             <div class='d-inline-flex'>
                                 {{ include('employe/_delete_form.html.twig') }}
 
-                                <a class='d-block btn rounded-pill btn-info ml-1' href="{{ path('employe_index') }}">Retour à la liste</a>
+                                <a class='d-block btn rounded-pill btn-bleu ml-1' href="{{ path('employe_index') }}">Retour à la liste</a>
 
                                 <a class='btn bgc-pink rounded-pill ml-1' href="{{ path('employe_edit', {'id': employe.id}) }}">Modifier</a>
                             </div>

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Edit Absences
+    Modification de l'absence
 {% endblock %}
 
 {% block body %}
@@ -17,10 +17,10 @@
                         {{ include('absences/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
                         <div class="d-flex justify-content-end">
                             <div class='d-inline-flex'>
-                                <a class='d-block btn rounded-pill btn-primary mr-1' href="{{ path('absences_index') }}">Retour à la liste</a>
+                                <a class='d-block btn rounded-pill btn-bleu mr-1' href="{{ path('absences_index') }}">Retour à la liste</a>
                                 {{ include('absences/_delete_form.html.twig') }}
                                 {% if (app.user.roles[0] == 'ROLE_ADMIN') or (app.user.roles[0] == 'ROLE_RH') or (app.user.roles[0] == 'ROLE_MANAGER')%}
-                                <a class='btn btn-success rounded-pill mr-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+                                <a class='btn bgc-pink rounded-pill mr-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
                                 {% endif %}
                             </div>
                         </div>

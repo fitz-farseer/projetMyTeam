@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Absences
+{% block title %}Détails de l'absence
 {% endblock %}
 
 {% block body %}
@@ -46,9 +46,9 @@
 								<div class='d-inline-flex'>
 									{{ include('absences/_delete_form.html.twig') }}
 
-									<a class='d-block btn rounded-pill btn-primary ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
+									<a class='d-block btn rounded-pill btn-bleu ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-									<a class='btn btn-success rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+									<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 
 								</div>
 							</div>
@@ -98,9 +98,9 @@
 							<div class='d-inline-flex'>
 								{{ include('absences/_delete_form.html.twig') }}
 
-								<a class='d-block btn rounded-pill btn-primary ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
+								<a class='d-block btn rounded-pill btn-bleu ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-								<a class='btn btn-success rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+								<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 
 								<a class='d-block btn rounded-pill btn-primary ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-								<a class='btn btn-success rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+								<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 
 							</div>
 						</div>
