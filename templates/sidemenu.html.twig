@@ -1,41 +1,36 @@
-<div class="menuGauche">
-	<div class="col-2 mr-3 p-1 blockMenu">
-		<div class="iconMenu">
-
-			<p  class="m-0">
+<div class="menuGauche full-height">
+<div class="col-2 mr-3 p-1 blockMenu full-height">
+		<div class="iconMenu full-height">
+			<p class="m-0">
 				<a href="{{ path('profil_index') }}">
-					<i class="fas fa-home istylehome"></i>
+					<i class="fas fa-home istylehome fa-lg"></i>
 					<span class="istyle">
 						<b>Accueil</b>
 					</span>
 				</a>
 			</p>
-
-
 			{% if app.user %}
-				{% else %}
-
-					<p class="m-0">
-						<a href="{{ path('app_login') }}">
-							<i class="fa fa-sign-in-alt"></i>
-							<span class="istyle">
-								<b>Connexion</b>
-							</span>
-						</a>
-					</p>
-
+			{% else %}
+				<p class="m-0">
+					<a href="{{ path('app_login') }}">
+						<i class="fa fa-sign-in-alt"></i>
+						<span class="istyle">
+							<b>Connexion</b>
+						</span>
+					</a>
+				</p>
 			{% endif %}
 
 
-{#############################################################################################}
-            {###################### ROLE ADMIN ######################}
-{#############################################################################################}
+			{#############################################################################################}
+						{###################### ROLE ADMIN ######################}
+			{#############################################################################################}
 
 			{% if (app.user.roles[0] == 'ROLE_ADMIN') %}
 
 				<p class="m-0">
 					<a href="{{ path('employe_index') }}">
-						<i class="fa fa-list"></i>
+						<i class="fa fa-users fa-lg"></i>
 						<span class="istyle">
 							<b>Employé</b>
 						</span>
@@ -54,7 +49,7 @@
 
 
 				<a href="{{ path('absences_index') }}">
-					<i class="fa fa-book"></i>
+					<i class="fa fa-calendar-alt fa-lg"></i>
 					<span class="istyle">
 						<b>Absences</b>
 					</span>
@@ -66,10 +61,9 @@
 					</p>
 				</span>
 
-
 				<p class="m-0">
 					<a href="{{ path('documents_index') }}">
-						<i class="far fa-file-alt"></i>
+						<i class="fas fa-file-alt fa-lg"></i>
 						<span class="istyle">
 							<b>Documents</b>
 						</span>
@@ -88,15 +82,15 @@
 
 			{% endif %}
 
-{#############################################################################################}
-            {###################### ROLE RH ######################}
-{#############################################################################################}
+			{#############################################################################################}
+						{###################### ROLE RH ######################}
+			{#############################################################################################}
 
 			{% if (app.user.roles[0] == 'ROLE_RH') %}
 
 				<p class="m-0">
 					<a href="{{ path('employe_index') }}">
-						<i class="fa fa-list"></i>
+						<i class="fa fa-users fa-lg"></i>
 						<span class="istyle">
 							<b>Employé</b>
 						</span>
@@ -115,7 +109,7 @@
 
 
 				<a href="{{ path('absences_index') }}">
-					<i class="fa fa-book"></i>
+					<i class="fa fa-calendar-alt fa-lg"></i>
 					<span class="istyle">
 						<b>Absences</b>
 					</span>
@@ -134,7 +128,7 @@
 
 				<p class="m-0">
 					<a href="{{ path('documents_index') }}">
-						<i class="far fa-file-alt"></i>
+						<i class="fas fa-file-alt fa-lg"></i>
 						<span class="istyle">
 							<b>Documents</b>
 						</span>
@@ -157,15 +151,15 @@
 
 			{% endif %}
 
-{#############################################################################################}
-            {###################### ROLE MANAGER ######################}
-{#############################################################################################}
+			{#############################################################################################}
+						{###################### ROLE MANAGER ######################}
+			{#############################################################################################}
 
 			{% if (app.user.roles[0] == 'ROLE_MANAGER') %}
 
 				<p class="m-0">
 					<a href="#">
-						<i class="fa fa-list"></i>
+						<i class="fa fa-users fa-lg"></i>
 						<span class="istyle">
 							<b>Mon Service</b>
 						</span>
@@ -189,7 +183,7 @@
 
 				<p class="m-0">
 					<a href="{{ path('absences_index') }}">
-						<i class="fa fa-book"></i>
+						<i class="fa fa-calendar-alt fa-lg"></i>
 						<span class="istyle">
 							<b>Mes Absences</b>
 						</span>
@@ -206,77 +200,71 @@
 					</p>
 				</span>
 
-			</a>
-
-
-			<p class="m-0">
-				<a href="{{ path('documents_index') }}">
-					<i class="far fa-file-alt"></i>
-					<span class="istyle">
-						<b>Mes Documents</b>
-					</span>
-				</a>
-			</p>
-			<span class="istyle">
 				<p class="m-0">
-					<i class="fas fa-angle-right"></i>
-					<a href="#">Documents reçus</a>
+					<a href="{{ path('documents_index') }}">
+						<i class="fas fa-file-alt fa-lg"></i>
+						<span class="istyle">
+							<b>Mes Documents</b>
+						</span>
+					</a>
 				</p>
-				<p class="m-0">
-					<i class="fas fa-angle-right"></i>
-					<a href="{{ path('documents_new') }}">Envoyer un document</a>
-				</p>
-			</span>
-
-
-		{% endif %}
-
-{#############################################################################################}
-            {###################### ROLE EMPLOYE ######################}
-{#############################################################################################}
-
-		{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
-			<p class="m-0">
-				<a href="{{ path('absences_index') }}">
-					<i class="fa fa-book"></i>
-					<span class="istyle">
-						<b>Mes Absences</b>
-					</span>
-				</a>
-			</p>
-			<span class="istyle">
-				<p class="m-0">
-					<a href="#">
+				<span class="istyle">
+					<p class="m-0">
 						<i class="fas fa-angle-right"></i>
-						Liste</a>
-				</p>
+						<a href="{{ path('documents_index') }}">Documents reçus</a>
+					</p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
+						<a href="{{ path('documents_new') }}">Envoyer un document</a>
+					</p>
+				</span>
+			{% endif %}
+
+			{#############################################################################################}
+						{###################### ROLE EMPLOYE ######################}
+			{#############################################################################################}
+
+			{% if (app.user.roles[0] == 'ROLE_EMPLOYE') %}
 				<p class="m-0">
-					<i class="fas fa-angle-right"></i>
-					<a href="{{ path('absences_new') }}">Signaler une absence</a>
+					<a href="{{ path('absences_index') }}">
+						<i class="fa fa-calendar-alt fa-lg"></i>
+						<span class="istyle">
+							<b>Mes Absences</b>
+						</span>
+					</a>
 				</p>
-			</span>
+				<span class="istyle">
+					<p class="m-0">
+						<a href="{{ path('absences_index') }}">
+							<i class="fas fa-angle-right"></i>
+							Liste</a>
+					</p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
+						<a href="{{ path('employe_absences_new') }}">Signaler une absence</a>
+					</p>
+				</span>
 
-			<p class="m-0">
-				<a href="{{ path('documents_index') }}">
-					<i class="far fa-file-alt"></i>
-					<span class="istyle">
-						<b>Mes Documents</b>
-					</span>
-				</a>
-			</p class="m-0">
-			<span class="istyle">
 				<p class="m-0">
-					<i class="fas fa-angle-right"></i>
-					<a href="#">Documents reçus</a>
-				</p>
-				<p class="m-0">
-					<i class="fas fa-angle-right"></i>
-					<a href="{{ path('documents_new') }}">Envoyer un document</a>
-				</p>
-			</span>
+					<a href="{{ path('documents_index') }}">
+						<i class="fas fa-file-alt fa-lg"></i>
+						<span class="istyle">
+							<b>Mes Documents</b>
+						</span>
+					</a>
+				</p class="m-0">
+				<span class="istyle">
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
+						<a href="#">Documents reçus</a>
+					</p>
+					<p class="m-0">
+						<i class="fas fa-angle-right"></i>
+						<a href="{{ path('documents_new') }}">Envoyer un document</a>
+					</p>
+				</span>
 
-		{% endif %}
-
-
+			{% endif %}
+		</div>
 	</div>
-</div></div>
+</div>

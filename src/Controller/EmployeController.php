@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Encoder;
 
 
-#[Route('/gestion/employe')]
+#[Route('/employe')]
 class EmployeController extends AbstractController
 {
     #[Route('/', name: 'employe_index', methods: ['GET'])]
@@ -24,7 +24,7 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'employe_new', methods: ['GET', 'POST'])]
+    #[Route('gestion/new', name: 'employe_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Encoder $encoder): Response
     {
         $employe = new Employe();
