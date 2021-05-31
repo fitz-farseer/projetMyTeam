@@ -1,0 +1,81 @@
+composer require security
+symfony console make:user
+
+symfony console make:entity
+symfony console make:migration
+symfony console doctrine:migrations:migrate
+
+symfony console make:auth
+symfony console make:registration-form
+
+composer require debug --dev
+
+------------------------------------------------------------
+
+
+
+
+symfony console make:controller Home
+
+
+
+    /**
+     * @Route("/livre/supprimer/{id}", name="livre_supprimer", requirements={"id"="\d+"})
+     * 
+     * En passant un objet Livre comme paramètre de la méthode supprimer, $livre sera récupéré dans la base de données selon
+     * la valeur {id} passé dans l'URL de la route
+     */
+    public function supprimer(EntityManager $em, Request $request, Livre $livre)
+    {
+        // dump($_POST);
+        if( $request->isMethod("POST") ){
+            /* Le méthode 'remove()' prépare la requête DELETE */
+            $em->remove($livre);
+            $em->flush();
+            return $this->redirectToRoute("livre");
+        }
+        return $this->render("livre/supprimer.html.twig", [ "livre" => $livre ]);
+    }
+
+
+
+
+
+
+
+
+
+symfony server:start -d  
+symfony server:stop
+
+composer require orm // gérer la bdd
+composer form validator // générer des formulaires
+
+
+class Entity : représente une table de la bdd, un objet Entity représente une enregistrement de la bdd
+
+symfony console make:entity  //
+symfony console make:migration // génére les requêtes SQL qui vont mettre à jour la bdd selon les entités
+symfony console doctrine:migrations:migrate // exécute les migrations
+
+Enregistrer dans une table
+	EntityManager : une classe qui permet d'insérer, modifier, supprimer des données dans une table (requête SQL : INSERT, UPDATE, DELETE)
+    Pour enregistrer un nouvel enregistrement :
+    	$entityManager->persist($livre)  // les requêtes vont être formées à partir d'objet de classe Entity. Les reqûetes sont mise en attente
+        
+        $entityManager->flush()  // exécute les requêtes en attente et modifie la base de données
+    
+Requête SELECT
+	les classes Repository permettent d'interroger la bdd. Il y a une classe Repository pour chaque classe Entity
+    
+
+classe Request : gère la requête HTTP. Un objet de cette classe contient toutes les valeurs des superglobales de PHP
+
+Pour utiliser cette classe (et d'autres comme les Repository, EntityManageer, ...) qu'on ne peut pas instancier, on peut l'instancier en la passant comme 
+paramètre d'une méthode d'un controleur
+
+symfony console make:form
+
+
+
+ pour les uses: symfony form entity
