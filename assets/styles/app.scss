@@ -163,6 +163,9 @@ thead{
   color: $color6;
   text-decoration: none;
 }
+.affichagenommenu{
+  display: none;
+}
 
 /* ------------------ Base.html.twig -------------------- */
 
@@ -439,6 +442,28 @@ h6{
   border-bottom: 1px solid $color1;
   font-weight: bolder;
 }
+.popup{
+  width: 180px;
+  height: 120px;
+  font-size: 10px;
+  background-color: $color5;
+  position: absolute;
+  z-index: 3000;
+  border: 1px solid $color5;
+  vertical-align: middle;
+  text-align: center;
+  padding: 15px 10px 0 10px;
+  color: $color4;
+  border-radius: 10px;
+  box-shadow: 1px 1px 12px black;
+}
+.mdpforget p:hover{
+  color: $color2;
+  cursor: pointer;
+}
+.mdpforget{
+  position: relative;
+}
 
 /********************************************
                  FOOTER
@@ -487,7 +512,10 @@ footer{
 }
 
 @media screen and (min-width: 768px){
-  
+  /* --- menu --- */
+  .affichagenommenu{
+    display: inline;
+  }
   /* -------------------- employe-> new.html.twig  ------------------ */
   .formulaireContainer{
     width: 580px;

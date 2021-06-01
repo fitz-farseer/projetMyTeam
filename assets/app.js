@@ -20,6 +20,13 @@ $(function(){
     $('#burgerclick').on("click",()=>{
         $('.istyle').toggle();
     });
+
+    //au clic sur mot de passe oublié, fait apparaitre popup
+    $('.popup').hide();
+
+    $('.mdpforget').on("click", ()=>{
+        $('.popup').toggle();
+    });
 });
 
 // au clic, la div .iconMenu agrandit/rétrécit
