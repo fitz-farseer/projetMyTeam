@@ -13,7 +13,6 @@ class AbsencesValidationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->setAction($this->router->generate('document_new'))
             ->add('statut', ChoiceType::class, [
                 'label' => 'Décision', 
                 'choices' => [
@@ -22,7 +21,6 @@ class AbsencesValidationType extends AbstractType
                     'Rejeter' => 'Rejetée'
                 ]
             ])
-           
         ;
     }
 

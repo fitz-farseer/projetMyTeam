@@ -48,7 +48,7 @@
 
 									<a class='d-block btn rounded-pill btn-bleu ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-									<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+									<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Mettre à jour</a>
 
 								</div>
 							</div>
@@ -100,7 +100,7 @@
 
 								<a class='d-block btn rounded-pill btn-bleu ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-								<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+								<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Mettre à jour</a>
 
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 
 								<a class='d-block btn rounded-pill btn-primary ml-1' href="{{ path('absences_index') }}">Retour à la liste</a>
 
-								<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
+								<a class='btn bgc-pink rounded-pill ml-1' href="{{ path('absences_validation', {'id': absence.id}) }}">Mettre à jour</a>
 
 							</div>
 						</div>
@@ -220,3 +220,5 @@
 {% endif %}
 
 {% endblock %}
+
+{% block footer %}{% endblock %}

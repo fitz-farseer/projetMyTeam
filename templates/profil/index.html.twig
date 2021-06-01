@@ -104,7 +104,7 @@
 											<tr>
 												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
 												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
-												<td>{{ document.type }}</td>
+												<td>{{ document.type|capitalize }}</td>
 											</tr>
 										{% endif %}
 									{% endfor %}
@@ -131,6 +131,7 @@
 								<table class="table table-bordered table-striped">
 									<thead>
 										<tr>
+											<th>Employé</th>
 											<th>Date debut</th>
 											<th>Date retour</th>
 											<th>Statut</th>
@@ -140,6 +141,7 @@
 										{% for i, absence in absences %}
 											{% if i >= absences|length - 2 %}
 												<tr>
+													<td>{{ absence.employe.nom|capitalize ~ " " ~ absence.employe.prenom|capitalize }}</td>
 													<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
 													<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
 													<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
@@ -161,7 +163,7 @@
 					</div>
 					<div class="card-footer cardFooter">
 						<a href="{{ path('absences_index') }}" class="btn bgc-pink rounded-pill float-right">
-							Valider une absence
+							Détails
 						</a>
 					</div>
 				</div>
@@ -264,7 +266,7 @@
 											<tr>
 												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
 												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
-												<td>{{ document.type }}</td>
+												<td>{{ document.type|capitalize }}</td>
 											</tr>
 										{% endif %}
 									{% else %}
@@ -328,8 +330,8 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('absences_new') }}" class="btn bgc-pink rounded-pill float-right">
-							Valider une absence
+						<a href="{{ path('absences_index') }}" class="btn bgc-pink rounded-pill float-right">
+							Détails
 						</a>
 					</div>
 				</div>
@@ -409,8 +411,8 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('absences_new') }}" class="btn bgc-pink rounded-pill float-right">
-							Valider une absence
+						<a href="{{ path('absences_index') }}" class="btn bgc-pink rounded-pill float-right">
+							Détails
 						</a>
 					</div>
 				</div>
@@ -438,7 +440,7 @@
 											<tr>
 												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
 												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
-												<td>{{ document.type }}</td>
+												<td>{{ document.type|capitalize }}</td>
 											</tr>
 										{% endif %}
 									{% else %}
@@ -505,16 +507,18 @@
 										</tr>
 									</thead>
 									<tbody>
-										{% for absence in app.user.absences %}
-											<tr>
-												<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
-												<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
-												<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
-													{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
-													{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
-													{{ absence.statut }}
-												</td>
-											</tr>
+										{% for absence, i in app.user.absences %}
+											{% if i >= app.user.absence|length %}
+												<tr>
+													<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
+													<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
+													<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} 
+														{{ absence.statut == 'Validée' ? "class='table-success'" : '' }} 
+														{{ absence.statut == 'Refusée' ? "class='table-danger'" : '' }}>
+														{{ absence.statut }}
+													</td>
+												</tr>
+											{% endif %}
 										{% else %}
 											<tr>
 												<td colspan="3">Aucune absence</td>
@@ -554,7 +558,7 @@
 											<tr>
 												<td>{{ document.dateEnvoi|date('d-m-Y') }}</td>
 												<td>{{ document.destinataire.nom|capitalize ~ " " ~ document.destinataire.prenom|capitalize }}</td>
-												<td>{{ document.type }}</td>
+												<td>{{ document.type|capitalize }}</td>
 											</tr>
 										{% endif %}
 									{% else %}

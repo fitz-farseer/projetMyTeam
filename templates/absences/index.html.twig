@@ -40,7 +40,6 @@
 												</td>
 												<td>
 													<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-													<a class='badge badge-info' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
 												</td>
 											</tr>
 										{% else %}
@@ -72,6 +71,7 @@
 								<table class="table table-bordered table-striped">
 									<thead class='thead-dark'>
 										<tr>
+											<th>Employé</th>
 											<th>Date debut</th>
 											<th>Date retour</th>
 											<th>Statut</th>
@@ -82,6 +82,7 @@
 										{% for i, absence in absences %}
 											{% if i >= absences|length - 2 %}
 												<tr>
+													<td>{{ absence.employe.nom|capitalize ~ " " ~ absence.employe.prenom|capitalize }}</td>
 													<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
 													<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
 													<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }}
@@ -91,7 +92,6 @@
 													</td>
 													<td>
 														<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-														<a class='badge badge-info' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 													</td>
 												</tr>
 											{% endif %}
@@ -106,8 +106,8 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('absences_index') }}" class="btn bgc-pink rounded-pill float-right">
-							Valider un congé
+						<a href="{{ path('absences_liste_validation') }}" class="btn bgc-pink rounded-pill float-right">
+							Détails
 						</a>
 					</div>
 				</div>
@@ -151,7 +151,6 @@
 												</td>
 												<td>
 													<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-													<a class='badge badge-info' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
 												</td>
 											</tr>
 										{% else %}
@@ -183,6 +182,7 @@
 								<table class="table table-bordered table-striped">
 									<thead class='thead-dark'>
 										<tr>
+											<th>Employé</th>
 											<th>Date debut</th>
 											<th>Date retour</th>
 											<th>Statut</th>
@@ -193,6 +193,7 @@
 										{% for i, absence in absences %}
 											{% if i >= absences|length - 2 %}
 												<tr>
+													<td>{{ absence.employe.nom|capitalize ~ " " ~ absence.employe.prenom|capitalize }}</td>
 													<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
 													<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
 													<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} {{ absence.statut == 'Validée' ? "class='table-success'" : '' }} {{ absence.statut == 'Rejetée' ? "class='table-danger'" : '' }}>
@@ -200,7 +201,6 @@
 													</td>
 													<td>
 														<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-														<a class='badge badge-info' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 													</td>
 												</tr>
 											{% endif %}
@@ -215,8 +215,8 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('absences_index') }}" class="btn bgc-pink rounded-pill float-right">
-							Valider un congé
+						<a href="{{ path('absences_liste_validation') }}" class="btn bgc-pink rounded-pill float-right">
+							Détails
 						</a>
 					</div>
 				</div>
@@ -259,7 +259,6 @@
 												</td>
 												<td>
 													<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-													<a class='badge badge-info' href="{{ path('absences_edit', {'id': absence.id}) }}">Modifier</a>
 												</td>
 											</tr>
 										{% else %}
@@ -285,12 +284,13 @@
 					<div class="flexCard">
 						<div class="card-body cardBody">
 							<h6 class="card-title">
-								Liste des absences
+								Absences de mon service
 							</h6>
 							<p>
 								<table class="table table-bordered table-striped">
 									<thead class='thead-dark'>
 										<tr>
+											<th>Employé</th>
 											<th>Date debut</th>
 											<th>Date retour</th>
 											<th>Statut</th>
@@ -301,6 +301,7 @@
 										{% for i, absence in absencesService %}
 											{% if i >= absences|length - 2 %}
 												<tr>
+													<td>{{ absence.employe.nom|capitalize ~ " " ~ absence.employe.prenom|capitalize }}</td>
 													<td>{{ absence.dateDebut ? absence.dateDebut|date('d-m-Y') : '' }}</td>
 													<td>{{ absence.dateRetour ? absence.dateRetour|date('d-m-Y') : '' }}</td>
 													<td {{ absence.statut == 'En attente' ? "class='table-warning'" : '' }} {{ absence.statut == 'Validée' ? "class='table-success'" : '' }} {{ absence.statut == 'Rejetée' ? "class='table-danger'" : '' }}>
@@ -308,7 +309,6 @@
 													</td>
 													<td>
 														<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-														<a class='badge badge-info' href="{{ path('absences_validation', {'id': absence.id}) }}">Valider</a>
 													</td>
 												</tr>
 											{% endif %}
@@ -323,8 +323,8 @@
 						</div>
 					</div>
 					<div class="card-footer cardFooter">
-						<a href="{{ path('absences_index') }}" class="btn bgc-pink rounded-pill float-right">
-							Valider un congé
+						<a href="{{ path('absences_liste_validation') }}" class="btn bgc-pink rounded-pill float-right">
+							Détails
 						</a>
 					</div>
 				</div>
@@ -370,7 +370,6 @@
 												</td>
 												<td>
 													<a class='badge badge-info' href="{{ path('absences_show', {'id': absence.id}) }}">Détails</a>
-													<a class='badge badge-info' href="{{ path('absences_edit_employe', {'id': absence.id}) }}">Modifier</a>
 												</td>
 											</tr>
 										{% else %}

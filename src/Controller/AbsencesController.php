@@ -27,6 +27,18 @@ class AbsencesController extends AbstractController
         ]);
     }
 
+    #[Route('/absences/liste', name: 'absences_liste_validation', methods: ['GET'])]
+    public function list(AbsencesRepository $absencesRepository, EmployeRepository $er): Response
+    {
+        return $this->render('absences/liste.html.twig', [
+            'absencesAValider' => $absencesRepository->findByStatut('En attente'),
+            'absences' => $absencesRepository->findAll(),
+            'absencesService' => $absencesRepository->findByService($this->getUser()->getService()),
+            'employesService' => $er->findByService($this->getUser()->getService()), 
+            'employes' => $er->findAll()
+        ]);
+    }
+
     #[Route('/new', name: 'absences_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -127,13 +139,19 @@ class AbsencesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $employe = $absence->getEmploye();
-            $joursConges = $employe->getNbConges();
-            $joursConges -= $absence->getNbJours(); 
-            $employe->setNbConges($joursConges);
-            $this->getDoctrine()->getManager()->flush();
+            if (($form->get("statut")->getData()) == 'Validée'){
+                $employe = $absence->getEmploye();
+                $joursConges = $employe->getNbConges();
+                $joursConges -= $absence->getNbJours(); 
+                $employe->setNbConges($joursConges);
+                $this->getDoctrine()->getManager()->flush();
+    
+                return $this->redirectToRoute('absences_index');
+            } else {
+                $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('absences_index');
+                return $this->redirectToRoute('absences_index');
+            }
         }
 
         return $this->render('absences/edit.html.twig', [
