@@ -20,7 +20,7 @@
 						{% else %}
 							<img src="/images/photo_profil/{{ app.user.photo }}" alt="" class="rounded-circle photoMenu"> 
 						{% endif %}
-						{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize}}
+						<span class="affichagenommenu">{{ app.user.prenom|capitalize ~ ' ' ~ app.user.nom|capitalize}}</span>
 					</div>
 				</a>
 				<div class="dropdown-menu my-2 my-lg-0" aria-labelledby="navbarDropdown">
